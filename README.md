@@ -1,38 +1,108 @@
-# Sofía & Javi — Invitación con acuarela original
+# Sofía & Javi · Invitación de boda
 
-Esta versión reproduce **exactamente la imagen original** aportada de la invitación. No se sustituye por dibujos vectoriales simples, tarjetas ni tipografías diferentes.
+Web de la invitación (28 · 08 · 2027, Gijón). Es HTML + CSS + JavaScript sencillo, sin instalaciones ni compilación: GitHub Pages la publica tal cual.
 
-## Archivos del proyecto
-- `index.html` — página web, accesos interactivos y formulario local.
-- `styles.css` — presentación y accesibilidad del formulario emergente.
-- `invitacion-original.jpg` — ilustración original entera, sin alteraciones.
-- `titulo-confirmacion.jpg` — recorte de la propia ilustración para la cabecera del formulario emergente.
+- **Web publicada:** https://mds5zhp2sd-gif.github.io/Boda/
+- **Diseño de referencia:** `referencia/invitacion-original.jpg`
 
-**No hay un archivo `script.js`**. El pequeño código necesario para abrir el formulario y generar el mensaje se encuentra al final de `index.html`. No utiliza servicios de terceros, `fetch`, XMLHttpRequest, trackers ni llamadas a APIs externas para enviar datos.
+---
 
-## Subir a GitHub (repositorio `Boda`)
-1. Descomprime `boda-final-acuarela.zip`.
-2. Entra en `https://github.com/mds5zhp2sd-gif/Boda`.
-3. Selecciona `Add file` > `Upload files` y sube **los cuatro archivos**, no el ZIP, directamente a la raíz del repositorio. Confirma la sustitución de `index.html` y `styles.css` si GitHub te la solicita.
-4. Pulsa `Commit changes`.
-5. Comprueba que la rama publicada en `Settings` > `Pages` sigue siendo `main` y carpeta `/(root)`.
-6. Entra a `https://mds5zhp2sd-gif.github.io/Boda/` y fuerza la recarga (`Cmd + Shift + R` en Mac; `Ctrl + Shift + R` en Windows). A veces GitHub Pages tarda unos minutos en mostrar el cambio.
-7. Si siguen apareciendo `Nuestra historia` o tarjetas grandes, es la **versión anterior**: revisa que `index.html` se haya sustituido realmente y que aparezcan las dos imágenes JPG en la raíz del repositorio.
+## ¿Qué archivo toco para…?
 
-El archivo `script.js` de versiones antiguas se puede eliminar del repositorio porque ya no se utiliza (no hace falta eliminarlo para que esta web funcione).
+| Quiero cambiar… | Archivo | Dónde |
+|---|---|---|
+| Nombres, fecha, ciudad | `js/config.js` | `pareja`, `boda` |
+| Lugares, horas y enlaces de mapas | `js/config.js` | `detalles.columnas` |
+| Programa del día (añadir/quitar eventos) | `js/config.js` | `programa.eventos` |
+| Texto e información del hotel | `js/config.js` | `alojamiento` |
+| Textos y opciones del formulario | `js/config.js` | `confirmacion` |
+| Conectar el formulario a Google Sheets | `js/config.js` | `confirmacion.urlGoogleSheets` |
+| Cuenta atrás, “Añadir al calendario”, música | `js/config.js` | `extras` (poner `activo: true`) |
+| Una ilustración o icono | carpeta `img/` | sube la nueva **con el mismo nombre** (o cambia la ruta en `config.js`) |
+| Colores, fuentes, tamaños | `css/estilos.css` | bloque `:root` al principio |
+| Aspecto de una sección concreta | `css/estilos.css` | apartado con el nombre de la sección |
 
-## Interacción y límites
-- El botón `Ver en el mapa` de la ilustración abre Google Maps de la Capilla de la Providencia (solo al pulsarlo).
-- `Ver opciones de alojamiento` abre información del hotel y un enlace al mapa (solo al pulsarlo).
-- Al pulsar cualquier campo de `Confirma tu asistencia` o el botón bajo la ilustración, se abre un formulario HTML real, legible y adaptado a móvil.
-- El formulario **no manda datos**. El invitado puede generar y copiar un texto con sus respuestas y después enviarlo personalmente a los novios por su canal habitual. **No almacena respuestas en GitHub** ni manda mensajes automáticamente.
-- El contenido visible de la invitación es la imagen aportada; para cambiar texto o diseño en ella hay que editar esa ilustración.
-- En pantallas de móvil pequeñas, el texto de la imagen queda reducido. El formulario emergente sí se muestra con tamaño legible.
+> `js/app.js` es la “maquinaria” que lee `config.js` y monta la página. Normalmente no hace falta tocarlo.
 
-## Privacidad y seguridad
-- No hay analítica, cookies de seguimiento, envío automático de datos ni fuentes remotas.
-- La ilustración es local. Los únicos enlaces externos son a Google Maps y requieren pulsación del usuario.
-- No garantiza pasar controles concretos de Zscaler; si hay un bloqueo, conviene revisar el informe de la regla con Seguridad.
+### Editar desde GitHub (sin instalar nada)
+1. Abre el archivo en GitHub (por ejemplo `js/config.js`) y pulsa el lápiz ✏️.
+2. Cambia el texto **respetando las comillas y las comas**.
+3. Pulsa **Commit changes**. En 1–2 minutos la web se actualiza (recarga con `Ctrl/Cmd + Shift + R`).
 
-## Antes de compartir
-Verificar datos de boda y alojamiento con los novios. El formulario no recoge confirmaciones de forma centralizada: cada persona tiene que enviar por separado su mensaje copiado.
+---
+
+## Estructura
+
+```
+index.html                  Estructura de la página (secciones con id)
+css/estilos.css             Todo el aspecto visual
+js/config.js                ★ Todos los datos editables
+js/app.js                   Lógica: monta la página y envía el formulario
+img/                        Ilustraciones e iconos (sustituibles)
+google-apps-script/Code.gs  Código para recibir las confirmaciones en Google Sheets
+referencia/                 Imagen original del diseño
+```
+
+### Secciones (ids en `index.html`)
+| id | Sección |
+|---|---|
+| `#portada` | Escena, “¡Nos casamos!”, nombres, fecha, ciudad |
+| `#detalles` | Fecha, ceremonia y celebración (columnas generadas desde `config.js`) |
+| `#programa` | Línea de tiempo del día + velero |
+| `#alojamiento` | Hotel recomendado + panel desplegable |
+| `#confirmacion` | Formulario de asistencia |
+| `#pie` | Firma, ancla, concha y olas |
+
+Los elementos generados también tienen id propio: `#detalle-ceremonia`, `#evento-fiesta`, etc. (salen del campo `id` de cada elemento en `config.js`). Los separadores de olas son `#separador-1` … `#separador-4`.
+
+### Imágenes (`img/`)
+Ahora mismo son **recortes de la imagen original** con el fondo quitado. Para cambiarlas por dibujos propios, sube un PNG con fondo transparente y el mismo nombre.
+
+| Archivo | Dónde se ve | Tamaño aprox. |
+|---|---|---|
+| `portada-escena.png` | Cabecera (pescadores, faro y mar) | 848 × 172 |
+| `ola-separador-1…4.png` | Separadores entre secciones | 848 × 40 |
+| `pie-olas.png` | Olas del pie | 848 × 83 |
+| `icono-fecha.png`, `icono-lugar.png`, `icono-hora.png` | Detalles | 50 px alto |
+| `icono-ceremonia/autobus/aperitivo/almuerzo/fiesta/recena.png` | Programa del día | 50 px alto |
+| `icono-form-*.png` | Iconos de los campos del formulario | 22 px ancho |
+| `ilus-velero.png` | Programa del día | 157 × 128 |
+| `ilus-concha.png`, `ilus-farol.png` | Alojamiento | 80 / 122 px ancho |
+| `ilus-concha-pequena.png` | Título de “Confirma tu asistencia” | 34 px |
+| `ilus-ancla.png`, `ilus-concha-pie.png` | Pie | 86 / 102 px ancho |
+| `mancha-titulo.svg` | Mancha verde detrás de los títulos | se estira |
+| `rayitas.svg` | Rayitas decorativas junto a títulos | — |
+
+Consejo: si los nuevos dibujos son más grandes (p. ej. al doble de tamaño), se verán más nítidos en móviles; la web los ajusta al tamaño indicado.
+
+---
+
+## Conectar el formulario a Google Sheets
+
+Mientras `urlGoogleSheets` tenga el texto de ejemplo, el formulario funciona en **modo prueba** (se ve, valida, pero no envía nada y lo avisa).
+
+1. Crea una hoja de cálculo en Google Sheets (por ejemplo “Confirmaciones boda”).
+2. En la hoja: **Extensiones → Apps Script**.
+3. Borra el contenido, pega todo `google-apps-script/Code.gs` y pulsa **Guardar** 💾.
+4. **Implementar → Nueva implementación** → icono ⚙️ → **Aplicación web**:
+   - *Ejecutar como:* **Yo**
+   - *Quién tiene acceso:* **Cualquier usuario**
+5. Pulsa **Implementar** y acepta los permisos (Google avisará de que la app no está verificada: *Configuración avanzada → Ir a … → Permitir*; es tu propio script).
+6. Copia la **URL de la aplicación web** (termina en `/exec`).
+7. En `js/config.js`, pega la URL:
+   ```js
+   urlGoogleSheets: "https://script.google.com/macros/s/XXXXXXXX/exec",
+   ```
+8. Haz una confirmación de prueba en la web: aparecerá una fila en la pestaña **Confirmaciones**.
+
+Columnas: Fecha de envío · Nombre y apellidos · Asistencia · Acompañantes · Alergias o intolerancias · Autobús · Mensaje.
+
+Protecciones incluidas: campo trampa antispam, recorte de textos largos y bloqueo de fórmulas en las celdas.
+
+---
+
+## Pendiente
+- [ ] Pegar la URL de Google Apps Script en `config.js`.
+- [ ] Completar dirección, teléfono y web del hotel en `config.js → alojamiento.hotel`.
+- [ ] Sustituir las ilustraciones recortadas por dibujos propios (mismos nombres).
+- [ ] Revisar los textos de “gracias” y, si se quiere, añadir fecha límite en `confirmacion.aviso`.

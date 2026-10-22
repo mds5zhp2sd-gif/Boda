@@ -3,154 +3,207 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f0e4">
-  <meta name="description" content="Invitación de boda de Sofía y Javi, 28 de agosto de 2027, Gijón, Asturias.">
+  <meta name="theme-color" content="#f5ede1">
   <meta name="robots" content="noindex, nofollow">
-  <title>¡Nos casamos! · Sofía y Javi · 28.08.2027</title>
-  <link rel="stylesheet" href="styles.css">
+  <!-- Título y descripción se sobrescriben desde js/config.js (meta) -->
+  <title>¡Nos casamos! · Sofía &amp; Javi · 28.08.2027</title>
+  <meta name="description" content="Invitación de boda de Sofía y Javi. 28 de agosto de 2027, Gijón (Asturias).">
+  <meta property="og:title" content="¡Nos casamos! · Sofía &amp; Javi">
+  <meta property="og:description" content="28 de agosto de 2027 · Gijón, Asturias">
+  <meta property="og:image" content="img/portada-escena.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Montserrat:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/estilos.css">
+
+  <script src="js/config.js" defer></script>
+  <script src="js/app.js" defer></script>
 </head>
 <body>
-  <main>
-    <h1 class="visually-hidden">Nos casamos: Sofía y Javi. 28 de agosto de 2027, Gijón.</h1>
-    <section class="poster" aria-label="Invitación ilustrada de Sofía y Javi">
-      <img class="poster-image" src="invitacion-original.jpg" width="848" height="1855"
-        alt="Invitación marinera en acuarela: Sofía y Javi se casan el 28 de agosto de 2027 en Gijón. Ceremonia a las 12:00 en Capilla de la Providencia. Autobús 13:30, aperitivo 14:00, almuerzo 16:30, fiesta 18:30 y recena 21:30. Banquete y alojamiento en hotel abba Playa Gijón. Abajo está la zona para confirmar asistencia."
-        fetchpriority="high" decoding="async">
-      <a class="hit hit-map" href="https://www.google.com/maps/search/?api=1&amp;query=Capilla+de+la+Providencia+Gij%C3%B3n" target="_blank" rel="noopener noreferrer"
-         aria-label="Ver en Google Maps la Capilla de la Providencia de Gijón" title="Abrir el mapa de la capilla"></a>
-      <button class="hit hit-hotel" type="button" data-open="hotelDialog"
-         aria-label="Ver opciones de alojamiento en el hotel abba Playa Gijón" title="Ver alojamiento"></button>
-      <button class="hit hit-rsvp" type="button" data-open="rsvpDialog"
-         aria-label="Abrir formulario de confirmación de asistencia" title="Abrir confirmación de asistencia"></button>
+  <!-- Corazón reutilizable (se usa con <svg><use href="#corazon"/></svg>) -->
+  <svg width="0" height="0" class="oculto-visual" aria-hidden="true" focusable="false">
+    <symbol id="corazon" viewBox="0 0 24 22">
+      <path d="M12 21s-1.2-.9-3.2-2.6C5 15.2 1.5 12 1.5 7.6 1.5 4.3 4 2 7 2c2 0 3.7 1.1 5 3 1.3-1.9 3-3 5-3 3 0 5.5 2.3 5.5 5.6 0 4.4-3.5 7.6-7.3 10.8C13.2 20.1 12 21 12 21z" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+  <main id="invitacion" class="invitacion">
+
+    <!-- ================= PORTADA ================= -->
+    <header id="portada" class="seccion portada">
+      <img id="portada-imagen" class="portada__imagen" data-src="portada.imagen" data-alt="portada.imagenAlt" alt="" width="848" height="172">
+      <div class="portada__contenido">
+        <span class="rayitas rayitas--izquierda" aria-hidden="true"></span>
+        <h1 id="portada-titulo" class="portada__titulo">
+          <span class="mancha" data-texto="portada.titulo">¡Nos casamos!</span>
+          <span id="portada-nombres" class="portada__nombres" data-texto="@nombres">Sofía &amp; Javi</span>
+        </h1>
+        <span class="rayitas rayitas--derecha" aria-hidden="true"></span>
+        <p id="portada-fecha" class="portada__fecha" data-texto="boda.fechaTexto">28 · 08 · 2027</p>
+        <svg class="corazon portada__corazon" aria-hidden="true"><use href="#corazon"/></svg>
+        <p id="portada-ciudad" class="portada__ciudad" data-texto="boda.ciudad">Gijón, Asturias</p>
+        <!-- Extras opcionales (se activan en config.js → extras) -->
+        <p id="cuenta-atras" class="cuenta-atras" hidden></p>
+        <button id="boton-calendario" class="boton boton--secundario" type="button" hidden></button>
+      </div>
+    </header>
+
+    <div class="separador" aria-hidden="true"></div>
+
+    <!-- ================= DETALLES ================= -->
+    <section id="detalles" class="seccion detalles" aria-labelledby="detalles-titulo">
+      <h2 id="detalles-titulo" class="titulo-seccion"><span class="mancha" data-texto="detalles.titulo">Detalles</span></h2>
+      <!-- Columnas generadas desde config.js → detalles.columnas -->
+      <ul id="detalles-columnas" class="detalles__columnas"></ul>
+      <a id="detalles-boton-mapa" class="boton" target="_blank" rel="noopener noreferrer" hidden>
+        <span data-texto="detalles.boton.texto">Ver en el mapa</span>
+        <span class="boton__flecha" aria-hidden="true">→</span>
+      </a>
     </section>
-    <nav class="extra-actions" aria-label="Acciones de la invitación">
-      <button class="action" type="button" data-open="rsvpDialog">Confirmar asistencia <span aria-hidden="true">→</span></button>
-      <p>Al pulsar los campos de la ilustración se abre el formulario real. Ningún dato se envía automáticamente.</p>
-    </nav>
+
+    <div class="separador" aria-hidden="true"></div>
+
+    <!-- ================= PROGRAMA DEL DÍA ================= -->
+    <section id="programa" class="seccion programa" aria-labelledby="programa-titulo">
+      <h2 id="programa-titulo" class="titulo-seccion"><span class="mancha" data-texto="programa.titulo">Programa del día</span></h2>
+      <div class="programa__cuerpo">
+        <!-- Eventos generados desde config.js → programa.eventos -->
+        <ol id="programa-eventos" class="programa__eventos"></ol>
+        <figure id="programa-decoracion" class="programa__decoracion">
+          <svg class="corazon programa__corazon" aria-hidden="true"><use href="#corazon"/></svg>
+          <img id="programa-ilustracion" class="programa__ilustracion" data-src="programa.ilustracion" alt="" width="157" height="128">
+          <figcaption id="programa-frase" class="programa__frase">
+            <span data-texto="programa.frase">¡Será un día inolvidable!</span>
+            <svg class="corazon" aria-hidden="true"><use href="#corazon"/></svg>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="separador" aria-hidden="true"></div>
+
+    <!-- ================= ALOJAMIENTO ================= -->
+    <section id="alojamiento" class="seccion alojamiento" aria-labelledby="alojamiento-titulo">
+      <h2 id="alojamiento-titulo" class="titulo-seccion"><span class="mancha" data-texto="alojamiento.titulo">Alojamiento</span></h2>
+      <div class="alojamiento__cuerpo">
+        <img id="alojamiento-ilustracion-izquierda" class="alojamiento__ilustracion alojamiento__ilustracion--izquierda" data-src="alojamiento.ilustracionIzquierda" alt="" width="80" height="74">
+        <p id="alojamiento-texto" class="alojamiento__texto" data-texto="alojamiento.texto"></p>
+        <img id="alojamiento-ilustracion-derecha" class="alojamiento__ilustracion alojamiento__ilustracion--derecha" data-src="alojamiento.ilustracionDerecha" alt="" width="122" height="104">
+      </div>
+      <button id="alojamiento-boton" class="boton" type="button" aria-expanded="false" aria-controls="alojamiento-panel">
+        <span id="alojamiento-boton-texto" data-texto="alojamiento.botonAbrir">Ver opciones de alojamiento</span>
+        <span class="boton__flecha" aria-hidden="true">→</span>
+      </button>
+      <!-- Panel desplegable generado desde config.js → alojamiento.hotel / notas -->
+      <div id="alojamiento-panel" class="alojamiento__panel" hidden></div>
+    </section>
+
+    <div class="separador" aria-hidden="true"></div>
+
+    <!-- ================= CONFIRMA TU ASISTENCIA ================= -->
+    <section id="confirmacion" class="seccion confirmacion" aria-labelledby="confirmacion-titulo">
+      <h2 id="confirmacion-titulo" class="titulo-seccion">
+        <img id="confirmacion-ilustracion" class="confirmacion__ilustracion" data-src="confirmacion.ilustracion" alt="" width="42" height="40">
+        <span class="mancha" data-texto="confirmacion.titulo">Confirma tu asistencia</span>
+        <svg class="corazon" aria-hidden="true"><use href="#corazon"/></svg>
+      </h2>
+      <p id="confirmacion-aviso" class="confirmacion__aviso" data-texto="confirmacion.aviso" hidden></p>
+
+      <form id="formulario-confirmacion" class="formulario" novalidate>
+        <!-- Nombre -->
+        <div id="campo-nombre" class="campo">
+          <img class="campo__icono" data-src="confirmacion.iconos.nombre" alt="" width="29" height="27">
+          <label class="oculto-visual" for="nombre" data-texto="confirmacion.campos.nombre">Nombre y apellidos</label>
+          <input id="nombre" name="nombre" type="text" autocomplete="name" maxlength="100" required data-placeholder="confirmacion.campos.nombre">
+        </div>
+
+        <!-- Asistencia -->
+        <div id="campo-asistencia" class="campo campo--opciones" role="radiogroup" aria-labelledby="etiqueta-asistencia">
+          <img class="campo__icono" data-src="confirmacion.iconos.asistencia" alt="" width="29" height="27">
+          <span id="etiqueta-asistencia" class="campo__etiqueta" data-texto="confirmacion.campos.asistencia">Asistencia</span>
+          <div class="campo__opciones">
+            <label><input type="radio" name="asistencia" value="Sí" required> <span data-texto="confirmacion.campos.asistenciaSi">Sí</span></label>
+            <label><input type="radio" name="asistencia" value="No"> <span data-texto="confirmacion.campos.asistenciaNo">No</span></label>
+          </div>
+        </div>
+
+        <!-- Campos que solo se muestran si viene -->
+        <div id="campos-si-asiste" class="formulario__grupo">
+          <div id="campo-acompanantes" class="campo campo--desplegable">
+            <img class="campo__icono" data-src="confirmacion.iconos.acompanantes" alt="" width="29" height="27">
+            <label class="oculto-visual" for="acompanantes" data-texto="confirmacion.campos.acompanantes">Número de acompañantes</label>
+            <select id="acompanantes" name="acompanantes"></select>
+          </div>
+
+          <div id="campo-alergias" class="campo campo--desplegable">
+            <img class="campo__icono" data-src="confirmacion.iconos.alergias" alt="" width="29" height="27">
+            <label class="oculto-visual" for="alergias" data-texto="confirmacion.campos.alergias">Alergias o intolerancias</label>
+            <select id="alergias" name="alergias"></select>
+          </div>
+
+          <div id="campo-alergias-otra" class="campo campo--secundario" hidden>
+            <label class="oculto-visual" for="alergiasOtra" data-texto="confirmacion.campos.alergiasOtra">Indica tu alergia o intolerancia</label>
+            <input id="alergiasOtra" name="alergiasOtra" type="text" maxlength="300" data-placeholder="confirmacion.campos.alergiasOtra">
+          </div>
+
+          <div id="campo-autobus" class="campo campo--opciones" role="radiogroup" aria-labelledby="etiqueta-autobus">
+            <img class="campo__icono" data-src="confirmacion.iconos.autobus" alt="" width="29" height="27">
+          <span id="etiqueta-autobus" class="campo__etiqueta" data-texto="confirmacion.campos.autobus">¿Necesitas el autobús?</span>
+            <div class="campo__opciones">
+              <label><input type="radio" name="autobus" value="Sí"> <span data-texto="confirmacion.campos.autobusSi">Sí</span></label>
+              <label><input type="radio" name="autobus" value="No"> <span data-texto="confirmacion.campos.autobusNo">No</span></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mensaje -->
+        <div id="campo-mensaje" class="campo campo--mensaje">
+          <img class="campo__icono" data-src="confirmacion.iconos.mensaje" alt="" width="29" height="27">
+          <label class="oculto-visual" for="mensaje" data-texto="confirmacion.campos.mensaje">Mensaje (opcional)</label>
+          <textarea id="mensaje" name="mensaje" rows="2" maxlength="600" data-placeholder="confirmacion.campos.mensaje"></textarea>
+        </div>
+
+        <!-- Antispam: campo invisible que las personas no rellenan -->
+        <div class="formulario__trampa" aria-hidden="true">
+          <label for="web">No rellenes este campo</label>
+          <input id="web" name="web" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <p id="formulario-estado" class="formulario__estado" role="status" aria-live="polite"></p>
+
+        <button id="formulario-boton" class="boton" type="submit">
+          <span id="formulario-boton-texto" data-texto="confirmacion.boton">Confirmar participación</span>
+          <span class="boton__flecha" aria-hidden="true">→</span>
+        </button>
+      </form>
+
+      <div id="confirmacion-gracias" class="confirmacion__gracias" hidden tabindex="-1">
+        <svg class="corazon" aria-hidden="true"><use href="#corazon"/></svg>
+        <p id="confirmacion-gracias-texto"></p>
+        <button id="confirmacion-otra" class="boton boton--secundario" type="button" data-texto="confirmacion.textos.otraRespuesta">Enviar otra confirmación</button>
+      </div>
+    </section>
+
+    <!-- ================= PIE ================= -->
+    <footer id="pie" class="seccion pie">
+      <img id="pie-ilustracion-izquierda" class="pie__ilustracion pie__ilustracion--izquierda" data-src="pie.ilustracionIzquierda" alt="" width="86" height="76">
+      <svg class="corazon pie__corazon pie__corazon--izquierda" aria-hidden="true"><use href="#corazon"/></svg>
+      <p id="pie-firma" class="pie__firma">
+        <span class="rayitas rayitas--izquierda" aria-hidden="true"></span>
+        <span data-texto="@firma">Sofía &amp; Javi · 28.08.2027</span>
+        <span class="rayitas rayitas--derecha" aria-hidden="true"></span>
+      </p>
+      <img id="pie-ilustracion-derecha" class="pie__ilustracion pie__ilustracion--derecha" data-src="pie.ilustracionDerecha" alt="" width="102" height="68">
+      <img id="pie-olas" class="pie__olas" data-src="pie.imagenOlas" alt="" width="848" height="83">
+    </footer>
   </main>
 
-  <dialog class="paper-dialog" id="rsvpDialog" aria-labelledby="rsvpTitle">
-    <div class="dialog-top">
-      <h2 id="rsvpTitle" class="visually-hidden">Confirma tu asistencia</h2>
-      <img class="dialog-heading" src="titulo-confirmacion.jpg" width="486" height="61" alt="Confirma tu asistencia">
-      <button type="button" class="close" data-close aria-label="Cerrar formulario">×</button>
-    </div>
-    <p class="dialog-intro">¡Qué ilusión compartir este día contigo! Completa los datos y copia el mensaje para enviárnoslo personalmente.</p>
-    <form id="rsvpForm" autocomplete="on">
-      <label class="field">
-        <span>Nombre y apellidos <em>*</em></span>
-        <input id="nombre" name="nombre" type="text" autocomplete="name" maxlength="100" required placeholder="Tu nombre y apellidos">
-      </label>
-      <fieldset class="field-group">
-        <legend>¿Asistirás? <em>*</em></legend>
-        <div class="choices">
-          <label><input type="radio" name="asistencia" value="Sí" required><span>Sí, allí estaré</span></label>
-          <label><input type="radio" name="asistencia" value="No"><span>No podré asistir</span></label>
-        </div>
-      </fieldset>
-      <div id="attendingDetails">
-        <label class="field">
-          <span>Número de acompañantes <small>(sin contarte a ti)</small></span>
-          <select name="acompanantes" id="acompanantes">
-            <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5 o más">5 o más</option>
-          </select>
-        </label>
-        <label class="field">
-          <span>Alergias o intolerancias</span>
-          <input name="alergias" type="text" maxlength="300" placeholder="Indica cuáles, o escribe Ninguna">
-        </label>
-        <fieldset class="field-group">
-          <legend>¿Necesitas el autobús?</legend>
-          <div class="choices">
-            <label><input type="radio" name="bus" value="Sí"><span>Sí</span></label>
-            <label><input type="radio" name="bus" value="No" checked><span>No</span></label>
-          </div>
-        </fieldset>
-      </div>
-      <label class="field">
-        <span>Mensaje <small>(opcional)</small></span>
-        <textarea name="mensaje" rows="3" maxlength="600" placeholder="¿Quieres contarnos algo?"></textarea>
-      </label>
-      <button class="action action-wide" type="submit">Preparar confirmación <span aria-hidden="true">→</span></button>
-    </form>
-    <section id="confirmationResult" class="confirmation-result" hidden aria-live="polite">
-      <h3>Tu confirmación está preparada</h3>
-      <p>Esta página no envía información a nadie. Copia el texto y envíaselo a Sofía o Javi por WhatsApp, correo o el canal habitual.</p>
-      <textarea id="confirmationText" readonly rows="8" aria-label="Texto de tu confirmación"></textarea>
-      <button type="button" class="action action-wide" id="copyButton">Copiar mensaje</button>
-      <p id="copyStatus" class="status" role="status"></p>
-    </section>
-    <p class="privacy">Tus respuestas permanecen en este navegador hasta que las copies. La web no utiliza servicios de formularios, analítica ni envíos automáticos.</p>
-  </dialog>
+  <!-- Extra opcional: música (config.js → extras.musica) -->
+  <button id="boton-musica" class="boton-musica" type="button" aria-pressed="false" hidden>♪</button>
 
-  <dialog class="paper-dialog small-dialog" id="hotelDialog" aria-labelledby="hotelTitle">
-    <div class="dialog-top">
-      <h2 id="hotelTitle">Alojamiento</h2>
-      <button type="button" class="close" data-close aria-label="Cerrar alojamiento">×</button>
-    </div>
-    <p>Os recomendamos el <strong>hotel abba Playa Gijón</strong>, a pocos minutos de la celebración. Los novios os pueden indicar cómo consultar la tarifa especial para invitados.</p>
-    <a class="action action-wide" href="https://www.google.com/maps/search/?api=1&amp;query=abba+Playa+Gij%C3%B3n" target="_blank" rel="noopener noreferrer">Ver hotel en el mapa <span aria-hidden="true">→</span></a>
-    <p class="privacy">Disponibilidad, precios y condiciones pendientes de confirmar con el hotel o los novios.</p>
-  </dialog>
-  <noscript><p class="noscript">Para utilizar el formulario de confirmación, activa JavaScript en tu navegador. También puedes comunicarte directamente con Sofía y Javi.</p></noscript>
-  <script>
-    // Sin peticiones de red, analítica, cookies ni envío de formularios.
-    // Todas las respuestas permanecen en el navegador del invitado.
-    (() => {
-      const openers = document.querySelectorAll('[data-open]');
-      openers.forEach(button => button.addEventListener('click', () => {
-        const target = document.getElementById(button.dataset.open);
-        if (target && !target.open) target.showModal();
-      }));
-      document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
-      document.querySelectorAll('dialog').forEach(dialog => {
-        dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
-      });
-      const form = document.getElementById('rsvpForm');
-      const details = document.getElementById('attendingDetails');
-      const result = document.getElementById('confirmationResult');
-      const output = document.getElementById('confirmationText');
-      const copy = document.getElementById('copyButton');
-      const status = document.getElementById('copyStatus');
-      form.addEventListener('change', event => {
-        if (event.target.name === 'asistencia') {
-          details.hidden = event.target.value === 'No';
-          result.hidden = true;
-        }
-      });
-      form.addEventListener('input', () => { result.hidden = true; status.textContent = ''; });
-      form.addEventListener('submit', event => {
-        event.preventDefault();
-        if (!form.reportValidity()) return;
-        const data = new FormData(form);
-        const attendance = data.get('asistencia');
-        const lines = [
-          'CONFIRMACIÓN DE BODA · SOFÍA Y JAVI · 28/08/2027',
-          'Nombre y apellidos: ' + data.get('nombre').trim(),
-          'Asistencia: ' + attendance
-        ];
-        if (attendance === 'Sí') {
-          lines.push('Acompañantes (además de mí): ' + (data.get('acompanantes') || '0'));
-          lines.push('Alergias o intolerancias: ' + (data.get('alergias').trim() || 'No indicadas'));
-          lines.push('Necesito autobús: ' + (data.get('bus') || 'No'));
-        }
-        const message = (data.get('mensaje') || '').trim();
-        if (message) lines.push('Mensaje: ' + message);
-        output.value = lines.join('\n');
-        result.hidden = false;
-        status.textContent = '';
-        result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      });
-      copy.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(output.value);
-          status.textContent = '¡Copiado! Ahora pégalo en el chat o correo de los novios.';
-        } catch {
-          output.focus(); output.select();
-          status.textContent = 'Selecciona el texto y cópialo con Ctrl+C (o Cmd+C en Mac).';
-        }
-      });
-    })();
-  </script>
+  <noscript>
+    <p class="aviso-noscript">Para ver la invitación completa y confirmar tu asistencia, activa JavaScript en tu navegador.</p>
+  </noscript>
 </body>
 </html>

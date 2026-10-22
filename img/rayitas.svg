@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 70" fill="none" stroke="#203444" stroke-width="3.2" stroke-linecap="round">
+  <!-- Rayitas decorativas junto a los títulos (la versión derecha se refleja por CSS). -->
+  <path d="M22 6 L33 16"/>
+  <path d="M4 34 Q14 31 24 36"/>
+  <path d="M30 52 L22 64"/>
+</svg>
