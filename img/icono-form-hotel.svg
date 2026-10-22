@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 26" fill="none" stroke="#2b3238" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Icono de cama (pregunta del hotel en el formulario) -->
+  <path d="M3 6 V21 M3 17 H25 V21 M3 13.5 H25 V17"/>
+  <path d="M6 13.5 V11 Q6 9.5 7.5 9.5 H10.5 Q12 9.5 12 11 V13.5"/>
+  <path d="M14 13.5 V11.5 Q14 10.5 15.5 10.5 H23 Q25 10.5 25 12.5 V13.5"/>
+</svg>

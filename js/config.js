@@ -67,7 +67,7 @@ window.BODA_CONFIG = {
       },
       {
         id: "ceremonia",
-        icono: "img/icono-lugar.png",
+        icono: "img/icono-capilla.svg",
         etiqueta: "Ceremonia",
         lineas: ["Capilla de la Providencia", "12:00"],
         mapa: "https://www.google.com/maps/search/?api=1&query=Capilla+de+la+Providencia+Gij%C3%B3n",
@@ -108,7 +108,7 @@ window.BODA_CONFIG = {
   /* ---------- Sección: ALOJAMIENTO (#alojamiento) ---------- */
   alojamiento: {
     titulo: "Alojamiento",
-    texto: "Hemos llegado a un acuerdo con el hotel abba Playa Gijón por si os interesa alojaros allí. Pero podéis elegir el alojamiento que prefiráis (otro hotel, un Airbnb, un apartamento de alquiler…): mientras sea en Gijón, todo queda cerca.",
+    texto: "Hemos llegado a un acuerdo con el hotel abba Playa Gijón para quien quiera alojarse allí y olvidarse del coche después de la fiesta. Pero podéis elegir el alojamiento que prefiráis (otro hotel, un Airbnb, un apartamento…): mientras sea en Gijón, todo queda cerca.",
     ilustracionIzquierda: "img/ilus-concha.png",
     ilustracionDerecha: "img/ilus-farol.png",
     botonAbrir: "Ver opciones de alojamiento",
@@ -121,9 +121,30 @@ window.BODA_CONFIG = {
       web: "",                // PENDIENTE: enlace a la web o a la reserva
       mapa: "https://www.google.com/maps/search/?api=1&query=abba+Playa+Gij%C3%B3n",
     },
+    // Tarifas que aparecen al desplegar (añade, quita o cambia precios aquí).
+    introTarifas: "Para los que queráis alojaros en el mismo hotel y olvidaros del coche después de la fiesta, estas son las tarifas que nos han ofrecido:",
+    tarifas: [
+      { tipo: "Habitación doble", precio: "156 € / noche", detalle: "Desayuno incluido." },
+      { tipo: "Habitación DUI (doble de uso individual)", precio: "135 € / noche", detalle: "Desayuno incluido. Ideal si vienes solo y quieres tu propia habitación." },
+    ],
+    // Bloques de información del desplegable. Cada uno con título (opcional) y texto.
     notas: [
-      "Si os interesa el hotel, preguntadnos cómo reservar con el acuerdo para invitados.",
-      "Si preferís otro alojamiento, cualquiera en Gijón os vale: todo está cerca.",
+      {
+        titulo: "Cómo reservar",
+        texto: "Podemos bloquearos la habitación nosotros: indícalo en el formulario de confirmación antes del 31 de diciembre de 2026. También podéis llamar al hotel sin problema diciendo nuestros nombres y la fecha de la boda, y os lo cuentan todo. El bloqueo es sin coste hasta 3 meses antes de la boda; después, en caso de cancelación, hay que abonarla.",
+      },
+      {
+        titulo: "Check-in",
+        texto: "Si reserváis la noche del sábado, el check-in está garantizado a partir de las 15:00 h. Si vuestra habitación está lista antes podréis entrar sin problema, aunque al ser temporada alta es posible que no esté disponible mucho antes.",
+      },
+      {
+        titulo: "¿Necesitas cambiarte al llegar?",
+        texto: "¡Que no cunda el pánico! El hotel nos deja un saloncito para que podáis cambiaros cómodamente, y en la zona fitness hay duchas disponibles.",
+      },
+      {
+        titulo: "Otras opciones",
+        texto: "Si preferís otra opción, ¡ningún problema! El hotel está en una zona muy céntrica de Gijón y hay muchísimos hoteles, apartamentos y alojamientos cerca para todos los gustos y presupuestos.",
+      },
     ],
     textoBotonMapa: "Ver hotel en el mapa",
     textoBotonWeb: "Reservar",
@@ -149,23 +170,49 @@ window.BODA_CONFIG = {
       asistencia: "Asistencia",
       asistenciaSi: "Sí",
       asistenciaNo: "No",
-      alergias: "Alergias o intolerancias",
-      alergiasOtra: "Indica tu alergia o intolerancia",
+      alergias: "Alergias o intolerancias (puedes marcar varias)",
+      alergiasOtra: "¿Cuál? Escribe aquí tu alergia o intolerancia",
       transporte: "¿Necesitas transporte o irás en coche?",
       transporteSi: "Necesito transporte",
       transporteNo: "Iré en coche",
       mensaje: "Mensaje (opcional)",
     },
 
-    // Opciones del desplegable de alergias. La opción marcada con otra: true muestra un campo de texto.
+    // Casillas de alergias (se pueden marcar varias).
+    // ninguna: true → al marcarla se desmarcan las demás. otra: true → muestra un campo para escribir cuál.
     opcionesAlergias: [
-      { valor: "Ninguna" },
+      { valor: "Ninguna", ninguna: true },
+      { valor: "Sin marisco (cambiar por pescado)" },
       { valor: "Vegetariano" },
       { valor: "Vegano" },
       { valor: "Sin gluten (celiaquía)" },
       { valor: "Sin lactosa" },
       { valor: "Otra", otra: true },
     ],
+
+    // Pregunta de habitación en el hotel (solo para quien viene).
+    // Desaparece sola del formulario a partir de fechaLimite.
+    hotel: {
+      activo: true,
+      fechaLimite: "2026-12-31T23:59:59+01:00",
+      pregunta: "¿Quieres que te reservemos habitación en el hotel abba Playa Gijón?",
+      ayuda: "La bloqueamos nosotros sin coste si nos lo dices antes del 31 de diciembre de 2026. Tienes las tarifas y la información en el apartado «Alojamiento».",
+      // reserva: true → pregunta las noches. doble: true → pregunta con quién se comparte.
+      opciones: [
+        { valor: "No, gracias" },
+        { valor: "Sí, habitación doble (156 €/noche)", reserva: true, doble: true },
+        { valor: "Sí, habitación DUI, individual (135 €/noche)", reserva: true },
+        { valor: "Llamaré yo al hotel" },
+      ],
+      noches: "¿Qué noches?",
+      opcionesNoches: [
+        "Solo la noche de la boda (sábado 28)",
+        "Viernes 27 y sábado 28",
+        "Sábado 28 y domingo 29",
+        "Viernes 27, sábado 28 y domingo 29",
+      ],
+      comparte: "¿Con quién compartes la habitación? (nombre y apellidos)",
+    },
 
     boton: "Confirmar participación",
     textos: {
@@ -183,6 +230,7 @@ window.BODA_CONFIG = {
       asistencia: "img/icono-form-asistencia.png",
       alergias: "img/icono-form-alergias.png",
       transporte: "img/icono-form-transporte.png",
+      hotel: "img/icono-form-hotel.svg",
       mensaje: "img/icono-form-mensaje.png",
     },
   },

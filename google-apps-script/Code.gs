@@ -23,6 +23,9 @@ const COLUMNAS = [
   ['Asistencia', 'asistencia'],
   ['Alergias o intolerancias', 'alergias'],
   ['Transporte', 'transporte'],
+  ['Hotel', 'hotel'],
+  ['Noches de hotel', 'hotelNoches'],
+  ['Comparte habitación con', 'hotelComparte'],
   ['Mensaje', 'mensaje'],
 ];
 

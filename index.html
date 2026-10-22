@@ -139,10 +139,11 @@
 
         <!-- Campos que solo se muestran si viene -->
         <div id="campos-si-asiste" class="formulario__grupo">
-          <div id="campo-alergias" class="campo campo--desplegable">
+          <div id="campo-alergias" class="campo campo--apilado" role="group" aria-labelledby="etiqueta-alergias">
             <img class="campo__icono" data-src="confirmacion.iconos.alergias" alt="" width="29" height="27">
-            <label class="oculto-visual" for="alergias" data-texto="confirmacion.campos.alergias">Alergias o intolerancias</label>
-            <select id="alergias" name="alergias"></select>
+            <span id="etiqueta-alergias" class="campo__etiqueta" data-texto="confirmacion.campos.alergias">Alergias o intolerancias</span>
+            <!-- Casillas generadas desde config.js → confirmacion.opcionesAlergias -->
+            <div id="alergias-opciones" class="campo__casillas"></div>
           </div>
 
           <div id="campo-alergias-otra" class="campo campo--secundario" hidden>
@@ -156,6 +157,27 @@
             <div class="campo__opciones">
               <label><input type="radio" name="transporte" value="Necesito transporte"> <span data-texto="confirmacion.campos.transporteSi">Necesito transporte</span></label>
               <label><input type="radio" name="transporte" value="Iré en coche"> <span data-texto="confirmacion.campos.transporteNo">Iré en coche</span></label>
+            </div>
+          </div>
+
+          <!-- Habitación en el hotel (config.js → confirmacion.hotel; desaparece tras la fecha límite) -->
+          <div id="bloque-hotel" class="formulario__grupo" hidden>
+            <div id="campo-hotel" class="campo campo--apilado" role="radiogroup" aria-labelledby="etiqueta-hotel" aria-describedby="ayuda-hotel">
+              <img class="campo__icono" data-src="confirmacion.iconos.hotel" alt="" width="22" height="20">
+              <span id="etiqueta-hotel" class="campo__etiqueta" data-texto="confirmacion.hotel.pregunta">¿Quieres que te reservemos habitación?</span>
+              <p id="ayuda-hotel" class="campo__ayuda" data-texto="confirmacion.hotel.ayuda"></p>
+              <!-- Opciones generadas desde config.js → confirmacion.hotel.opciones -->
+              <div id="hotel-opciones" class="campo__casillas campo__casillas--una-columna"></div>
+            </div>
+
+            <div id="campo-hotel-noches" class="campo campo--desplegable campo--secundario" hidden>
+              <label class="oculto-visual" for="hotelNoches" data-texto="confirmacion.hotel.noches">¿Qué noches?</label>
+              <select id="hotelNoches" name="hotelNoches"></select>
+            </div>
+
+            <div id="campo-hotel-comparte" class="campo campo--secundario" hidden>
+              <label class="oculto-visual" for="hotelComparte" data-texto="confirmacion.hotel.comparte">¿Con quién compartes la habitación?</label>
+              <input id="hotelComparte" name="hotelComparte" type="text" maxlength="200" data-placeholder="confirmacion.hotel.comparte">
             </div>
           </div>
         </div>

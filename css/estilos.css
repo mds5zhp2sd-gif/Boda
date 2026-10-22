@@ -329,7 +329,7 @@ a { color: var(--color-tinta); }
 .alojamiento__ilustracion--derecha { width: 122px; }
 
 .alojamiento__panel {
-  max-width: 480px;
+  max-width: 520px;
   margin: 18px auto 0;
   padding: 18px 20px;
   border: 1px solid rgba(109, 134, 119, .5);
@@ -340,7 +340,22 @@ a { color: var(--color-tinta); }
 }
 .alojamiento__hotel { margin: 0 0 6px; color: var(--color-tinta); font: 600 22px/1.2 var(--fuente-manuscrita); }
 .alojamiento__dato { margin: 0 0 4px; }
-.alojamiento__notas { margin: 8px 0 0; padding-left: 18px; }
+.alojamiento__intro { margin: 6px 0 8px; }
+.alojamiento__tarifas { margin: 0 0 6px; padding: 0; list-style: none; }
+.tarifa {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(109, 134, 119, .5);
+}
+.tarifa:last-child { border-bottom: 0; }
+.tarifa__tipo { font-weight: 600; color: var(--color-tinta); }
+.tarifa__precio { font-weight: 600; color: var(--color-salvia-oscuro); white-space: nowrap; }
+.tarifa__detalle { grid-column: 1 / -1; font-size: 13.5px; color: var(--color-texto-suave); }
+.alojamiento__nota { margin-top: 12px; }
+.alojamiento__nota p { margin: 0; font-size: 14px; line-height: 1.55; }
+.alojamiento__nota-titulo { margin: 0 0 2px; color: var(--color-tinta); font: 600 20px/1.2 var(--fuente-manuscrita); }
 .alojamiento__enlaces { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
 .alojamiento__enlaces .boton { font-size: 17px; min-height: 40px; padding: 4px 20px; }
 
@@ -443,6 +458,40 @@ a { color: var(--color-tinta); }
 .campo--transporte .campo__opciones { flex-basis: 100%; margin: 0; padding: 0 0 0 32px; }
 .campo__opciones input:checked { background: radial-gradient(var(--color-salvia) 0 45%, transparent 50%); border-color: var(--color-salvia-oscuro); }
 .campo__opciones input:focus-visible { outline: 2px solid var(--color-tinta); outline-offset: 2px; }
+
+/* Filas con varias opciones debajo de la etiqueta (alergias, hotel) */
+.campo--apilado { flex-wrap: wrap; row-gap: 4px; padding-top: 6px; padding-bottom: 8px; }
+.campo--apilado .campo__etiqueta { flex: 1 1 calc(100% - 40px); }
+.campo__ayuda { flex-basis: 100%; margin: 0 0 2px; padding-left: 32px; font-size: 12.5px; line-height: 1.45; color: var(--color-texto-suave); }
+.campo__casillas {
+  flex-basis: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 14px;
+  padding-left: 32px;
+}
+.campo__casillas--una-columna { grid-template-columns: 1fr; }
+.casilla { display: flex; align-items: flex-start; gap: 7px; font-size: 13.5px; line-height: 1.35; cursor: pointer; }
+.casilla input {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: none;
+  width: 14px; height: 14px;
+  margin: 1px 0 0;
+  border: 1.2px solid var(--color-texto-suave);
+  background: transparent;
+  cursor: pointer;
+}
+.casilla input[type="checkbox"] { border-radius: 3px; }
+.casilla input[type="radio"] { border-radius: 50%; }
+.casilla input[type="checkbox"]:checked {
+  border-color: var(--color-salvia-oscuro);
+  background: var(--color-salvia) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3 7.2l2.6 2.6L11 4.4' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat;
+}
+.casilla input[type="radio"]:checked { background: radial-gradient(var(--color-salvia) 0 45%, transparent 50%); border-color: var(--color-salvia-oscuro); }
+.casilla input:focus-visible { outline: 2px solid var(--color-tinta); outline-offset: 2px; }
+
+#bloque-hotel { margin-top: 0; }
 
 .campo--secundario { margin-left: 32px; }
 .campo--mensaje { align-items: flex-start; min-height: 56px; padding-top: 6px; }
@@ -558,6 +607,10 @@ a { color: var(--color-tinta); }
   .confirmacion__ilustracion { width: 24px; }
   .campo { min-height: 44px; }
   .campo__opciones { padding-right: 4px; gap: 14px; }
+  .campo__casillas { grid-template-columns: 1fr; padding-left: 4px; }
+  .campo__ayuda { padding-left: 4px; }
+  .casilla { font-size: 15px; padding: 3px 0; }
+  .casilla input { width: 17px; height: 17px; }
   .campo input[type="text"], .campo select, .campo textarea { font-size: 16px; } /* evita el zoom en iPhone */
   .formulario > .boton { width: 100%; min-width: 0; }
 

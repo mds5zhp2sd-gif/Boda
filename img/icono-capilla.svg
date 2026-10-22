@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" fill="none" stroke="#1f2a30" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Capilla de la Providencia (Gijón) · icono de línea, vista de tres cuartos -->
+  <!-- cruz -->
+  <path d="M38 5 V16 M34.5 8.5 H41.5"/>
+  <!-- espadaña con campana -->
+  <path d="M30.5 21 L38 16.5 L45.5 21"/>
+  <path d="M32 21 V35.5 M44 21 V34"/>
+  <path d="M35.3 31 V27 A2.7 2.7 0 0 1 40.7 27 V31"/>
+  <path d="M36.6 30.6 Q36.8 28.3 38 28.3 Q39.2 28.3 39.4 30.6 Z" stroke-width="1.6"/>
+  <!-- tejado de la fachada (dos aguas) -->
+  <path d="M9 50.5 L32 36 M44 34 L57 41.5"/>
+  <!-- nave lateral: tejado largo y muro -->
+  <path d="M57 41.5 L111 51"/>
+  <path d="M57 41.5 L60 44.5 L111 53.5" stroke-width="1.6"/>
+  <path d="M111 53.5 V83"/>
+  <!-- ventanas de arco de la nave (con su marco de piedra) -->
+  <path d="M68 76 V60 A3 3 0 0 1 74 60 V76 Z"/>
+  <path d="M83 77 V63 A2.8 2.8 0 0 1 88.6 63 V77 Z"/>
+  <path d="M97 78.5 V65.5 A2.6 2.6 0 0 1 102.2 65.5 V78.5 Z"/>
+  <!-- fachada -->
+  <path d="M14 48 V58 M56 42 V58"/>
+  <!-- rosetón -->
+  <circle cx="35" cy="45.5" r="5.8"/>
+  <circle cx="35" cy="45.5" r="2.2" stroke-width="1.6"/>
+  <!-- tejado del pórtico (tejas) -->
+  <path d="M5 66 L17 57.5 H53 L64 66 Z"/>
+  <path d="M15 62 H55" stroke-width="1.4"/>
+  <!-- pilares de piedra -->
+  <path d="M10 66 V88 M16 66 V88 M52 66 V88 M58 66 V86"/>
+  <!-- muretes y puerta -->
+  <path d="M16 77 H27 M43 77 H52"/>
+  <path d="M28.5 88 V73 A6.5 6.5 0 0 1 41.5 73 V88"/>
+  <!-- suelo -->
+  <path d="M3 88 H58 L113 83" stroke-width="1.8"/>
+</svg>

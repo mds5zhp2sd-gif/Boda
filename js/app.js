@@ -158,10 +158,26 @@
       ]),
     ];
     panel.append(...datos.filter(Boolean));
-    const notas = (A.notas || []).filter((n) => !estaVacio(n));
-    if (notas.length) {
-      panel.append(crear("ul", { clase: "alojamiento__notas" }, notas.map((n) => crear("li", { texto: n }))));
+
+    const tarifas = A.tarifas || [];
+    if (tarifas.length) {
+      if (!estaVacio(A.introTarifas)) panel.append(crear("p", { clase: "alojamiento__intro", texto: A.introTarifas }));
+      panel.append(crear("ul", { id: "alojamiento-tarifas", clase: "alojamiento__tarifas" }, tarifas.map((t) =>
+        crear("li", { clase: "tarifa" }, [
+          crear("span", { clase: "tarifa__tipo", texto: t.tipo }),
+          crear("span", { clase: "tarifa__precio", texto: t.precio }),
+          !estaVacio(t.detalle) && crear("span", { clase: "tarifa__detalle", texto: t.detalle }),
+        ]))));
     }
+
+    // Cada nota puede ser un texto o un bloque { titulo, texto }.
+    (A.notas || []).filter((n) => !estaVacio(typeof n === "string" ? n : n.texto)).forEach((n) => {
+      const nota = typeof n === "string" ? { texto: n } : n;
+      panel.append(crear("div", { clase: "alojamiento__nota" }, [
+        !estaVacio(nota.titulo) && crear("h3", { clase: "alojamiento__nota-titulo", texto: nota.titulo }),
+        crear("p", { texto: nota.texto }),
+      ]));
+    });
     const enlaces = crear("div", { clase: "alojamiento__enlaces" });
     if (!estaVacio(h.mapa)) {
       enlaces.append(crear("a", { id: "alojamiento-mapa", clase: "boton", href: h.mapa, target: "_blank", rel: "noopener noreferrer" }, [
@@ -189,8 +205,13 @@
     const botonEnviar = $("#formulario-boton");
     const textoBotonEnviar = $("#formulario-boton-texto");
     const gruposSi = $("#campos-si-asiste");
-    const selectAlergias = $("#alergias");
+    const contAlergias = $("#alergias-opciones");
     const campoOtra = $("#campo-alergias-otra");
+    const H = F.hotel || {};
+    const bloqueHotel = $("#bloque-hotel");
+    const campoNoches = $("#campo-hotel-noches");
+    const campoComparte = $("#campo-hotel-comparte");
+    const selectNoches = $("#hotelNoches");
     const gracias = $("#confirmacion-gracias");
 
     // Desplegables: primera opción vacía que actúa como "placeholder".
@@ -200,14 +221,42 @@
       select.classList.add("campo__vacio");
       select.addEventListener("change", () => select.classList.toggle("campo__vacio", !select.value));
     }
-    rellenarSelect(selectAlergias, F.campos.alergias, F.opcionesAlergias);
 
-    selectAlergias.addEventListener("change", () => {
-      const opcion = selectAlergias.selectedOptions[0];
-      const esOtra = opcion && opcion.dataset.otra === "si";
-      campoOtra.hidden = !esOtra;
-      if (esOtra) $("#alergiasOtra").focus();
+    // Casillas o botones de opción a partir de una lista de { valor, ...marcas }.
+    function crearOpciones(contenedor, nombre, tipo, opciones) {
+      opciones.forEach((op, i) => {
+        const input = crear("input", { type: tipo, name: nombre, value: op.valor, id: `${nombre}-${i + 1}` });
+        Object.keys(op).filter((k) => k !== "valor" && op[k]).forEach((k) => { input.dataset[k] = "si"; });
+        contenedor.append(crear("label", { clase: "casilla", for: input.id }, [input, crear("span", { texto: op.valor })]));
+      });
+    }
+
+    // Alergias: varias a la vez; "Ninguna" es excluyente y "Otra" muestra un campo de texto.
+    crearOpciones(contAlergias, "alergias", "checkbox", F.opcionesAlergias);
+    const casillasAlergias = $$('input[name="alergias"]', contAlergias);
+    contAlergias.addEventListener("change", (e) => {
+      const marcada = e.target;
+      if (marcada.checked) {
+        casillasAlergias
+          .filter((c) => c !== marcada && (marcada.dataset.ninguna || c.dataset.ninguna))
+          .forEach((c) => { c.checked = false; });
+      }
+      const otra = casillasAlergias.find((c) => c.dataset.otra);
+      campoOtra.hidden = !(otra && otra.checked);
+      if (marcada.dataset.otra && marcada.checked) $("#alergiasOtra").focus();
     });
+
+    // Hotel: solo hasta la fecha límite.
+    const hotelDisponible = H.activo && (!H.fechaLimite || new Date() <= new Date(H.fechaLimite));
+    if (hotelDisponible) {
+      bloqueHotel.hidden = false;
+      crearOpciones($("#hotel-opciones"), "hotel", "radio", H.opciones || []);
+      rellenarSelect(selectNoches, H.noches, (H.opcionesNoches || []).map((v) => ({ valor: v })));
+      $("#hotel-opciones").addEventListener("change", (e) => {
+        campoNoches.hidden = !e.target.dataset.reserva;
+        campoComparte.hidden = !e.target.dataset.doble;
+      });
+    }
 
     // Si no viene, se ocultan los campos que no aplican.
     form.addEventListener("change", (e) => {
@@ -226,16 +275,18 @@
     function recogerDatos() {
       const d = new FormData(form);
       const viene = d.get("asistencia") === "Sí";
-      const alergia = d.get("alergias") || "";
-      const opcionAlergia = selectAlergias.selectedOptions[0];
-      const alergiaFinal = opcionAlergia && opcionAlergia.dataset.otra === "si"
-        ? `${alergia}: ${(d.get("alergiasOtra") || "").trim()}`
-        : alergia;
+      const alergias = casillasAlergias.filter((c) => c.checked).map((c) =>
+        c.dataset.otra ? `${c.value}: ${(d.get("alergiasOtra") || "").trim()}` : c.value);
+      const opcionHotel = $('input[name="hotel"]:checked');
+      const reserva = viene && opcionHotel && opcionHotel.dataset.reserva;
       return {
         nombre: (d.get("nombre") || "").trim(),
         asistencia: d.get("asistencia") || "",
-        alergias: viene ? alergiaFinal : "",
+        alergias: viene ? alergias.join(", ") : "",
         transporte: viene ? d.get("transporte") || "" : "",
+        hotel: viene && opcionHotel ? opcionHotel.value : "",
+        hotelNoches: reserva ? d.get("hotelNoches") || "" : "",
+        hotelComparte: reserva && opcionHotel.dataset.doble ? (d.get("hotelComparte") || "").trim() : "",
         mensaje: (d.get("mensaje") || "").trim(),
         web: d.get("web") || "", // antispam: debe ir vacío
       };
@@ -283,7 +334,9 @@
         form.reset();
         gruposSi.hidden = false;
         campoOtra.hidden = true;
-        selectAlergias.classList.add("campo__vacio");
+        campoNoches.hidden = true;
+        campoComparte.hidden = true;
+        selectNoches.classList.add("campo__vacio");
       } catch (error) {
         console.error("Error al enviar la confirmación:", error);
         mostrarEstado(F.textos.error, "error");

@@ -64,9 +64,9 @@ Ahora mismo son **recortes de la imagen original** con el fondo quitado. Para ca
 | `ilus-pareja.png` | Cabecera: Javi pescando y Sofía en la red (encima del mar; posición y tamaño en `css/estilos.css` → `.portada__pareja`) | 708 × 943 |
 | `ola-separador-1…4.png` | Separadores entre secciones | 848 × 40 |
 | `pie-olas.png` | Olas del pie | 848 × 83 |
-| `icono-fecha.png`, `icono-lugar.png` (y `icono-aperitivo.png` para el cóctel) | Detalles | 50 px alto |
+| `icono-fecha.png`, `icono-capilla.svg` (Capilla de la Providencia), `icono-aperitivo.png` (cóctel) | Detalles | 50 px alto |
 | `icono-ceremonia/aperitivo/almuerzo/fiesta/recena.png` (+ `icono-autobus.png`, guardado por si vuelve el autobús) | Programa del día | 50 px alto |
-| `icono-form-*.png` | Iconos de los campos del formulario | 22 px ancho |
+| `icono-form-*.png`, `icono-form-hotel.svg` | Iconos de los campos del formulario | 22 px ancho |
 | `ilus-velero.png` | Programa del día | 157 × 128 |
 | `ilus-concha.png`, `ilus-farol.png` | Alojamiento | 80 / 122 px ancho |
 | `ilus-concha-pequena.png` | Título de “Confirma tu asistencia” | 34 px |
@@ -96,7 +96,9 @@ Mientras `urlGoogleSheets` tenga el texto de ejemplo, el formulario funciona en 
    ```
 8. Haz una confirmación de prueba en la web: aparecerá una fila en la pestaña **Confirmaciones**.
 
-Columnas: Fecha de envío · Nombre y apellidos · Asistencia · Alergias o intolerancias · Transporte · Mensaje.
+Columnas: Fecha de envío · Nombre y apellidos · Asistencia · Alergias o intolerancias · Transporte · Hotel · Noches de hotel · Comparte habitación con · Mensaje.
+
+La pregunta del hotel desaparece sola del formulario a partir de `confirmacion.hotel.fechaLimite` (31/12/2026). Las tarifas y la información del hotel se cambian en `config.js → alojamiento`.
 
 Cada invitado confirma por sí mismo (no hay campo de acompañantes): una fila por persona.
 
