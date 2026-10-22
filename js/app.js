@@ -81,6 +81,8 @@
       if (estaVacio(valor)) el.hidden = true;
       else el.src = valor;
     });
+    // La nota de acompañantes solo se muestra si tiene texto.
+    $("#confirmacion-nota").hidden = estaVacio(C.confirmacion.notaPersonal);
     $$("[data-alt]").forEach((el) => { el.alt = leer(el.dataset.alt) || ""; });
     $$("[data-placeholder]").forEach((el) => { el.placeholder = leer(el.dataset.placeholder) || ""; });
   }
@@ -187,7 +189,6 @@
     const botonEnviar = $("#formulario-boton");
     const textoBotonEnviar = $("#formulario-boton-texto");
     const gruposSi = $("#campos-si-asiste");
-    const selectAcompanantes = $("#acompanantes");
     const selectAlergias = $("#alergias");
     const campoOtra = $("#campo-alergias-otra");
     const gracias = $("#confirmacion-gracias");
@@ -199,7 +200,6 @@
       select.classList.add("campo__vacio");
       select.addEventListener("change", () => select.classList.toggle("campo__vacio", !select.value));
     }
-    rellenarSelect(selectAcompanantes, F.campos.acompanantes, F.opcionesAcompanantes.map((v) => ({ valor: v })));
     rellenarSelect(selectAlergias, F.campos.alergias, F.opcionesAlergias);
 
     selectAlergias.addEventListener("change", () => {
@@ -234,9 +234,8 @@
       return {
         nombre: (d.get("nombre") || "").trim(),
         asistencia: d.get("asistencia") || "",
-        acompanantes: viene ? d.get("acompanantes") || "0" : "",
         alergias: viene ? alergiaFinal : "",
-        autobus: viene ? d.get("autobus") || "" : "",
+        transporte: viene ? d.get("transporte") || "" : "",
         mensaje: (d.get("mensaje") || "").trim(),
         web: d.get("web") || "", // antispam: debe ir vacío
       };
@@ -284,7 +283,7 @@
         form.reset();
         gruposSi.hidden = false;
         campoOtra.hidden = true;
-        [selectAcompanantes, selectAlergias].forEach((s) => s.classList.add("campo__vacio"));
+        selectAlergias.classList.add("campo__vacio");
       } catch (error) {
         console.error("Error al enviar la confirmación:", error);
         mostrarEstado(F.textos.error, "error");

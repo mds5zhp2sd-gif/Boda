@@ -25,20 +25,21 @@ window.BODA_CONFIG = {
     fechaISO: "2027-08-28T12:00:00+02:00",
     fechaTexto: "28 · 08 · 2027",   // como se ve en la portada
     fechaCorta: "28.08.2027",       // como se ve en el pie
-    ciudad: "Gijón, Asturias",
+    ciudad: "Xixón, Asturias",
   },
 
   // Título de la pestaña del navegador y descripción para buscadores / WhatsApp.
   meta: {
     tituloPagina: "¡Nos casamos! · Sofía & Javi · 28.08.2027",
-    descripcion: "Invitación de boda de Sofía y Javi. 28 de agosto de 2027, Gijón (Asturias).",
+    descripcion: "Invitación de boda de Sofía y Javi. 28 de agosto de 2027, Xixón / Gijón (Asturias).",
   },
 
   /* ---------- Sección: PORTADA (#portada) ---------- */
   portada: {
     titulo: "¡Nos casamos!",
-    imagen: "img/portada-escena.png",
-    imagenAlt: "Ilustración en acuarela: un pescador con su caña y una chica con una red junto al mar, y un faro sobre una isla al fondo.",
+    imagen: "img/ilus-pareja.png",
+    imagenAlt: "Ilustración de Javi pescando con una caña y de Sofía sonriendo dentro de la red, de la que cuelga como si hubiera caído en ella.",
+    etiqueta: "¡Cayó en la red!",   // cartelito bajo el dibujo (déjalo "" para quitarlo)
   },
 
   /* ---------- Separadores de olas entre secciones ---------- */
@@ -72,9 +73,9 @@ window.BODA_CONFIG = {
         mapa: "https://www.google.com/maps/search/?api=1&query=Capilla+de+la+Providencia+Gij%C3%B3n",
       },
       {
-        id: "celebracion",
-        icono: "img/icono-hora.png",
-        etiqueta: "Celebración",
+        id: "coctel",
+        icono: "img/icono-aperitivo.png",
+        etiqueta: "Cóctel",
         lineas: ["abba Playa Gijón", "14:00"],
         mapa: "https://www.google.com/maps/search/?api=1&query=abba+Playa+Gij%C3%B3n",
       },
@@ -93,8 +94,9 @@ window.BODA_CONFIG = {
     // Añade, quita o reordena eventos. Cada uno aparece automáticamente en la línea de tiempo.
     eventos: [
       { id: "ceremonia", hora: "12:00", nombre: "Ceremonia", icono: "img/icono-ceremonia.png" },
-      { id: "autobus",   hora: "13:30", nombre: "Autobús",   icono: "img/icono-autobus.png" },
-      { id: "aperitivo", hora: "14:00", nombre: "Aperitivo", icono: "img/icono-aperitivo.png" },
+      // Autobús quitado por ahora (aún no está decidido). Para volver a ponerlo:
+      // { id: "autobus", hora: "13:30", nombre: "Autobús", icono: "img/icono-autobus.png" },
+      { id: "coctel",    hora: "14:00", nombre: "Cóctel",    icono: "img/icono-aperitivo.png" },
       { id: "almuerzo",  hora: "16:30", nombre: "Almuerzo",  icono: "img/icono-almuerzo.png" },
       { id: "fiesta",    hora: "18:30", nombre: "Fiesta",    icono: "img/icono-fiesta.png" },
       { id: "recena",    hora: "21:30", nombre: "Recena",    icono: "img/icono-recena.png" },
@@ -106,7 +108,7 @@ window.BODA_CONFIG = {
   /* ---------- Sección: ALOJAMIENTO (#alojamiento) ---------- */
   alojamiento: {
     titulo: "Alojamiento",
-    texto: "Te recomendamos el hotel abba Playa Gijón, a solo unos minutos de la celebración, con tarifa especial para nuestros invitados.",
+    texto: "Hemos llegado a un acuerdo con el hotel abba Playa Gijón por si os interesa alojaros allí. Pero podéis elegir el alojamiento que prefiráis (otro hotel, un Airbnb, un apartamento de alquiler…): mientras sea en Gijón, todo queda cerca.",
     ilustracionIzquierda: "img/ilus-concha.png",
     ilustracionDerecha: "img/ilus-farol.png",
     botonAbrir: "Ver opciones de alojamiento",
@@ -120,7 +122,8 @@ window.BODA_CONFIG = {
       mapa: "https://www.google.com/maps/search/?api=1&query=abba+Playa+Gij%C3%B3n",
     },
     notas: [
-      "Pregúntanos cómo reservar con la tarifa especial para invitados.",
+      "Si os interesa el hotel, preguntadnos cómo reservar con el acuerdo para invitados.",
+      "Si preferís otro alojamiento, cualquiera en Gijón os vale: todo está cerca.",
     ],
     textoBotonMapa: "Ver hotel en el mapa",
     textoBotonWeb: "Reservar",
@@ -137,22 +140,22 @@ window.BODA_CONFIG = {
     // Texto opcional bajo el título, p. ej. "Por favor, confirma antes del 1 de julio".
     aviso: "",
 
+    // Nota sobre acompañantes (déjala "" para quitarla). No hay desplegable de acompañantes:
+    // cada persona confirma por sí misma.
+    notaPersonal: "Cada persona confirma su propia asistencia. Por favor, no añadas “+1”: para nosotros todos los invitados son importantes.",
+
     campos: {
       nombre: "Nombre y apellidos",
       asistencia: "Asistencia",
       asistenciaSi: "Sí",
       asistenciaNo: "No",
-      acompanantes: "Número de acompañantes",
       alergias: "Alergias o intolerancias",
       alergiasOtra: "Indica tu alergia o intolerancia",
-      autobus: "¿Necesitas el autobús?",
-      autobusSi: "Sí",
-      autobusNo: "No",
+      transporte: "¿Necesitas transporte o irás en coche?",
+      transporteSi: "Necesito transporte",
+      transporteNo: "Iré en coche",
       mensaje: "Mensaje (opcional)",
     },
-
-    // Opciones del desplegable de acompañantes (sin contarte a ti).
-    opcionesAcompanantes: ["0", "1", "2", "3", "4", "5 o más"],
 
     // Opciones del desplegable de alergias. La opción marcada con otra: true muestra un campo de texto.
     opcionesAlergias: [
@@ -178,9 +181,8 @@ window.BODA_CONFIG = {
     iconos: {
       nombre: "img/icono-form-nombre.png",
       asistencia: "img/icono-form-asistencia.png",
-      acompanantes: "img/icono-form-acompanantes.png",
       alergias: "img/icono-form-alergias.png",
-      autobus: "img/icono-form-autobus.png",
+      transporte: "img/icono-form-transporte.png",
       mensaje: "img/icono-form-mensaje.png",
     },
   },

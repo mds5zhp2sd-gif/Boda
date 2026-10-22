@@ -10,7 +10,7 @@
   <meta name="description" content="Invitación de boda de Sofía y Javi. 28 de agosto de 2027, Gijón (Asturias).">
   <meta property="og:title" content="¡Nos casamos! · Sofía &amp; Javi">
   <meta property="og:description" content="28 de agosto de 2027 · Gijón, Asturias">
-  <meta property="og:image" content="img/portada-escena.png">
+  <meta property="og:image" content="img/ilus-pareja.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,20 +32,23 @@
 
     <!-- ================= PORTADA ================= -->
     <header id="portada" class="seccion portada">
-      <img id="portada-imagen" class="portada__imagen" data-src="portada.imagen" data-alt="portada.imagenAlt" alt="" width="848" height="172">
+      <div class="portada__escena">
+      <figure id="portada-figura" class="portada__figura">
+        <img id="portada-imagen" class="portada__imagen" data-src="portada.imagen" data-alt="portada.imagenAlt" alt="" width="708" height="943" fetchpriority="high">
+        <figcaption id="portada-etiqueta" class="portada__etiqueta" data-texto="portada.etiqueta">¡Cayó en la red!</figcaption>
+      </figure>
       <div class="portada__contenido">
-        <span class="rayitas rayitas--izquierda" aria-hidden="true"></span>
         <h1 id="portada-titulo" class="portada__titulo">
           <span class="mancha" data-texto="portada.titulo">¡Nos casamos!</span>
           <span id="portada-nombres" class="portada__nombres" data-texto="@nombres">Sofía &amp; Javi</span>
         </h1>
-        <span class="rayitas rayitas--derecha" aria-hidden="true"></span>
         <p id="portada-fecha" class="portada__fecha" data-texto="boda.fechaTexto">28 · 08 · 2027</p>
         <svg class="corazon portada__corazon" aria-hidden="true"><use href="#corazon"/></svg>
         <p id="portada-ciudad" class="portada__ciudad" data-texto="boda.ciudad">Gijón, Asturias</p>
         <!-- Extras opcionales (se activan en config.js → extras) -->
         <p id="cuenta-atras" class="cuenta-atras" hidden></p>
         <button id="boton-calendario" class="boton boton--secundario" type="button" hidden></button>
+      </div>
       </div>
     </header>
 
@@ -110,6 +113,11 @@
       </h2>
       <p id="confirmacion-aviso" class="confirmacion__aviso" data-texto="confirmacion.aviso" hidden></p>
 
+      <p id="confirmacion-nota" class="confirmacion__nota" hidden>
+        <svg class="corazon" aria-hidden="true"><use href="#corazon"/></svg>
+        <span data-texto="confirmacion.notaPersonal"></span>
+      </p>
+
       <form id="formulario-confirmacion" class="formulario" novalidate>
         <!-- Nombre -->
         <div id="campo-nombre" class="campo">
@@ -130,12 +138,6 @@
 
         <!-- Campos que solo se muestran si viene -->
         <div id="campos-si-asiste" class="formulario__grupo">
-          <div id="campo-acompanantes" class="campo campo--desplegable">
-            <img class="campo__icono" data-src="confirmacion.iconos.acompanantes" alt="" width="29" height="27">
-            <label class="oculto-visual" for="acompanantes" data-texto="confirmacion.campos.acompanantes">Número de acompañantes</label>
-            <select id="acompanantes" name="acompanantes"></select>
-          </div>
-
           <div id="campo-alergias" class="campo campo--desplegable">
             <img class="campo__icono" data-src="confirmacion.iconos.alergias" alt="" width="29" height="27">
             <label class="oculto-visual" for="alergias" data-texto="confirmacion.campos.alergias">Alergias o intolerancias</label>
@@ -147,12 +149,12 @@
             <input id="alergiasOtra" name="alergiasOtra" type="text" maxlength="300" data-placeholder="confirmacion.campos.alergiasOtra">
           </div>
 
-          <div id="campo-autobus" class="campo campo--opciones" role="radiogroup" aria-labelledby="etiqueta-autobus">
-            <img class="campo__icono" data-src="confirmacion.iconos.autobus" alt="" width="29" height="27">
-          <span id="etiqueta-autobus" class="campo__etiqueta" data-texto="confirmacion.campos.autobus">¿Necesitas el autobús?</span>
+          <div id="campo-transporte" class="campo campo--opciones campo--transporte" role="radiogroup" aria-labelledby="etiqueta-transporte">
+            <img class="campo__icono" data-src="confirmacion.iconos.transporte" alt="" width="29" height="27">
+            <span id="etiqueta-transporte" class="campo__etiqueta" data-texto="confirmacion.campos.transporte">¿Necesitas transporte o irás en coche?</span>
             <div class="campo__opciones">
-              <label><input type="radio" name="autobus" value="Sí"> <span data-texto="confirmacion.campos.autobusSi">Sí</span></label>
-              <label><input type="radio" name="autobus" value="No"> <span data-texto="confirmacion.campos.autobusNo">No</span></label>
+              <label><input type="radio" name="transporte" value="Necesito transporte"> <span data-texto="confirmacion.campos.transporteSi">Necesito transporte</span></label>
+              <label><input type="radio" name="transporte" value="Iré en coche"> <span data-texto="confirmacion.campos.transporteNo">Iré en coche</span></label>
             </div>
           </div>
         </div>

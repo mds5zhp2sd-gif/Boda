@@ -46,7 +46,7 @@ referencia/                 Imagen original del diseño
 ### Secciones (ids en `index.html`)
 | id | Sección |
 |---|---|
-| `#portada` | Escena, “¡Nos casamos!”, nombres, fecha, ciudad |
+| `#portada` | Dibujo de la pareja, “¡Nos casamos!”, nombres, fecha, ciudad |
 | `#detalles` | Fecha, ceremonia y celebración (columnas generadas desde `config.js`) |
 | `#programa` | Línea de tiempo del día + velero |
 | `#alojamiento` | Hotel recomendado + panel desplegable |
@@ -60,11 +60,11 @@ Ahora mismo son **recortes de la imagen original** con el fondo quitado. Para ca
 
 | Archivo | Dónde se ve | Tamaño aprox. |
 |---|---|---|
-| `portada-escena.png` | Cabecera (pescadores, faro y mar) | 848 × 172 |
+| `ilus-pareja.png` | Cabecera: Javi pescando y Sofía en la red | 708 × 943 |
 | `ola-separador-1…4.png` | Separadores entre secciones | 848 × 40 |
 | `pie-olas.png` | Olas del pie | 848 × 83 |
-| `icono-fecha.png`, `icono-lugar.png`, `icono-hora.png` | Detalles | 50 px alto |
-| `icono-ceremonia/autobus/aperitivo/almuerzo/fiesta/recena.png` | Programa del día | 50 px alto |
+| `icono-fecha.png`, `icono-lugar.png` (y `icono-aperitivo.png` para el cóctel) | Detalles | 50 px alto |
+| `icono-ceremonia/aperitivo/almuerzo/fiesta/recena.png` (+ `icono-autobus.png`, guardado por si vuelve el autobús) | Programa del día | 50 px alto |
 | `icono-form-*.png` | Iconos de los campos del formulario | 22 px ancho |
 | `ilus-velero.png` | Programa del día | 157 × 128 |
 | `ilus-concha.png`, `ilus-farol.png` | Alojamiento | 80 / 122 px ancho |
@@ -95,7 +95,11 @@ Mientras `urlGoogleSheets` tenga el texto de ejemplo, el formulario funciona en 
    ```
 8. Haz una confirmación de prueba en la web: aparecerá una fila en la pestaña **Confirmaciones**.
 
-Columnas: Fecha de envío · Nombre y apellidos · Asistencia · Acompañantes · Alergias o intolerancias · Autobús · Mensaje.
+Columnas: Fecha de envío · Nombre y apellidos · Asistencia · Alergias o intolerancias · Transporte · Mensaje.
+
+Cada invitado confirma por sí mismo (no hay campo de acompañantes): una fila por persona.
+
+Si ya habías pegado una versión anterior del script, pégalo de nuevo y publica una **nueva versión** (Implementar → Gestionar implementaciones → ✏️ → Versión: Nueva versión). Si la hoja ya tenía cabeceras antiguas, borra la pestaña “Confirmaciones” para que se cree de nuevo.
 
 Protecciones incluidas: campo trampa antispam, recorte de textos largos y bloqueo de fórmulas en las celdas.
 

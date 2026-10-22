@@ -21,9 +21,8 @@ const COLUMNAS = [
   ['Fecha de envío', null],
   ['Nombre y apellidos', 'nombre'],
   ['Asistencia', 'asistencia'],
-  ['Acompañantes', 'acompanantes'],
   ['Alergias o intolerancias', 'alergias'],
-  ['Autobús', 'autobus'],
+  ['Transporte', 'transporte'],
   ['Mensaje', 'mensaje'],
 ];
 
