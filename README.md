@@ -46,7 +46,7 @@ referencia/                 Imagen original del diseño
 ### Secciones (ids en `index.html`)
 | id | Sección |
 |---|---|
-| `#portada` | Dibujo de la pareja, “¡Nos casamos!”, nombres, fecha, ciudad |
+| `#portada` | Mar con faro + dibujo de la pareja, “¡Nos casamos!”, nombres, fecha, ciudad |
 | `#detalles` | Fecha, ceremonia y celebración (columnas generadas desde `config.js`) |
 | `#programa` | Línea de tiempo del día + velero |
 | `#alojamiento` | Hotel recomendado + panel desplegable |
@@ -60,7 +60,8 @@ Ahora mismo son **recortes de la imagen original** con el fondo quitado. Para ca
 
 | Archivo | Dónde se ve | Tamaño aprox. |
 |---|---|---|
-| `ilus-pareja.png` | Cabecera: Javi pescando y Sofía en la red | 708 × 943 |
+| `portada-mar.png` | Cabecera: franja de mar en acuarela con el faro (fondo) | 848 × 172 |
+| `ilus-pareja.png` | Cabecera: Javi pescando y Sofía en la red (encima del mar; posición y tamaño en `css/estilos.css` → `.portada__pareja`) | 708 × 943 |
 | `ola-separador-1…4.png` | Separadores entre secciones | 848 × 40 |
 | `pie-olas.png` | Olas del pie | 848 × 83 |
 | `icono-fecha.png`, `icono-lugar.png` (y `icono-aperitivo.png` para el cóctel) | Detalles | 50 px alto |

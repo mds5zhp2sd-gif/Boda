@@ -32,23 +32,24 @@
 
     <!-- ================= PORTADA ================= -->
     <header id="portada" class="seccion portada">
-      <div class="portada__escena">
-      <figure id="portada-figura" class="portada__figura">
-        <img id="portada-imagen" class="portada__imagen" data-src="portada.imagen" data-alt="portada.imagenAlt" alt="" width="708" height="943" fetchpriority="high">
-        <figcaption id="portada-etiqueta" class="portada__etiqueta" data-texto="portada.etiqueta">¡Cayó en la red!</figcaption>
-      </figure>
+      <!-- Escena: mar en acuarela (portada-mar.png) + dibujo de la pareja encima (ilus-pareja.png) -->
+      <div id="portada-escena" class="portada__escena">
+        <img id="portada-mar" class="portada__mar" data-src="portada.imagenMar" alt="" width="848" height="172">
+        <img id="portada-imagen" class="portada__pareja" data-src="portada.imagen" data-alt="portada.imagenAlt" alt="" width="708" height="943" fetchpriority="high">
+      </div>
       <div class="portada__contenido">
+        <span class="rayitas rayitas--izquierda" aria-hidden="true"></span>
         <h1 id="portada-titulo" class="portada__titulo">
           <span class="mancha" data-texto="portada.titulo">¡Nos casamos!</span>
           <span id="portada-nombres" class="portada__nombres" data-texto="@nombres">Sofía &amp; Javi</span>
         </h1>
+        <span class="rayitas rayitas--derecha" aria-hidden="true"></span>
         <p id="portada-fecha" class="portada__fecha" data-texto="boda.fechaTexto">28 · 08 · 2027</p>
         <svg class="corazon portada__corazon" aria-hidden="true"><use href="#corazon"/></svg>
-        <p id="portada-ciudad" class="portada__ciudad" data-texto="boda.ciudad">Gijón, Asturias</p>
+        <p id="portada-ciudad" class="portada__ciudad" data-texto="boda.ciudad">Xixón, Asturias</p>
         <!-- Extras opcionales (se activan en config.js → extras) -->
         <p id="cuenta-atras" class="cuenta-atras" hidden></p>
         <button id="boton-calendario" class="boton boton--secundario" type="button" hidden></button>
-      </div>
       </div>
     </header>
 

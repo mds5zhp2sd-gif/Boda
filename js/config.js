@@ -37,9 +37,9 @@ window.BODA_CONFIG = {
   /* ---------- Sección: PORTADA (#portada) ---------- */
   portada: {
     titulo: "¡Nos casamos!",
-    imagen: "img/ilus-pareja.png",
-    imagenAlt: "Ilustración de Javi pescando con una caña y de Sofía sonriendo dentro de la red, de la que cuelga como si hubiera caído en ella.",
-    etiqueta: "¡Cayó en la red!",   // cartelito bajo el dibujo (déjalo "" para quitarlo)
+    imagenMar: "img/portada-mar.png",   // franja de mar en acuarela con el faro
+    imagen: "img/ilus-pareja.png",       // vuestro dibujo, colocado encima del mar
+    imagenAlt: "Ilustración de Javi pescando con una caña y de Sofía sonriendo dentro de la red, junto al mar, con un faro al fondo.",
   },
 
   /* ---------- Separadores de olas entre secciones ---------- */
