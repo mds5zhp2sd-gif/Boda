@@ -133,11 +133,11 @@ window.BODA_CONFIG = {
     titulo: "Programa del día",
     // Añade, quita o reordena eventos. Cada uno aparece automáticamente en la línea de tiempo.
     eventos: [
-      { id: "ceremonia", hora: "12:00", nombre: "Ceremonia", icono: "img/icono-ceremonia.png" },
+      { id: "ceremonia", hora: "12:00", nombre: "Ceremonia", icono: "img/icono-ceremonia.svg" },
       // Autobús quitado por ahora (aún no está decidido). Para volver a ponerlo:
       // { id: "autobus", hora: "13:30", nombre: "Autobús", icono: "img/icono-autobus.png" },
       { id: "coctel",    hora: "14:00", nombre: "Cóctel",    icono: "img/icono-programa-coctel.svg" },
-      { id: "almuerzo",  hora: "16:30", nombre: "Almuerzo",  icono: "img/icono-almuerzo.png" },
+      { id: "almuerzo",  hora: "16:30", nombre: "Almuerzo",  icono: "img/icono-almuerzo.svg" },
       { id: "fiesta",    hora: "18:30", nombre: "Fiesta",    icono: "img/icono-fiesta.svg" },
       { id: "recena",    hora: "21:30", nombre: "Recena",    icono: "img/icono-recena.svg" },
     ],

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 53" fill="none" stroke="#1f2a30" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Iglesia del programa (Ceremonia): nave central con cruz y naves laterales -->
+  <!-- cruz -->
+  <path d="M29 2.5 V10.5 M26 5.5 H32" stroke-width="2"/>
+  <!-- naves laterales -->
+  <path d="M11.5 30 L21 22.5 M46.5 30 L37 22.5" stroke-width="2"/>
+  <path d="M13 29 V44 H21 M45 29 V44 H37" fill="#f5ede1"/>
+  <path d="M17 31.5 V35.5 M41 31.5 V35.5" stroke-width="2.2"/>
+  <!-- nave central -->
+  <path d="M19.5 18.5 L29 10 L38.5 18.5" stroke-width="2"/>
+  <path d="M21 17.2 V44 H37 V17.2" fill="#f5ede1"/>
+  <ellipse cx="29" cy="24.5" rx="2.6" ry="3.4"/>
+  <path d="M29 22.2 V26.8 M27.2 24 H30.8" stroke-width="1"/>
+  <path d="M24.5 44 V36.5 Q24.5 31.5 29 31.5 Q33.5 31.5 33.5 36.5 V44"/>
+  <!-- suelo -->
+  <path d="M9.5 44 H48.5" stroke-width="2"/>
+</svg>

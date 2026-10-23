@@ -68,7 +68,7 @@ Ahora mismo son **recortes de la imagen original** con el fondo quitado. Para ca
 | `ola-separador-1…4.png` | Separadores entre secciones | 848 × 40 |
 | `pie-olas.png` | Olas del pie | 848 × 83 |
 | `icono-fecha.png`, `icono-capilla.svg` (Capilla de la Providencia), `icono-coctel.svg` (sombrilla y copas en la terraza) | Detalles | 50 px alto |
-| `icono-ceremonia.png`, `icono-programa-coctel.svg` (brindis al atardecer), `icono-almuerzo.png`, `icono-fiesta.svg` (novios bailando), `icono-recena.svg` (invitado con la barriga llena) (+ `icono-autobus.png`, guardado por si vuelve el autobús) | Programa del día | 50 px alto |
+| `icono-ceremonia.svg`, `icono-programa-coctel.svg` (brindis al atardecer), `icono-almuerzo.svg` (camarero con la campana), `icono-fiesta.svg` (novios bailando), `icono-recena.svg` (invitado con la barriga llena) (+ `icono-autobus.png`, guardado por si vuelve el autobús) | Programa del día | 50 px alto |
 | `icono-form-*.png`, `icono-form-hotel.svg` | Iconos de los campos del formulario | 22 px ancho |
 | `ilus-velero.png` | Programa del día | 157 × 128 |
 | `ilus-hotel-abba.svg` (hotel desde arriba con su cartel) y `ilus-ventanal-san-lorenzo.svg` (vista de la playa) | Alojamiento | 150 px ancho |
