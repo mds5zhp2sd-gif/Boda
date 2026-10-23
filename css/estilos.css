@@ -342,6 +342,8 @@ a { color: var(--color-tinta); }
 }
 .evento__corazon { justify-self: start; }
 .evento__icono { justify-self: center; height: 50px; width: auto; }
+/* El dibujo del cóctel tiene más aire abajo: se sube para que quede centrado entre sus vecinos */
+#evento-coctel .evento__icono { transform: translateY(-6px); }
 .evento__punto {
   justify-self: center;
   position: relative;
