@@ -71,6 +71,25 @@ window.BODA_CONFIG = {
         etiqueta: "Ceremonia",
         lineas: ["Capilla de la Providencia", "12:00"],
         mapa: "https://www.google.com/maps/search/?api=1&query=Capilla+de+la+Providencia+Gij%C3%B3n",
+        // Desplegable "Aparcamiento y avisos". Cada aviso: título, texto, y opcionalmente
+        // mapa (enlace) y foto (ruta en img/; si está vacía o no existe, no se muestra).
+        avisos: [
+          {
+            titulo: "Aforo reducido",
+            texto: "La capilla es muy pequeña, así que en el interior tendrán prioridad los familiares más cercanos.",
+          },
+          {
+            titulo: "¿Prefieres esperar fuera?",
+            texto: "Justo al lado está la mítica sidrería El Hórreo, un sitio perfecto para esperar con un culín mientras termina la ceremonia.",
+            foto: "img/foto-el-horreo.jpg",
+            fotoAlt: "Sidrería El Hórreo, junto a la Capilla de la Providencia",
+          },
+          {
+            titulo: "Aparcamiento",
+            texto: "El Hórreo tiene un gran aparcamiento, ideal si vienes en coche.",
+            mapa: "https://www.google.com/maps/search/?api=1&query=Sidrer%C3%ADa+El+H%C3%B3rreo+La+Providencia+Gij%C3%B3n",
+          },
+        ],
       },
       {
         id: "coctel",
@@ -78,14 +97,32 @@ window.BODA_CONFIG = {
         etiqueta: "Cóctel",
         lineas: ["abba Playa Gijón", "14:00"],
         mapa: "https://www.google.com/maps/search/?api=1&query=abba+Playa+Gij%C3%B3n",
+        avisos: [
+          {
+            titulo: "Aparcamiento: explanada de los Hermanos Castro",
+            texto: "Zona amplia para aparcar muy cerca del hotel.",
+            mapa: "https://www.google.com/maps/search/?api=1&query=Explanada+Hermanos+Castro+Gij%C3%B3n",
+            foto: "img/foto-explanada-hermanos-castro.jpg",
+            fotoAlt: "Explanada de los Hermanos Castro, en Gijón",
+          },
+          {
+            titulo: "Otra opción: bajos del Molinón",
+            texto: "Si la explanada está llena, puedes aparcar en los bajos del estadio de El Molinón, al lado del hotel.",
+            mapa: "https://www.google.com/maps/search/?api=1&query=Aparcamiento+El+Molin%C3%B3n+Gij%C3%B3n",
+            foto: "img/foto-bajos-molinon.jpg",
+            fotoAlt: "Aparcamiento en los bajos del estadio de El Molinón",
+          },
+        ],
       },
     ],
-    // Botón principal bajo las columnas (déjalo con url "" para ocultarlo).
+    // Botón principal bajo las columnas (con url "" está oculto: cada sitio ya tiene su "Cómo llegar").
     boton: {
       texto: "Ver en el mapa",
-      url: "https://www.google.com/maps/search/?api=1&query=Capilla+de+la+Providencia+Gij%C3%B3n",
+      url: "",
     },
-    textoEnlaceMapa: "Cómo llegar",   // enlace pequeño en cada columna que tenga "mapa"
+    textoEnlaceMapa: "Cómo llegar",            // enlace pequeño en cada columna que tenga "mapa"
+    textoAvisos: "Aparcamiento y avisos",      // botón del desplegable de cada columna con "avisos"
+    textoMapaAviso: "Ver en el mapa",          // enlace dentro de cada aviso con "mapa"
   },
 
   /* ---------- Sección: PROGRAMA DEL DÍA (#programa) ---------- */

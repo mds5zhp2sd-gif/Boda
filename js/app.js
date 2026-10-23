@@ -118,6 +118,46 @@
         }),
       ]);
       lista.append(item);
+
+      // Desplegable "Aparcamiento y avisos" de esta columna
+      const avisos = (col.avisos || []).filter((a) => !estaVacio(a.texto));
+      if (!avisos.length) return;
+      const idPanel = `avisos-${col.id}`;
+      const boton = crear("button", {
+        id: `boton-avisos-${col.id}`, clase: "detalle__avisos-boton", type: "button",
+        "aria-expanded": "false", "aria-controls": idPanel,
+      }, [C.detalles.textoAvisos, crear("span", { clase: "detalle__avisos-flecha", "aria-hidden": "true", texto: "▾" })]);
+      item.append(boton);
+
+      const panel = crear("li", { id: idPanel, clase: "detalle-avisos", hidden: true, "aria-label": `${C.detalles.textoAvisos} · ${col.etiqueta}` }, [
+        crear("p", { clase: "detalle-avisos__lugar", texto: `${col.etiqueta}\u00a0 · \u00a0${(col.lineas || [])[0] || ""}` }),
+        ...avisos.map((a) => {
+          const aviso = crear("div", { clase: "aviso" }, [
+            !estaVacio(a.titulo) && crear("h3", { clase: "aviso__titulo", texto: a.titulo }),
+            crear("p", { clase: "aviso__texto", texto: a.texto }),
+            !estaVacio(a.mapa) && crear("a", {
+              clase: "aviso__mapa", href: a.mapa, target: "_blank", rel: "noopener noreferrer",
+            }, [C.detalles.textoMapaAviso, crear("span", { "aria-hidden": "true", texto: " →" })]),
+          ]);
+          if (!estaVacio(a.foto)) {
+            // La foto solo aparece si el archivo existe.
+            const img = crear("img", { clase: "aviso__foto", src: a.foto, alt: a.fotoAlt || "", loading: "lazy" });
+            img.addEventListener("error", () => img.remove());
+            aviso.prepend(img);
+          }
+          return aviso;
+        }),
+      ]);
+      lista.append(panel);
+
+      boton.addEventListener("click", () => {
+        const abrir = boton.getAttribute("aria-expanded") !== "true";
+        // Solo un desplegable abierto a la vez
+        $$(".detalle__avisos-boton", lista).forEach((b) => b.setAttribute("aria-expanded", "false"));
+        $$(".detalle-avisos", lista).forEach((p) => { p.hidden = true; });
+        boton.setAttribute("aria-expanded", String(abrir));
+        panel.hidden = !abrir;
+      });
     });
 
     const boton = $("#detalles-boton-mapa");

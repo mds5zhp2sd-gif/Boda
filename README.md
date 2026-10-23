@@ -13,6 +13,7 @@ Web de la invitación (28 · 08 · 2027, Gijón). Es HTML + CSS + JavaScript sen
 |---|---|---|
 | Nombres, fecha, ciudad | `js/config.js` | `pareja`, `boda` |
 | Lugares, horas y enlaces de mapas | `js/config.js` | `detalles.columnas` |
+| Avisos de aparcamiento y aforo (desplegables) | `js/config.js` | `detalles.columnas[…].avisos` |
 | Programa del día (añadir/quitar eventos) | `js/config.js` | `programa.eventos` |
 | Texto e información del hotel | `js/config.js` | `alojamiento` |
 | Textos y opciones del formulario | `js/config.js` | `confirmacion` |
@@ -71,6 +72,7 @@ Ahora mismo son **recortes de la imagen original** con el fondo quitado. Para ca
 | `ilus-hotel-abba.svg` (hotel desde arriba con su cartel) y `ilus-ventanal-san-lorenzo.svg` (vista de la playa) | Alojamiento | 150 px ancho |
 | `icono-confirmacion.svg` (invitado caminando a la Capilla de la Providencia) | Título de “Confirma tu asistencia” | 46 px |
 | `ilus-ancla.png`, `ilus-concha-pie.png` | Pie | 86 / 102 px ancho |
+| `foto-el-horreo.jpg`, `foto-explanada-hermanos-castro.jpg`, `foto-bajos-molinon.jpg` (opcionales: si no existen, no se muestran) | Detalles → «Aparcamiento y avisos» | foto apaisada, ~800 px de ancho |
 | `mancha-titulo.svg` | Mancha verde detrás de los títulos | se estira |
 | `rayitas.svg` | Rayitas decorativas junto a títulos | — |
 

@@ -256,6 +256,52 @@ a { color: var(--color-tinta); }
   text-underline-offset: 3px;
 }
 
+/* Botón "Aparcamiento y avisos" de cada columna */
+.detalle__avisos-boton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px auto 0;
+  padding: 5px 14px;
+  border: 1.3px solid var(--color-salvia);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-salvia-oscuro);
+  font: 500 16px/1.2 var(--fuente-manuscrita);
+  cursor: pointer;
+}
+.detalle__avisos-boton:hover { background: rgba(109, 134, 119, .12); }
+.detalle__avisos-boton[aria-expanded="true"] { background: var(--color-salvia); color: #fff; }
+.detalle__avisos-flecha { font-family: var(--fuente-texto); font-size: 12px; transition: transform .2s; }
+.detalle__avisos-boton[aria-expanded="true"] .detalle__avisos-flecha { transform: rotate(180deg); }
+
+/* Panel desplegado: ocupa todo el ancho bajo las columnas */
+.detalle-avisos {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin-top: 16px;
+  padding: 16px 20px;
+  border: 1px solid rgba(109, 134, 119, .5);
+  border-radius: 14px;
+  background: rgba(255, 252, 246, .6);
+  text-align: left;
+  animation: aparecer .25s ease-out;
+}
+.detalle-avisos__lugar { margin: 0 0 4px; color: var(--color-tinta); font: 600 21px/1.2 var(--fuente-manuscrita); }
+.aviso { margin-top: 12px; }
+.aviso::after { content: ""; display: block; clear: both; }
+.aviso__titulo { margin: 0 0 2px; color: var(--color-tinta); font: 600 14.5px/1.4 var(--fuente-texto); }
+.aviso__texto { margin: 0; font-size: 14px; line-height: 1.55; }
+.aviso__mapa { display: inline-block; margin-top: 4px; font-size: 13px; color: var(--color-salvia-oscuro); text-underline-offset: 3px; }
+.aviso__foto {
+  float: right;
+  width: 38%;
+  max-width: 200px;
+  margin: 2px 0 8px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(32, 52, 68, .15);
+}
+
 /* 6. PROGRAMA ============================================================= */
 .programa__cuerpo {
   display: grid;
@@ -580,6 +626,8 @@ a { color: var(--color-tinta); }
   .detalles__columnas { grid-template-columns: 1fr; gap: 0; }
   .detalle { border-left: 0; border-top: 1.2px solid rgba(32, 52, 68, .3); padding: 14px 0; }
   .detalle:first-child { border-top: 0; padding-top: 0; }
+  .detalle-avisos { grid-row: auto; margin: 0 0 14px; padding: 14px 16px; }
+  .aviso__foto { float: none; display: block; width: 100%; max-width: none; margin: 0 0 8px; }
 
   /* Programa: el velero pasa debajo */
   .programa__cuerpo { grid-template-columns: 1fr; }
