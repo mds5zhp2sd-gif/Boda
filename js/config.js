@@ -81,12 +81,12 @@ window.BODA_CONFIG = {
           {
             titulo: "¿Prefieres esperar fuera?",
             texto: "Justo al lado está la mítica sidrería El Hórreo, un sitio perfecto para esperar con un culín mientras termina la ceremonia.",
-            foto: "img/foto-el-horreo.jpg",
-            fotoAlt: "Sidrería El Hórreo, junto a la Capilla de la Providencia",
           },
           {
             titulo: "Aparcamiento",
             texto: "El Hórreo tiene un gran aparcamiento, ideal si vienes en coche.",
+            foto: "img/foto-el-horreo.jpg",
+            fotoAlt: "Entrada al aparcamiento de la sidrería El Hórreo",
             mapa: "https://www.google.com/maps/search/?api=1&query=Sidrer%C3%ADa+El+H%C3%B3rreo+La+Providencia+Gij%C3%B3n",
           },
         ],
