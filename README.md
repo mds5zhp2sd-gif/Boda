@@ -72,7 +72,7 @@ Ahora mismo son **recortes de la imagen original** con el fondo quitado. Para ca
 | `ilus-hotel-abba.svg` (hotel desde arriba con su cartel) y `ilus-ventanal-san-lorenzo.svg` (vista de la playa) | Alojamiento | 150 px ancho |
 | `icono-confirmacion.svg` (invitado caminando a la Capilla de la Providencia) | Título de “Confirma tu asistencia” | 46 px |
 | `ilus-ancla.png`, `ilus-concha-pie.png` | Pie | 86 / 102 px ancho |
-| `foto-el-horreo.jpg`, `foto-explanada-hermanos-castro.jpg`, `foto-bajos-molinon.jpg` (opcionales: si no existen, no se muestran) | Detalles → «Aparcamiento y avisos» | foto apaisada, ~800 px de ancho |
+| `foto-el-horreo.jpg`, `foto-el-horreo-terraza.jpg`, `foto-explanada-hermanos-castro.jpg`, `foto-bajos-molinon.jpg` (opcionales: si no existen, no se muestran) | Detalles → «Aparcamiento y avisos» | foto apaisada, ~800 px de ancho |
 | `mancha-titulo.svg` | Mancha verde detrás de los títulos | se estira |
 | `rayitas.svg` | Rayitas decorativas junto a títulos | — |
 

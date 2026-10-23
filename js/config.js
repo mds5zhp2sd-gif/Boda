@@ -81,6 +81,8 @@ window.BODA_CONFIG = {
           {
             titulo: "¿Prefieres esperar fuera?",
             texto: "Justo al lado está la mítica sidrería El Hórreo, un sitio perfecto para esperar con un culín mientras termina la ceremonia.",
+            foto: "img/foto-el-horreo-terraza.jpg",
+            fotoAlt: "Terraza de la sidrería El Hórreo, casa de piedra con flores",
           },
           {
             titulo: "Aparcamiento",
