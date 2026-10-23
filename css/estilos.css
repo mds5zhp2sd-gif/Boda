@@ -362,7 +362,7 @@ a { color: var(--color-tinta); }
 
 /* 8. CONFIRMACIÓN ========================================================= */
 .confirmacion .titulo-seccion { display: flex; align-items: center; justify-content: center; gap: 10px; }
-.confirmacion__ilustracion { width: 34px; }
+.confirmacion__ilustracion { width: 46px; height: auto; }
 .confirmacion__aviso { margin: -6px 0 14px; font-size: 14px; }
 .confirmacion__nota {
   max-width: 478px;
@@ -604,7 +604,7 @@ a { color: var(--color-tinta); }
   /* Formulario */
   .confirmacion .titulo-seccion { gap: 6px; font-size: 29px; }
   .confirmacion .titulo-seccion .mancha { padding-inline: .3em; white-space: nowrap; }
-  .confirmacion__ilustracion { width: 24px; }
+  .confirmacion__ilustracion { width: 34px; }
   .campo { min-height: 44px; }
   .campo__opciones { padding-right: 4px; gap: 14px; }
   .campo__casillas { grid-template-columns: 1fr; padding-left: 4px; }

@@ -74,7 +74,7 @@ window.BODA_CONFIG = {
       },
       {
         id: "coctel",
-        icono: "img/icono-aperitivo.png",
+        icono: "img/icono-coctel.svg",
         etiqueta: "Cóctel",
         lineas: ["abba Playa Gijón", "14:00"],
         mapa: "https://www.google.com/maps/search/?api=1&query=abba+Playa+Gij%C3%B3n",
@@ -96,7 +96,7 @@ window.BODA_CONFIG = {
       { id: "ceremonia", hora: "12:00", nombre: "Ceremonia", icono: "img/icono-ceremonia.png" },
       // Autobús quitado por ahora (aún no está decidido). Para volver a ponerlo:
       // { id: "autobus", hora: "13:30", nombre: "Autobús", icono: "img/icono-autobus.png" },
-      { id: "coctel",    hora: "14:00", nombre: "Cóctel",    icono: "img/icono-aperitivo.png" },
+      { id: "coctel",    hora: "14:00", nombre: "Cóctel",    icono: "img/icono-programa-coctel.svg" },
       { id: "almuerzo",  hora: "16:30", nombre: "Almuerzo",  icono: "img/icono-almuerzo.png" },
       { id: "fiesta",    hora: "18:30", nombre: "Fiesta",    icono: "img/icono-fiesta.svg" },
       { id: "recena",    hora: "21:30", nombre: "Recena",    icono: "img/icono-recena.svg" },
@@ -224,7 +224,7 @@ window.BODA_CONFIG = {
       modoPrueba: "Modo prueba: el formulario todavía no está conectado a Google Sheets, así que no se ha enviado nada.",
       otraRespuesta: "Enviar otra confirmación",
     },
-    ilustracion: "img/ilus-concha-pequena.png",
+    ilustracion: "img/icono-confirmacion.svg",
     iconos: {
       nombre: "img/icono-form-nombre.png",
       asistencia: "img/icono-form-asistencia.png",
