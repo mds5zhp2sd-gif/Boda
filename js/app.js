@@ -129,6 +129,8 @@
               [crear("img", { src: "img/icono-calendario-mini.svg", alt: "", width: 18, height: 18 }), CAL.textoGoogle]),
             crear("a", { id: "calendario-apple", clase: "calendario__opcion", href: CAL.archivoIcs },
               [crear("img", { src: "img/icono-calendario-mini.svg", alt: "", width: 18, height: 18 }), CAL.textoApple]),
+            crear("a", { id: "calendario-outlook", clase: "calendario__opcion", href: enlaceOutlook(CAL), target: "_blank", rel: "noopener noreferrer" },
+              [crear("img", { src: "img/icono-calendario-mini.svg", alt: "", width: 18, height: 18 }), CAL.textoOutlook]),
           ]),
         ]);
       }
@@ -506,6 +508,21 @@
       dates: `${utc(C.boda.fechaISO)}/${utc(CAL.fin)}`,
       location: CAL.lugar,
       details: CAL.descripcion || "",
+    });
+    return url.toString();
+  }
+
+  // Enlace de Outlook.com / Hotmail con el evento ya relleno.
+  function enlaceOutlook(CAL) {
+    const url = new URL("https://outlook.live.com/calendar/0/deeplink/compose");
+    url.search = new URLSearchParams({
+      path: "/calendar/action/compose",
+      rru: "addevent",
+      subject: CAL.tituloEvento,
+      startdt: new Date(C.boda.fechaISO).toISOString(),
+      enddt: new Date(CAL.fin).toISOString(),
+      location: CAL.lugar,
+      body: CAL.descripcion || "",
     });
     return url.toString();
   }

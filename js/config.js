@@ -298,7 +298,8 @@ window.BODA_CONFIG = {
       texto: "Añadir al calendario",
       introDesplegable: "Guarda la fecha para no perdértela:",
       textoGoogle: "Google Calendar",
-      textoApple: "Apple Calendar / Outlook",
+      textoApple: "Apple Calendar",
+      textoOutlook: "Outlook / Hotmail",
       // Archivo .ics fijo (en iPhone se abre directamente en Calendario). Si cambias fecha,
       // hora o lugar, actualízalo también (instrucciones en el README).
       archivoIcs: "boda.ics",
