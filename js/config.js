@@ -156,7 +156,7 @@ window.BODA_CONFIG = {
 
     // URL de la aplicación web de Google Apps Script (ver README → "Conectar Google Sheets").
     // Mientras tenga el texto de ejemplo, el formulario funciona en "modo prueba" y no envía nada.
-    urlGoogleSheets: "PEGA_AQUI_LA_URL_DE_APPS_SCRIPT",
+    urlGoogleSheets: "https://script.google.com/macros/s/AKfycbwI5E1W_8ApDBXtIOfnKXXx1U0YC_tCxgNGCP9yIbgPezMiTrpOY0DGAaIuMMOUwRDA/exec",
 
     // Texto opcional bajo el título, p. ej. "Por favor, confirma antes del 1 de julio".
     aviso: "",

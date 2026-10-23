@@ -111,7 +111,7 @@ Protecciones incluidas: campo trampa antispam, recorte de textos largos y bloque
 ---
 
 ## Pendiente
-- [ ] Pegar la URL de Google Apps Script en `config.js`.
+- [x] Pegar la URL de Google Apps Script en `config.js`.
 - [ ] Completar dirección, teléfono y web del hotel en `config.js → alojamiento.hotel`.
 - [ ] Sustituir las ilustraciones recortadas por dibujos propios (mismos nombres).
 - [ ] Revisar los textos de “gracias” y, si se quiere, añadir fecha límite en `confirmacion.aviso`.
