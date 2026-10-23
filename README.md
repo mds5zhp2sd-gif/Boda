@@ -85,16 +85,18 @@ Mientras `urlGoogleSheets` tenga el texto de ejemplo, el formulario funciona en 
 1. Crea una hoja de cálculo en Google Sheets (por ejemplo “Confirmaciones boda”).
 2. En la hoja: **Extensiones → Apps Script**.
 3. Borra el contenido, pega todo `google-apps-script/Code.gs` y pulsa **Guardar** 💾.
-4. **Implementar → Nueva implementación** → icono ⚙️ → **Aplicación web**:
+4. Arriba, en el desplegable de funciones, elige **`prepararHoja`** y pulsa **▶ Ejecutar** (solo la primera vez). Acepta los permisos (Google avisará de que la app no está verificada: *Configuración avanzada → Ir a … → Permitir*; es tu propio script). Se crean:
+   - **Confirmaciones**: una fila por respuesta, con cabecera en verde salvia, «Sí» en verde y «No» en terracota.
+   - **Resumen**: cuántos vienen y cuántos no, transporte, habitaciones del hotel y alergias, contados automáticamente.
+5. **Implementar → Nueva implementación** → icono ⚙️ → **Aplicación web**:
    - *Ejecutar como:* **Yo**
    - *Quién tiene acceso:* **Cualquier usuario**
-5. Pulsa **Implementar** y acepta los permisos (Google avisará de que la app no está verificada: *Configuración avanzada → Ir a … → Permitir*; es tu propio script).
-6. Copia la **URL de la aplicación web** (termina en `/exec`).
+6. Pulsa **Implementar** y copia la **URL de la aplicación web** (termina en `/exec`).
 7. En `js/config.js`, pega la URL:
    ```js
    urlGoogleSheets: "https://script.google.com/macros/s/XXXXXXXX/exec",
    ```
-8. Haz una confirmación de prueba en la web: aparecerá una fila en la pestaña **Confirmaciones**.
+8. Haz una confirmación de prueba en la web: aparecerá una fila en la pestaña **Confirmaciones** y se actualizará el **Resumen**.
 
 Columnas: Fecha de envío · Nombre y apellidos · Asistencia · Alergias o intolerancias · Transporte · Hotel · Noches de hotel · Comparte habitación con · Mensaje.
 
