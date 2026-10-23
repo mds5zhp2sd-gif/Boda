@@ -220,7 +220,7 @@ window.BODA_CONFIG = {
       graciasSi: "¡Gracias! Hemos recibido tu confirmación. ¡Qué ganas de celebrarlo contigo!",
       graciasNo: "Gracias por avisarnos. ¡Te echaremos de menos!",
       error: "No hemos podido enviar tu confirmación. Revisa tu conexión e inténtalo de nuevo, o escríbenos directamente.",
-      faltanDatos: "Por favor, completa tu nombre e indica si vendrás.",
+      faltanDatos: "Te falta completar los campos marcados en rojo (solo el mensaje es opcional).",
       modoPrueba: "Modo prueba: el formulario todavía no está conectado a Google Sheets, así que no se ha enviado nada.",
       otraRespuesta: "Enviar otra confirmación",
     },

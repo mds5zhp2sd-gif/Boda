@@ -392,7 +392,7 @@ a { color: var(--color-tinta); }
   transition: border-color .15s, box-shadow .15s;
 }
 .campo:focus-within { border-color: var(--color-salvia); box-shadow: 0 0 0 2px rgba(109, 134, 119, .3); }
-.campo.campo--error { border-color: var(--color-error); }
+.campo.campo--error { border-color: var(--color-error); box-shadow: 0 0 0 2px rgba(162, 72, 58, .18); }
 
 .campo__icono { flex: none; width: 22px; height: auto; }
 

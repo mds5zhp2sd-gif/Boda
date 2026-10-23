@@ -292,16 +292,42 @@
       };
     }
 
+    // Todo es obligatorio salvo el mensaje. Si no viene, basta con nombre y asistencia.
     function validar(datos) {
-      let ok = true;
-      if (!datos.nombre) { $("#campo-nombre").classList.add("campo--error"); ok = false; }
-      if (!datos.asistencia) { $("#campo-asistencia").classList.add("campo--error"); ok = false; }
-      if (!ok) {
-        mostrarEstado(F.textos.faltanDatos, "error");
-        (datos.nombre ? $('input[name="asistencia"]') : $("#nombre")).focus();
+      $$(".campo--error", form).forEach((c) => c.classList.remove("campo--error"));
+      const faltan = []; // [campo, elemento al que llevar el foco, nombre para el aviso]
+      const exigir = (vacio, campo, foco, nombre) => { if (vacio) faltan.push([campo, foco, nombre]); };
+      const C = F.campos;
+
+      exigir(!datos.nombre, "#campo-nombre", "#nombre", C.nombre);
+      exigir(!datos.asistencia, "#campo-asistencia", 'input[name="asistencia"]', C.asistencia);
+      if (datos.asistencia === "Sí") {
+        const marcadas = casillasAlergias.filter((c) => c.checked);
+        exigir(!marcadas.length, "#campo-alergias", 'input[name="alergias"]', C.alergias.replace(/\s*\(.*\)$/, ""));
+        exigir(marcadas.some((c) => c.dataset.otra) && !$("#alergiasOtra").value.trim(),
+          "#campo-alergias-otra", "#alergiasOtra", C.alergiasOtra);
+        exigir(!datos.transporte, "#campo-transporte", 'input[name="transporte"]', C.transporte);
+        if (!bloqueHotel.hidden) {
+          const opcionHotel = $('input[name="hotel"]:checked');
+          exigir(!opcionHotel, "#campo-hotel", 'input[name="hotel"]', H.pregunta);
+          if (opcionHotel && opcionHotel.dataset.reserva) exigir(!datos.hotelNoches, "#campo-hotel-noches", "#hotelNoches", H.noches);
+          if (opcionHotel && opcionHotel.dataset.doble) exigir(!datos.hotelComparte, "#campo-hotel-comparte", "#hotelComparte", H.comparte);
+        }
       }
-      return ok;
+
+      if (!faltan.length) return true;
+      faltan.forEach(([campo]) => $(campo).classList.add("campo--error"));
+      mostrarEstado(F.textos.faltanDatos, "error");
+      $(faltan[0][1]).focus();
+      $(faltan[0][0]).scrollIntoView({ behavior: "smooth", block: "center" });
+      return false;
     }
+
+    // Al corregir un campo se quita su marca de error.
+    ["input", "change"].forEach((evento) => form.addEventListener(evento, (e) => {
+      const campo = e.target.closest(".campo");
+      if (campo) campo.classList.remove("campo--error");
+    }));
 
     function mostrarGracias(datos) {
       $("#confirmacion-gracias-texto").textContent = datos.asistencia === "Sí" ? F.textos.graciasSi : F.textos.graciasNo;
