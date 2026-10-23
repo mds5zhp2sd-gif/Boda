@@ -458,7 +458,7 @@
     }
   }
 
-  // Cuenta atrás con reloj de arena: se actualiza cada segundo hasta boda.fechaISO.
+  // Cuenta atrás con reloj de arena (días, horas y minutos) hasta boda.fechaISO.
   function prepararCuentaAtras(CA) {
     const bloque = $("#cuenta-atras");
     const titulo = $("#cuenta-atras-titulo");
@@ -489,12 +489,11 @@
         unidad(Math.floor(s / 86400), U.dias),
         unidad(Math.floor(s / 3600) % 24, U.horas, 2),
         unidad(Math.floor(s / 60) % 60, U.minutos, 2),
-        unidad(s % 60, U.segundos, 2),
       );
     }
     bloque.hidden = false;
     pintar();
-    intervalo = setInterval(pintar, 1000);
+    intervalo = setInterval(pintar, 15000); // sin segundos: basta con refrescar cada 15 s
   }
 
   // Enlace de Google Calendar con el evento ya relleno.

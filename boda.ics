@@ -12,5 +12,10 @@ SUMMARY:Boda de Sofía y Javi
 LOCATION:Capilla de la Providencia\, Gijón
 DESCRIPTION:Ceremonia a las 12:00 en la Capilla de la Providencia\; después\, celebración en el hotel abba Playa Gijón. Toda la información: https://mds5zhp2sd-gif.github.io/Boda/
 URL:https://mds5zhp2sd-gif.github.io/Boda/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Mañana es la boda de Sofía y Javi
+TRIGGER:-P1D
+END:VALARM
 END:VEVENT
 END:VCALENDAR

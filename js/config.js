@@ -288,7 +288,7 @@ window.BODA_CONFIG = {
     cuentaAtras: {
       activo: true,
       titulo: "Faltan",
-      unidades: { dias: ["día", "días"], horas: ["hora", "horas"], minutos: ["min", "min"], segundos: ["seg", "seg"] },
+      unidades: { dias: ["día", "días"], horas: ["hora", "horas"], minutos: ["min", "min"] },
       textoHoy: "¡Hoy es el gran día!",
       textoPasado: "¡Gracias por celebrarlo con nosotros!",
     },
