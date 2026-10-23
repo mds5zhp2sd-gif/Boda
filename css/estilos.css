@@ -600,9 +600,12 @@ a { color: var(--color-tinta); }
   margin: 16px auto 0;
 }
 .reloj-arena { width: 42px; height: 63px; flex: none; overflow: visible; }
-.reloj-arena__cristal { fill: rgba(255, 255, 255, .35); stroke: var(--color-tinta); stroke-width: 1.6; stroke-linejoin: round; }
-.reloj-arena__marco { fill: var(--color-tinta); }
-.reloj-arena__poste { stroke: var(--color-tinta); stroke-width: 1.4; stroke-linecap: round; fill: none; }
+/* Reloj de arena "marinero": postes de cuerda, tablas oscuras y remaches de latón */
+.reloj-arena__fondo { fill: rgba(255, 255, 255, .35); }
+.reloj-arena__cristal { fill: none; stroke: var(--color-tinta); stroke-width: 1.6; stroke-linejoin: round; }
+.reloj-arena__cuerda { fill: none; stroke: #a9774f; stroke-width: 1.3; stroke-linecap: round; }
+.reloj-arena__tabla { stroke: var(--color-tinta); stroke-width: 3.2; stroke-linecap: round; }
+.reloj-arena__remache { fill: #c9a45c; stroke: var(--color-tinta); stroke-width: .7; }
 .reloj-arena__arriba, .reloj-arena__abajo { fill: #d2ad74; }
 .reloj-arena__chorro { stroke: #d2ad74; stroke-width: 1.6; stroke-dasharray: 2 2; }
 /* Ciclo de 8 s: la arena cae (0–85 %) y el reloj se da la vuelta (85–100 %) */
