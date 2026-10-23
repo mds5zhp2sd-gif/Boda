@@ -64,6 +64,7 @@ window.BODA_CONFIG = {
         etiqueta: "Fecha",
         lineas: ["28 · 08 · 2027"],
         mapa: "",
+        calendario: true,   // desplegable "Añadir al calendario" (textos en extras.calendario)
       },
       {
         id: "ceremonia",
@@ -291,10 +292,11 @@ window.BODA_CONFIG = {
       textoHoy: "¡Hoy es el gran día!",
       textoPasado: "¡Gracias por celebrarlo con nosotros!",
     },
-    // Botón "Añadir al calendario" con Google Calendar y Apple Calendar / Outlook
+    // Desplegable "Añadir al calendario" en la columna Fecha de Detalles
     calendario: {
       activo: true,
       texto: "Añadir al calendario",
+      introDesplegable: "Guarda la fecha para no perdértela:",
       textoGoogle: "Google Calendar",
       textoApple: "Apple Calendar / Outlook",
       // Archivo .ics fijo (en iPhone se abre directamente en Calendario). Si cambias fecha,

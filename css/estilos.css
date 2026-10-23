@@ -257,11 +257,14 @@ a { color: var(--color-tinta); }
 }
 
 /* Botón "Aparcamiento y avisos" de cada columna */
+/* Columnas en vertical para que los botones de abajo queden a la misma altura */
+.detalle { display: flex; flex-direction: column; align-items: center; }
+.detalle__mapa { margin-bottom: 10px; }
 .detalle__avisos-boton {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin: 10px auto 0;
+  margin: auto auto 0;
   padding: 5px 14px;
   border: 1.3px solid var(--color-salvia);
   border-radius: 999px;
@@ -624,14 +627,13 @@ a { color: var(--color-tinta); }
 .cuenta-atras--fin .reloj-arena { display: none; }
 .cuenta-atras--fin .cuenta-atras__titulo { font-size: 24px; }
 
-/* Añadir al calendario */
-.calendario { flex-basis: 100%; margin-top: 14px; }
-#boton-calendario { font-size: 17px; min-height: 38px; gap: 8px; }
-.calendario__flecha { font: 400 12px/1 var(--fuente-texto); transition: transform .2s; }
-#boton-calendario[aria-expanded="true"] .calendario__flecha { transform: rotate(180deg); }
-.calendario__opciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px; animation: aparecer .2s ease-out; }
+/* Añadir al calendario (desplegable de la columna Fecha) */
+.calendario__opciones { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
 .calendario__opcion {
-  padding: 7px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
   border: 1px solid rgba(109, 134, 119, .55);
   border-radius: 999px;
   background: rgba(255, 252, 246, .7);
@@ -673,6 +675,7 @@ a { color: var(--color-tinta); }
   .detalle { border-left: 0; border-top: 1.2px solid rgba(32, 52, 68, .3); padding: 14px 0; }
   .detalle:first-child { border-top: 0; padding-top: 0; }
   .detalle-avisos { grid-row: auto; margin: 0 0 14px; padding: 14px 16px; }
+  .detalle__avisos-boton { margin-top: 10px; }
   .aviso__foto { float: none; display: block; width: 100%; max-width: none; margin: 0 0 8px; }
 
   /* Programa: el velero pasa debajo */

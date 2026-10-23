@@ -119,19 +119,24 @@
       ]);
       lista.append(item);
 
+      // Desplegable "Añadir al calendario" (columna con calendario: true)
+      const CAL = (C.extras || {}).calendario;
+      if (col.calendario && CAL && CAL.activo) {
+        desplegable(item, col, "calendario", CAL.texto, [
+          crear("p", { clase: "aviso__texto", texto: CAL.introDesplegable }),
+          crear("div", { clase: "calendario__opciones" }, [
+            crear("a", { id: "calendario-google", clase: "calendario__opcion", href: enlaceGoogleCalendar(CAL), target: "_blank", rel: "noopener noreferrer" },
+              [crear("img", { src: "img/icono-calendario-mini.svg", alt: "", width: 18, height: 18 }), CAL.textoGoogle]),
+            crear("a", { id: "calendario-apple", clase: "calendario__opcion", href: CAL.archivoIcs },
+              [crear("img", { src: "img/icono-calendario-mini.svg", alt: "", width: 18, height: 18 }), CAL.textoApple]),
+          ]),
+        ]);
+      }
+
       // Desplegable "Aparcamiento y avisos" de esta columna
       const avisos = (col.avisos || []).filter((a) => !estaVacio(a.texto));
-      if (!avisos.length) return;
-      const idPanel = `avisos-${col.id}`;
-      const boton = crear("button", {
-        id: `boton-avisos-${col.id}`, clase: "detalle__avisos-boton", type: "button",
-        "aria-expanded": "false", "aria-controls": idPanel,
-      }, [C.detalles.textoAvisos, crear("span", { clase: "detalle__avisos-flecha", "aria-hidden": "true", texto: "▾" })]);
-      item.append(boton);
-
-      const panel = crear("li", { id: idPanel, clase: "detalle-avisos", hidden: true, "aria-label": `${C.detalles.textoAvisos} · ${col.etiqueta}` }, [
-        crear("p", { clase: "detalle-avisos__lugar", texto: `${col.etiqueta}\u00a0 · \u00a0${(col.lineas || [])[0] || ""}` }),
-        ...avisos.map((a) => {
+      if (avisos.length) {
+        desplegable(item, col, "avisos", C.detalles.textoAvisos, avisos.map((a) => {
           const aviso = crear("div", { clase: "aviso" }, [
             !estaVacio(a.titulo) && crear("h3", { clase: "aviso__titulo", texto: a.titulo }),
             crear("p", { clase: "aviso__texto", texto: a.texto }),
@@ -146,19 +151,31 @@
             aviso.prepend(img);
           }
           return aviso;
-        }),
+        }));
+      }
+    });
+
+    // Botón bajo una columna que abre un panel a lo ancho (solo uno abierto a la vez).
+    function desplegable(item, col, tipo, texto, contenido) {
+      const idPanel = `${tipo}-${col.id}`;
+      const boton = crear("button", {
+        id: `boton-${tipo}-${col.id}`, clase: "detalle__avisos-boton", type: "button",
+        "aria-expanded": "false", "aria-controls": idPanel,
+      }, [texto, crear("span", { clase: "detalle__avisos-flecha", "aria-hidden": "true", texto: "▾" })]);
+      item.append(boton);
+      const panel = crear("li", { id: idPanel, clase: `detalle-avisos detalle-avisos--${tipo}`, hidden: true, "aria-label": `${texto} · ${col.etiqueta}` }, [
+        crear("p", { clase: "detalle-avisos__lugar", texto: `${col.etiqueta}\u00a0 · \u00a0${(col.lineas || [])[0] || ""}` }),
+        ...contenido,
       ]);
       lista.append(panel);
-
       boton.addEventListener("click", () => {
         const abrir = boton.getAttribute("aria-expanded") !== "true";
-        // Solo un desplegable abierto a la vez
         $$(".detalle__avisos-boton", lista).forEach((b) => b.setAttribute("aria-expanded", "false"));
         $$(".detalle-avisos", lista).forEach((p) => { p.hidden = true; });
         boton.setAttribute("aria-expanded", String(abrir));
         panel.hidden = !abrir;
       });
-    });
+    }
 
     const boton = $("#detalles-boton-mapa");
     if (C.detalles.boton && !estaVacio(C.detalles.boton.url)) {
@@ -425,7 +442,6 @@
     const X = C.extras || {};
 
     if (X.cuentaAtras && X.cuentaAtras.activo) prepararCuentaAtras(X.cuentaAtras);
-    if (X.calendario && X.calendario.activo) prepararCalendario(X.calendario);
 
     if (X.musica && X.musica.activo) {
       const boton = $("#boton-musica");
@@ -481,33 +497,18 @@
     intervalo = setInterval(pintar, 1000);
   }
 
-  // "Añadir al calendario": Google Calendar (enlace) y Apple / Outlook (archivo .ics).
-  function prepararCalendario(CAL) {
+  // Enlace de Google Calendar con el evento ya relleno.
+  function enlaceGoogleCalendar(CAL) {
     const utc = (iso) => new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-    const google = new URL("https://calendar.google.com/calendar/render");
-    google.search = new URLSearchParams({
+    const url = new URL("https://calendar.google.com/calendar/render");
+    url.search = new URLSearchParams({
       action: "TEMPLATE",
       text: CAL.tituloEvento,
       dates: `${utc(C.boda.fechaISO)}/${utc(CAL.fin)}`,
       location: CAL.lugar,
       details: CAL.descripcion || "",
     });
-    const enlaceGoogle = $("#calendario-google");
-    enlaceGoogle.href = google.toString();
-    enlaceGoogle.textContent = CAL.textoGoogle;
-    const enlaceApple = $("#calendario-apple");
-    enlaceApple.href = CAL.archivoIcs;
-    enlaceApple.textContent = CAL.textoApple;
-
-    const boton = $("#boton-calendario");
-    const opciones = $("#calendario-opciones");
-    $("#boton-calendario-texto").textContent = CAL.texto;
-    boton.addEventListener("click", () => {
-      const abrir = boton.getAttribute("aria-expanded") !== "true";
-      boton.setAttribute("aria-expanded", String(abrir));
-      opciones.hidden = !abrir;
-    });
-    $("#calendario").hidden = false;
+    return url.toString();
   }
 
   /* ARRANQUE ============================================================== */

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#1f2a30" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Calendario pequeño para las opciones de "Añadir al calendario" -->
+  <rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/>
+  <path d="M3.5 10 H20.5 M8 3 V7 M16 3 V7"/>
+  <path d="M12 18 Q8.5 15.6 8.5 13.6 Q8.5 12 10 12 Q11.2 12 12 13.2 Q12.8 12 14 12 Q15.5 12 15.5 13.6 Q15.5 15.6 12 18 Z" fill="#c07a64" stroke="#c07a64" stroke-width="1"/>
+</svg>
