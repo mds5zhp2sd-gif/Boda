@@ -98,8 +98,8 @@ window.BODA_CONFIG = {
       // { id: "autobus", hora: "13:30", nombre: "Autobús", icono: "img/icono-autobus.png" },
       { id: "coctel",    hora: "14:00", nombre: "Cóctel",    icono: "img/icono-aperitivo.png" },
       { id: "almuerzo",  hora: "16:30", nombre: "Almuerzo",  icono: "img/icono-almuerzo.png" },
-      { id: "fiesta",    hora: "18:30", nombre: "Fiesta",    icono: "img/icono-fiesta.png" },
-      { id: "recena",    hora: "21:30", nombre: "Recena",    icono: "img/icono-recena.png" },
+      { id: "fiesta",    hora: "18:30", nombre: "Fiesta",    icono: "img/icono-fiesta.svg" },
+      { id: "recena",    hora: "21:30", nombre: "Recena",    icono: "img/icono-recena.svg" },
     ],
     ilustracion: "img/ilus-velero.png",
     frase: "¡Será un día inolvidable!",
@@ -109,8 +109,8 @@ window.BODA_CONFIG = {
   alojamiento: {
     titulo: "Alojamiento",
     texto: "Hemos llegado a un acuerdo con el hotel abba Playa Gijón para quien quiera alojarse allí y olvidarse del coche después de la fiesta. Pero podéis elegir el alojamiento que prefiráis (otro hotel, un Airbnb, un apartamento…): mientras sea en Gijón, todo queda cerca.",
-    ilustracionIzquierda: "img/ilus-concha.png",
-    ilustracionDerecha: "img/ilus-farol.png",
+    ilustracionIzquierda: "img/ilus-hotel-abba.svg",
+    ilustracionDerecha: "img/ilus-ventanal-san-lorenzo.svg",
     botonAbrir: "Ver opciones de alojamiento",
     botonCerrar: "Ocultar alojamiento",
     // Lo que aparece al desplegar. Los campos vacíos no se muestran.

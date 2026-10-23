@@ -65,10 +65,10 @@ Ahora mismo son **recortes de la imagen original** con el fondo quitado. Para ca
 | `ola-separador-1…4.png` | Separadores entre secciones | 848 × 40 |
 | `pie-olas.png` | Olas del pie | 848 × 83 |
 | `icono-fecha.png`, `icono-capilla.svg` (Capilla de la Providencia), `icono-aperitivo.png` (cóctel) | Detalles | 50 px alto |
-| `icono-ceremonia/aperitivo/almuerzo/fiesta/recena.png` (+ `icono-autobus.png`, guardado por si vuelve el autobús) | Programa del día | 50 px alto |
+| `icono-ceremonia.png`, `icono-aperitivo.png`, `icono-almuerzo.png`, `icono-fiesta.svg` (novios bailando), `icono-recena.svg` (invitado con la barriga llena) (+ `icono-autobus.png`, guardado por si vuelve el autobús) | Programa del día | 50 px alto |
 | `icono-form-*.png`, `icono-form-hotel.svg` | Iconos de los campos del formulario | 22 px ancho |
 | `ilus-velero.png` | Programa del día | 157 × 128 |
-| `ilus-concha.png`, `ilus-farol.png` | Alojamiento | 80 / 122 px ancho |
+| `ilus-hotel-abba.svg` (hotel desde arriba con su cartel) y `ilus-ventanal-san-lorenzo.svg` (vista de la playa) | Alojamiento | 150 px ancho |
 | `ilus-concha-pequena.png` | Título de “Confirma tu asistencia” | 34 px |
 | `ilus-ancla.png`, `ilus-concha-pie.png` | Pie | 86 / 102 px ancho |
 | `mancha-titulo.svg` | Mancha verde detrás de los títulos | se estira |

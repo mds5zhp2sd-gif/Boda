@@ -31,7 +31,8 @@
   --color-ok: #3f6b55;
 
   /* Fuentes */
-  --fuente-manuscrita: "Dancing Script", "Segoe Script", cursive;
+  /* "Cormorant Garamond" solo se descarga para el «&» (index.html, &text=%26): el resto de letras usa Dancing Script */
+  --fuente-manuscrita: "Cormorant Garamond", "Dancing Script", "Segoe Script", cursive;
   --fuente-texto: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 
   /* Imágenes decorativas de CSS (sustituibles) */
@@ -323,10 +324,8 @@ a { color: var(--color-tinta); }
   max-width: 700px;
   margin: 0 auto 18px;
 }
-.alojamiento__texto { flex: 0 1 380px; margin: 0; text-align: left; line-height: 1.55; }
-.alojamiento__ilustracion { flex: none; }
-.alojamiento__ilustracion--izquierda { width: 80px; }
-.alojamiento__ilustracion--derecha { width: 122px; }
+.alojamiento__texto { flex: 0 1 340px; margin: 0; text-align: left; line-height: 1.55; }
+.alojamiento__ilustracion { flex: none; width: 150px; height: auto; }
 
 .alojamiento__panel {
   max-width: 520px;
@@ -594,11 +593,12 @@ a { color: var(--color-tinta); }
   .programa__corazon { display: none; }
 
   /* Alojamiento: ilustraciones pequeñas a los lados del texto */
-  .alojamiento__cuerpo { gap: 8px; }
-  .alojamiento__texto { text-align: center; }
-  .alojamiento__ilustracion { position: absolute; top: 14px; opacity: .9; }
-  .alojamiento__ilustracion--izquierda { left: 10px; width: 52px; }
-  .alojamiento__ilustracion--derecha { right: 10px; width: 64px; }
+  /* Los dos dibujos, uno junto al otro, y el texto debajo */
+  .alojamiento__cuerpo { flex-wrap: wrap; gap: 6px 4%; }
+  .alojamiento__ilustracion { width: 46%; max-width: 170px; }
+  .alojamiento__ilustracion--izquierda { order: 1; }
+  .alojamiento__ilustracion--derecha { order: 2; }
+  .alojamiento__texto { order: 3; flex-basis: 100%; text-align: center; }
   .alojamiento .boton { padding-inline: 20px; }
 
   /* Formulario */
