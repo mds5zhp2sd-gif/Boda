@@ -283,16 +283,26 @@ window.BODA_CONFIG = {
 
   /* ---------- EXTRAS (desactivados: cambia activo a true para usarlos) ---------- */
   extras: {
+    // Cuenta atrás con reloj de arena (cuenta hasta boda.fechaISO)
     cuentaAtras: {
-      activo: false,
-      texto: "Faltan {dias} días",     // {dias} se sustituye por el número
+      activo: true,
+      titulo: "Faltan",
+      unidades: { dias: ["día", "días"], horas: ["hora", "horas"], minutos: ["min", "min"], segundos: ["seg", "seg"] },
       textoHoy: "¡Hoy es el gran día!",
+      textoPasado: "¡Gracias por celebrarlo con nosotros!",
     },
+    // Botón "Añadir al calendario" con Google Calendar y Apple Calendar / Outlook
     calendario: {
-      activo: false,
+      activo: true,
       texto: "Añadir al calendario",
+      textoGoogle: "Google Calendar",
+      textoApple: "Apple Calendar / Outlook",
+      // Archivo .ics fijo (en iPhone se abre directamente en Calendario). Si cambias fecha,
+      // hora o lugar, actualízalo también (instrucciones en el README).
+      archivoIcs: "boda.ics",
       tituloEvento: "Boda de Sofía y Javi",
       lugar: "Capilla de la Providencia, Gijón",
+      descripcion: "Ceremonia a las 12:00 en la Capilla de la Providencia; después, celebración en el hotel abba Playa Gijón. Toda la información: https://mds5zhp2sd-gif.github.io/Boda/",
       fin: "2027-08-29T02:00:00+02:00",
     },
     musica: {

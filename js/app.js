@@ -424,38 +424,8 @@
   function prepararExtras() {
     const X = C.extras || {};
 
-    if (X.cuentaAtras && X.cuentaAtras.activo) {
-      const el = $("#cuenta-atras");
-      const dias = Math.ceil((new Date(C.boda.fechaISO) - new Date()) / 86400000);
-      if (dias > 0) el.textContent = X.cuentaAtras.texto.replace("{dias}", dias);
-      else if (dias === 0) el.textContent = X.cuentaAtras.textoHoy;
-      el.hidden = dias < 0;
-    }
-
-    if (X.calendario && X.calendario.activo) {
-      const boton = $("#boton-calendario");
-      boton.textContent = X.calendario.texto;
-      boton.hidden = false;
-      boton.addEventListener("click", () => {
-        const formato = (iso) => new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-        const ics = [
-          "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Invitacion boda//ES", "BEGIN:VEVENT",
-          `UID:boda-${formato(C.boda.fechaISO)}@invitacion`,
-          `DTSTAMP:${formato(new Date().toISOString())}`,
-          `DTSTART:${formato(C.boda.fechaISO)}`,
-          `DTEND:${formato(X.calendario.fin)}`,
-          `SUMMARY:${X.calendario.tituloEvento}`,
-          `LOCATION:${X.calendario.lugar}`,
-          "END:VEVENT", "END:VCALENDAR",
-        ].join("\r\n");
-        const enlace = crear("a", {
-          href: URL.createObjectURL(new Blob([ics], { type: "text/calendar" })),
-          download: "boda.ics",
-        });
-        enlace.click();
-        URL.revokeObjectURL(enlace.href);
-      });
-    }
+    if (X.cuentaAtras && X.cuentaAtras.activo) prepararCuentaAtras(X.cuentaAtras);
+    if (X.calendario && X.calendario.activo) prepararCalendario(X.calendario);
 
     if (X.musica && X.musica.activo) {
       const boton = $("#boton-musica");
@@ -470,6 +440,74 @@
         boton.setAttribute("aria-label", sonando ? X.musica.textoPlay : X.musica.textoPausa);
       });
     }
+  }
+
+  // Cuenta atrás con reloj de arena: se actualiza cada segundo hasta boda.fechaISO.
+  function prepararCuentaAtras(CA) {
+    const bloque = $("#cuenta-atras");
+    const titulo = $("#cuenta-atras-titulo");
+    const numeros = $("#cuenta-atras-numeros");
+    const objetivo = new Date(C.boda.fechaISO);
+    // Días tal cual; horas, minutos y segundos con dos cifras para que no "baile" el ancho
+    const unidad = (n, [singular, plural], cifras = 1) =>
+      crear("span", { clase: "cuenta-atras__unidad" }, [
+        crear("strong", { texto: String(n).padStart(cifras, "0") }),
+        crear("small", { texto: n === 1 ? singular : plural }),
+      ]);
+    let intervalo;
+
+    function pintar() {
+      const ms = objetivo - new Date();
+      const hoy = new Date().toDateString() === objetivo.toDateString();
+      if (ms <= 0) {
+        clearInterval(intervalo);
+        bloque.classList.add("cuenta-atras--fin");
+        titulo.textContent = hoy ? CA.textoHoy : CA.textoPasado;
+        numeros.textContent = "";
+        return;
+      }
+      const s = Math.floor(ms / 1000);
+      const U = CA.unidades;
+      titulo.textContent = CA.titulo;
+      numeros.replaceChildren(
+        unidad(Math.floor(s / 86400), U.dias),
+        unidad(Math.floor(s / 3600) % 24, U.horas, 2),
+        unidad(Math.floor(s / 60) % 60, U.minutos, 2),
+        unidad(s % 60, U.segundos, 2),
+      );
+    }
+    bloque.hidden = false;
+    pintar();
+    intervalo = setInterval(pintar, 1000);
+  }
+
+  // "Añadir al calendario": Google Calendar (enlace) y Apple / Outlook (archivo .ics).
+  function prepararCalendario(CAL) {
+    const utc = (iso) => new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    const google = new URL("https://calendar.google.com/calendar/render");
+    google.search = new URLSearchParams({
+      action: "TEMPLATE",
+      text: CAL.tituloEvento,
+      dates: `${utc(C.boda.fechaISO)}/${utc(CAL.fin)}`,
+      location: CAL.lugar,
+      details: CAL.descripcion || "",
+    });
+    const enlaceGoogle = $("#calendario-google");
+    enlaceGoogle.href = google.toString();
+    enlaceGoogle.textContent = CAL.textoGoogle;
+    const enlaceApple = $("#calendario-apple");
+    enlaceApple.href = CAL.archivoIcs;
+    enlaceApple.textContent = CAL.textoApple;
+
+    const boton = $("#boton-calendario");
+    const opciones = $("#calendario-opciones");
+    $("#boton-calendario-texto").textContent = CAL.texto;
+    boton.addEventListener("click", () => {
+      const abrir = boton.getAttribute("aria-expanded") !== "true";
+      boton.setAttribute("aria-expanded", String(abrir));
+      opciones.hidden = !abrir;
+    });
+    $("#calendario").hidden = false;
   }
 
   /* ARRANQUE ============================================================== */

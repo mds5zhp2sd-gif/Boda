@@ -50,8 +50,41 @@
         <svg class="corazon portada__corazon" aria-hidden="true"><use href="#corazon"/></svg>
         <p id="portada-ciudad" class="portada__ciudad" data-texto="boda.ciudad">Xixón, Asturias</p>
         <!-- Extras opcionales (se activan en config.js → extras) -->
-        <p id="cuenta-atras" class="cuenta-atras" hidden></p>
-        <button id="boton-calendario" class="boton boton--secundario" type="button" hidden></button>
+        <div id="cuenta-atras" class="cuenta-atras" hidden>
+          <!-- Reloj de arena animado -->
+          <svg class="reloj-arena" viewBox="0 0 40 60" aria-hidden="true" focusable="false">
+            <defs>
+              <clipPath id="reloj-cristal"><path d="M9 6 H31 C31 18 23 24 21 30 C23 36 31 42 31 54 H9 C9 42 17 36 19 30 C17 24 9 18 9 6 Z"/></clipPath>
+              <clipPath id="reloj-mitad-arriba"><rect x="0" y="0" width="40" height="30"/></clipPath>
+              <clipPath id="reloj-mitad-abajo"><rect x="0" y="30" width="40" height="30"/></clipPath>
+            </defs>
+            <g class="reloj-arena__giro">
+              <g clip-path="url(#reloj-cristal)">
+                <g clip-path="url(#reloj-mitad-arriba)"><rect class="reloj-arena__arriba" x="0" y="13" width="40" height="17"/></g>
+                <g clip-path="url(#reloj-mitad-abajo)"><rect class="reloj-arena__abajo" x="0" y="37" width="40" height="17"/></g>
+                <line class="reloj-arena__chorro" x1="20" y1="29" x2="20" y2="54"/>
+              </g>
+              <path class="reloj-arena__cristal" d="M9 6 H31 C31 18 23 24 21 30 C23 36 31 42 31 54 H9 C9 42 17 36 19 30 C17 24 9 18 9 6 Z"/>
+              <rect class="reloj-arena__marco" x="5" y="2.5" width="30" height="3.5" rx="1.2"/>
+              <rect class="reloj-arena__marco" x="5" y="54" width="30" height="3.5" rx="1.2"/>
+              <path class="reloj-arena__poste" d="M7 6 V54 M33 6 V54"/>
+            </g>
+          </svg>
+          <div class="cuenta-atras__texto">
+            <p id="cuenta-atras-titulo" class="cuenta-atras__titulo"></p>
+            <p id="cuenta-atras-numeros" class="cuenta-atras__numeros" aria-live="off"></p>
+          </div>
+        </div>
+
+        <div id="calendario" class="calendario" hidden>
+          <button id="boton-calendario" class="boton boton--secundario" type="button" aria-expanded="false" aria-controls="calendario-opciones">
+            <span id="boton-calendario-texto"></span><span class="calendario__flecha" aria-hidden="true">▾</span>
+          </button>
+          <div id="calendario-opciones" class="calendario__opciones" hidden>
+            <a id="calendario-google" class="calendario__opcion" target="_blank" rel="noopener noreferrer"></a>
+            <a id="calendario-apple" class="calendario__opcion"></a>
+          </div>
+        </div>
       </div>
     </header>
 
