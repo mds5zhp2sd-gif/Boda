@@ -75,9 +75,9 @@ body.con-sobre { overflow: hidden; }
 
 /* Piezas (posiciones medidas en la ilustración) */
 .pieza { display: block; max-width: none; pointer-events: none; transition: transform 1s cubic-bezier(.55, 0, .35, 1), opacity .9s ease; }
-/* Un solo cordel vertical a la izquierda; nudo en (13%, 48%) */
+/* Un solo cordel vertical (dos cuerdecillas) a la izquierda; nudo en (22%, 46.5%) */
 .pieza--cinta { z-index: 5; object-fit: fill; }
-.pieza--cinta-v { left: calc(13% - 1.8%); top: -2%; width: 3.6%; height: 104%; }
+.pieza--cinta-v { left: calc(22% - 2.25%); top: -2%; width: 4.5%; height: 104%; }
 .pieza--cinta-h { display: none; }
 
 /* Interior: forro azul con rayas doradas y tarjeta de papel crema */
@@ -90,12 +90,12 @@ body.con-sobre { overflow: hidden; }
 }
 .sobre__carta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #f5ede1 var(--textura-papel); filter: url(#borde-rasgado) drop-shadow(0 8px 18px rgba(0, 0, 0, .35)); }
 .sobre__carta span { color: var(--color-tinta); font: 500 clamp(30px, 9vw, 44px)/1 var(--fuente-manuscrita); opacity: 0; transition: opacity 1s ease .4s; }
-.pieza--lazo { left: -10.65%; top: 38.1%; width: 47.3%; height: 23.7%; z-index: 6; }
-.pieza--lazo-a { clip-path: inset(0 50% 0 0); transform-origin: 50% 41.67%; }
-.pieza--lazo-b { clip-path: inset(0 0 0 50%); transform-origin: 50% 41.67%; }
+.pieza--lazo { left: -0.5%; top: 37.7%; width: 45%; height: 22.5%; z-index: 6; }
+.pieza--lazo-a { clip-path: inset(0 50% 0 0); transform-origin: 50% 43.3%; }
+.pieza--lazo-b { clip-path: inset(0 0 0 50%); transform-origin: 50% 43.3%; }
 /* Sello de lacre sobre el nudo */
 .pieza--sello {
-  left: 7.5%; top: 45.25%; width: 11%; height: 5.5%; z-index: 7;
+  left: 12.5%; top: 41.75%; width: 19%; height: 9.5%; z-index: 7;
   padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto;
   animation: sello-latido 2.6s ease-in-out infinite;
 }
