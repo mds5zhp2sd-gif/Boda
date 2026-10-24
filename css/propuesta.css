@@ -73,6 +73,10 @@ body.con-sobre { overflow: hidden; }
 .solapa--arr .solapa__cara { clip-path: polygon(0 0, 50% 50%, 100% 0); }
 .solapa--arr .solapa__dorso { clip-path: polygon(0 100%, 50% 50%, 100% 100%); transform: rotateX(180deg); }
 
+.sobre__pliegues { inset: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; fill: none; transition: opacity .6s; }
+.sobre__pliegues path { stroke: rgba(0, 0, 0, .2); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.sobre.paso3 .sobre__pliegues { opacity: 0; }
+
 /* Piezas (posiciones medidas en la ilustración) */
 .pieza { display: block; max-width: none; pointer-events: none; transition: transform 1s cubic-bezier(.55, 0, .35, 1), opacity .9s ease; }
 /* Un solo cordel vertical (dos cuerdecillas) a la izquierda; nudo en (22%, 46.5%) */
@@ -104,7 +108,7 @@ body.con-sobre { overflow: hidden; }
 @keyframes sello-latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
 .sobre__pista {
-  left: 0; right: 0; top: 40.5%; z-index: 8; margin: 0; text-align: center;
+  left: 0; right: 0; top: 38%; z-index: 8; margin: 0; text-align: center;
   color: #e8d3a2; font: italic 500 clamp(15px, 4.2vw, 19px)/1 var(--fuente-serif); letter-spacing: .04em;
   text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
   animation: pista 2.6s ease-in-out infinite; transition: opacity .3s;
