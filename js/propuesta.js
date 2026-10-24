@@ -11,11 +11,11 @@
   const sobre = $("#sobre");
   if (sobre) {
     document.body.classList.add("con-sobre");
-    // Lienzo 1:2: en vertical cubre la pantalla; en horizontal se ve entero
+    // Lienzo 1:2: se ve siempre entero (en móviles anchos quedan bandas azules a los lados)
     const lienzo = $(".sobre__lienzo", sobre);
     const medir = () => {
       const w = innerWidth, h = innerHeight;
-      const ancho = w / h < 0.75 ? Math.max(w, h / 2) : Math.min(w, h / 2) * 0.96;
+      const ancho = w / h < 0.75 ? Math.min(w, h / 2) : Math.min(w, h / 2) * 0.96;  // siempre entero: la ilustración de abajo no se corta
       lienzo.style.setProperty("--lienzo-w", `${ancho}px`);
     };
     medir();
