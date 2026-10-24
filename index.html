@@ -45,25 +45,22 @@
   <div id="sobre" class="sobre" role="dialog" aria-modal="true" aria-label="Invitación cerrada">
     <!-- Lienzo con la proporción de la ilustración (1:2); las piezas se colocan en % sobre él -->
     <div class="sobre__lienzo">
-      <div class="solapa solapa--izq"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
-      <div class="solapa solapa--der"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
-      <div class="solapa solapa--aba"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
-      <div class="solapa solapa--arr"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
+      <div class="solapa solapa--izq"><div class="solapa__cara"></div></div>
+      <div class="solapa solapa--der"><div class="solapa__cara"></div></div>
+      <div class="solapa solapa--aba"><div class="solapa__cara"></div></div>
+      <div class="solapa solapa--arr"><div class="solapa__cara"></div></div>
       <!-- Pliegues del sobre: diagonales de las esquinas al centro -->
       <svg class="sobre__pliegues" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 L50 50 L100 0 M0 100 L50 50 L100 100"/></svg>
-      <!-- Interior del sobre: forro y tarjeta de papel que se acerca al final -->
-      <div class="sobre__interior" aria-hidden="true"><div class="sobre__carta"><span>Sofía &amp; Javi</span></div></div>
-      <!-- Apertura B: tarjeta que sale del sobre -->
+      <!-- Interior del sobre: forro azul -->
+      <div class="sobre__interior" aria-hidden="true"></div>
+      <!-- Tarjeta que sale del sobre al abrirlo -->
       <div class="sobre__tarjeta" aria-hidden="true">
         <p class="sobre__tarjeta-titulo">¡Nos casamos!</p>
         <p class="sobre__tarjeta-nombres">Sofía &amp; Javi</p>
         <p class="sobre__tarjeta-fecha">28 · 08 · 2027</p>
       </div>
-      <!-- Apertura B: solapa de arriba ya abierta (forro) -->
+      <!-- Solapa de arriba ya abierta (forro) -->
       <div class="solapa-abierta" aria-hidden="true"></div>
-      <!-- Apertura C: dos puertas -->
-      <div class="puerta puerta--izq" aria-hidden="true"></div>
-      <div class="puerta puerta--der" aria-hidden="true"></div>
       <!-- Cordel de yute atado en cruz, centrado -->
       <img class="pieza pieza--cinta pieza--cinta-v" src="img/sobre-cuerda-v.webp" alt="" aria-hidden="true">
       <img class="pieza pieza--cinta pieza--cinta-h" src="img/sobre-cuerda-h.webp" alt="" aria-hidden="true">
