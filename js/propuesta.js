@@ -31,10 +31,10 @@
       if (sobre.dataset.abriendo) return;
       sobre.dataset.abriendo = "si";
       if (sinMovimiento) return cerrar();
-      // sello → lazada → cintas → solapas laterales → arriba/abajo → fundido
-      const pasos = [["paso1", 0], ["paso2", 500], ["paso3", 3000], ["paso4", 4300], ["paso5", 5500], ["paso6", 7000], ["paso7", 8300]];
+      // sello → se deshace el nudo → se retira el cordel → solapas → la tarjeta se acerca → fundido
+      const pasos = [["paso1", 0], ["paso2", 500], ["pasoC", 2850], ["paso3", 4000], ["paso4", 5200], ["paso5", 6300], ["paso6", 7700], ["paso7", 9000]];
       pasos.forEach(([clase, ms]) => setTimeout(() => sobre.classList.add(clase), ms));
-      setTimeout(cerrar, 9100);
+      setTimeout(cerrar, 9800);
     };
     $("#sobre-sello").addEventListener("click", abrir);
     $("#sobre-saltar").addEventListener("click", cerrar);

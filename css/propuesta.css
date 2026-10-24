@@ -36,7 +36,7 @@
 
 /* ---------- SOBRE DE APERTURA ----------
    Ilustración azul y oro (img/sobre-fondo.jpg) repartida en 4 solapas, con la cinta,
-   el cordel (img/sobre-cuerda-*.webp) y la lazada (img/sobre-lazo.webp) como piezas aparte. Medidas en % del original 887×1774.
+   el cordel (img/sobre-cuerda-*.webp) y la lazada (img/sobre-lazo-desata.webp, 16 fotogramas) como piezas aparte. Medidas en % del original 887×1774.
    Secuencia: salta el sello → se deshace la lazada → se retiran las cintas → se abren las solapas. */
 body.con-sobre { overflow: hidden; }
 .sobre {
@@ -91,8 +91,8 @@ body.con-sobre { overflow: hidden; }
 .sobre__carta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #f5ede1 var(--textura-papel); filter: url(#borde-rasgado) drop-shadow(0 8px 18px rgba(0, 0, 0, .35)); }
 .sobre__carta span { color: var(--color-tinta); font: 500 clamp(30px, 9vw, 44px)/1 var(--fuente-manuscrita); opacity: 0; transition: opacity 1s ease .4s; }
 .pieza--lazo { left: -0.5%; top: 37.7%; width: 45%; height: 22.5%; z-index: 6; }
-.pieza--lazo-a { clip-path: inset(0 50% 0 0); transform-origin: 50% 43.3%; }
-.pieza--lazo-b { clip-path: inset(0 0 0 50%); transform-origin: 50% 43.3%; }
+.pieza--lazo { background: url("../img/sobre-lazo-desata.webp") 0 0 / 1600% 100% no-repeat; }
+@keyframes desatar { to { background-position: 100% 0; } }
 /* Sello de lacre sobre el nudo */
 .pieza--sello {
   left: 12.5%; top: 41.75%; width: 19%; height: 9.5%; z-index: 7;
@@ -113,15 +113,14 @@ body.con-sobre { overflow: hidden; }
 .sobre__saltar { position: absolute; z-index: 9; top: 12px; right: 12px; padding: 6px 12px; border: 0; background: none; color: #cfb98a; font: 500 13px var(--fuente-texto); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; transition: opacity .3s; }
 
 /* Secuencia lenta, por trozos (clases que añade js/propuesta.js):
-   1 salta el sello → 2 lazada se desvanece y cintas se retiran → 3 solapa de arriba → 4 laterales → 5 abajo → 6 la tarjeta se acerca → 7 fundido */
+   1 salta el sello → 2 el nudo se deshace → 2b cordel y puntas se retiran y cintas se retiran → 3 solapa de arriba → 4 laterales → 5 abajo → 6 la tarjeta se acerca → 7 fundido */
 .sobre.paso1 .pieza--sello { animation: none; transform: translateY(-14%) scale(1.12); opacity: 0; transition: transform .9s ease, opacity .8s ease .1s; }
 .sobre.paso1 .sobre__pista, .sobre.paso1 .sobre__saltar { animation: none; opacity: 0; }
-.sobre.paso2 .pieza--lazo { opacity: 0; transition: transform 1.6s ease, opacity 1.4s ease; }
-.sobre.paso2 .pieza--lazo-a { transform: translate(-6%, -2%) rotate(-8deg) scale(1.04); }
-.sobre.paso2 .pieza--lazo-b { transform: translate(6%, -2%) rotate(8deg) scale(1.04); }
-/* el cordel se retira deslizándose hacia abajo */
-.sobre.paso2 .pieza--cinta { transition: transform 1.7s cubic-bezier(.6, 0, .4, 1) .5s, opacity .6s ease 1.6s; opacity: 0; }
-.sobre.paso2 .pieza--cinta-v { transform: translateY(105%); transition-delay: .6s, 1.7s; }
+/* 2 · el nudo se deshace poco a poco, como si se tirara de una punta */
+.sobre.paso2 .pieza--lazo { animation: desatar 2.2s steps(15) forwards; }
+/* 2b · las puntas sueltas caen con el cordel, que se retira deslizándose hacia abajo */
+.sobre.pasoC .pieza--lazo { transform: translateY(40%); opacity: 0; transition: transform 1.3s cubic-bezier(.6, 0, .4, 1), opacity 1s ease .3s; }
+.sobre.pasoC .pieza--cinta { transform: translateY(105%); opacity: 0; transition: transform 1.4s cubic-bezier(.6, 0, .4, 1), opacity .5s ease 1s; }
 .sobre.paso3 { background: transparent; }
 .sobre.paso3 .solapa--arr { transform: rotateX(180deg); }
 .sobre.paso4 .solapa--izq { transform: rotateY(180deg); }
