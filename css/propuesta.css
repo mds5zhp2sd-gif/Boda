@@ -75,7 +75,7 @@ body.con-sobre { overflow: hidden; }
 
 .sobre__pliegues { inset: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; fill: none; transition: opacity .6s; }
 .sobre__pliegues path { stroke: rgba(0, 0, 0, .2); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
-.sobre.paso3 .sobre__pliegues { opacity: 0; }
+.sobre:not([data-apertura]).paso3 .sobre__pliegues { opacity: 0; }
 
 /* Piezas (posiciones medidas en la ilustración) */
 .pieza { display: block; max-width: none; pointer-events: none; transition: transform 1s cubic-bezier(.55, 0, .35, 1), opacity .9s ease; }
@@ -125,15 +125,82 @@ body.con-sobre { overflow: hidden; }
 /* 2b · las puntas sueltas caen con el cordel, que se retira deslizándose hacia abajo */
 .sobre.pasoC .pieza--lazo { transform: translateY(40%); opacity: 0; transition: transform 1.3s cubic-bezier(.6, 0, .4, 1), opacity 1s ease .3s; }
 .sobre.pasoC .pieza--cinta { transform: translateY(105%); opacity: 0; transition: transform 1.4s cubic-bezier(.6, 0, .4, 1), opacity .5s ease 1s; }
-.sobre.paso3 { background: transparent; }
-.sobre.paso3 .solapa--arr { transform: rotateX(180deg); }
-.sobre.paso4 .solapa--izq { transform: rotateY(180deg); }
-.sobre.paso4 .solapa--der { transform: rotateY(-180deg); transition-delay: .25s; }
-.sobre.paso5 .solapa--aba { transform: rotateX(-180deg); }
-.sobre.paso5 .sobre__carta span { opacity: 1; }
-.sobre.paso6 .sobre__carta { transform: scale(3.2); }
-.sobre.paso6 .sobre__carta span { opacity: 0; transition-delay: 0s; transition-duration: .4s; }
-.sobre.paso7 { opacity: 0; pointer-events: none; }
+.sobre:not([data-apertura]).paso3 { background: transparent; }
+.sobre:not([data-apertura]).paso3 .solapa--arr { transform: rotateX(180deg); }
+.sobre:not([data-apertura]).paso4 .solapa--izq { transform: rotateY(180deg); }
+.sobre:not([data-apertura]).paso4 .solapa--der { transform: rotateY(-180deg); transition-delay: .25s; }
+.sobre:not([data-apertura]).paso5 .solapa--aba { transform: rotateX(-180deg); }
+.sobre:not([data-apertura]).paso5 .sobre__carta span { opacity: 1; }
+.sobre:not([data-apertura]).paso6 .sobre__carta { transform: scale(3.2); }
+.sobre:not([data-apertura]).paso6 .sobre__carta span { opacity: 0; transition-delay: 0s; transition-duration: .4s; }
+.sobre:not([data-apertura]).paso7 { opacity: 0; pointer-events: none; }
+
+/* ---------- TRES FORMAS DE ABRIR (data-apertura="a|b|c" en #sobre) ---------- */
+.sobre__tarjeta, .solapa-abierta, .puerta { display: none; }
+
+/* A · Fundido: el sobre se acerca, se desenfoca y se desvanece */
+.sobre[data-apertura="a"] .sobre__lienzo { transition: transform 1.8s ease, filter 1.8s ease, opacity 1.8s ease; }
+.sobre[data-apertura="a"].paso3 { opacity: 0; transition: opacity 1.8s ease .2s; }
+.sobre[data-apertura="a"].paso3 .sobre__lienzo { transform: scale(1.12); filter: blur(8px); opacity: 0; }
+
+/* B · La tarjeta sale del sobre (todo en 2D, fondo azul siempre) */
+.sobre[data-apertura="b"] .sobre__lienzo { transform-style: flat; }
+.sobre[data-apertura="b"] .solapa { transition: none; }
+.sobre[data-apertura="b"] .solapa__dorso { display: none; }
+.sobre[data-apertura="b"] .sobre__interior { z-index: 0; }
+.sobre[data-apertura="b"] .sobre__carta { display: none; }
+.sobre[data-apertura="b"] .sobre__tarjeta {
+  transform-origin: center center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2%;
+  left: 7%; right: 7%; top: 8%; height: 64%; z-index: 1;
+  background: #f5ede1 var(--textura-papel);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  text-align: center;
+  transition: transform 1.8s cubic-bezier(.45, 0, .2, 1);
+}
+.sobre__tarjeta p { margin: 0; }
+.sobre__tarjeta-titulo { color: var(--color-salvia-oscuro); font: 600 clamp(10px, 2.6vw, 13px)/1 var(--fuente-serif); letter-spacing: .3em; text-transform: uppercase; }
+.sobre__tarjeta-nombres { color: var(--color-tinta); font: 500 clamp(30px, 9vw, 46px)/1.1 var(--fuente-manuscrita); }
+.sobre__tarjeta-fecha { color: var(--color-texto); font: 500 clamp(12px, 3vw, 15px)/1 var(--fuente-serif); letter-spacing: .3em; font-variant-numeric: lining-nums; }
+.sobre[data-apertura="b"] .solapa--izq, .sobre[data-apertura="b"] .solapa--der { z-index: 2; }
+.sobre[data-apertura="b"] .solapa--aba { z-index: 3; }
+.sobre[data-apertura="b"] .solapa--arr { z-index: 4; transform-origin: center top; transition: transform .9s cubic-bezier(.5, 0, .9, .6); }
+.sobre[data-apertura="b"] .sobre__pliegues { z-index: 5; }
+/* forro de la solapa abierta: triángulo hacia arriba por encima del sobre */
+.sobre[data-apertura="b"] .solapa-abierta {
+  display: block; left: 0; right: 0; bottom: 100%; height: 50%; z-index: 0;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  background: repeating-linear-gradient(0deg, transparent 0 14px, rgba(207, 167, 90, .16) 14px 15px), #1f3550 var(--textura-papel);
+  transform-origin: center bottom; transform: scaleY(0);
+  transition: transform .9s cubic-bezier(.1, .4, .5, 1) .9s;
+}
+.sobre[data-apertura="b"].paso3 .sobre__pliegues { opacity: 0; }
+.sobre[data-apertura="b"].paso3 .solapa--arr { transform: scaleY(0); }
+.sobre[data-apertura="b"].paso3 .solapa-abierta { transform: scaleY(1); }
+.sobre[data-apertura="b"].paso4 .sobre__tarjeta { transform: translateY(-58%); }
+.sobre[data-apertura="b"] .sobre__lienzo { transition: transform 1.6s cubic-bezier(.5, 0, .2, 1); }
+/* la tarjeta baja al centro y crece; el sobre se va hacia abajo */
+.sobre[data-apertura="b"].paso5 .sobre__tarjeta { z-index: 6; transform: translateY(-20%) scale(1.25); transition-duration: 1.4s; }
+.sobre[data-apertura="b"].paso5 .solapa, .sobre[data-apertura="b"].paso5 .sobre__interior, .sobre[data-apertura="b"].paso5 .solapa-abierta { transform: translateY(70%); opacity: 0; transition: transform 1.4s ease, opacity 1.2s ease; }
+/* el fondo pasa a crema (el color de la web) y la tarjeta se disuelve en él */
+.sobre[data-apertura="b"].paso6 { background: #f5ede1; transition: background-color 1.1s ease; }
+.sobre[data-apertura="b"].paso6 .sobre__tarjeta { transform: translateY(-20%) scale(1.6); opacity: 0; box-shadow: none; transition: transform 1.4s ease, opacity 1.2s ease .2s, box-shadow .6s; }
+.sobre[data-apertura="b"].paso7 { opacity: 0; transition: opacity .8s ease; }
+
+/* C · Puertas: el sobre se parte en dos y se abre hacia los lados */
+.sobre[data-apertura="c"] .solapa, .sobre[data-apertura="c"] .sobre__interior { display: none; }
+.sobre[data-apertura="c"] .puerta {
+  display: block; top: 0; bottom: 0; width: 50%; z-index: 1;
+  background: url("../img/sobre-fondo.jpg") 0 0 / 200% 100% no-repeat;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .45);
+  transition: transform 2s cubic-bezier(.6, 0, .25, 1), opacity .6s ease 1.6s;
+}
+.sobre[data-apertura="c"] .puerta--izq { left: 0; }
+.sobre[data-apertura="c"] .puerta--der { right: 0; background-position: 100% 0; }
+.sobre[data-apertura="c"].paso3 { background: transparent; transition: background-color .8s ease; }
+.sobre[data-apertura="c"].paso3 .sobre__pliegues { opacity: 0; }
+.sobre[data-apertura="c"].paso3 .puerta--izq { transform: translateX(-110vw); }
+.sobre[data-apertura="c"].paso3 .puerta--der { transform: translateX(110vw); }
 
 /* ---------- GUARDA LA FECHA ---------- */
 .guarda-fecha { padding-top: 34px; }

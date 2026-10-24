@@ -11,6 +11,9 @@
   const sobre = $("#sobre");
   if (sobre) {
     document.body.classList.add("con-sobre");
+    // Forma de abrir: b por defecto; ?apertura=a|c para probar las otras
+    const pedida = new URLSearchParams(location.search).get("apertura");
+    sobre.dataset.apertura = /^[abc]$/.test(pedida || "") ? pedida : "b";
     // Lienzo 831×1218: se ve siempre entero (en móviles anchos quedan bandas azules a los lados)
     const lienzo = $(".sobre__lienzo", sobre);
     const medir = () => {
@@ -32,9 +35,15 @@
       sobre.dataset.abriendo = "si";
       if (sinMovimiento) return cerrar();
       // sello → se deshace el nudo → se retira el cordel → solapas → la tarjeta se acerca → fundido
-      const pasos = [["paso1", 0], ["paso2", 500], ["pasoC", 2850], ["paso3", 4000], ["paso4", 5200], ["paso5", 6300], ["paso6", 7700], ["paso7", 9000]];
-      pasos.forEach(([clase, ms]) => setTimeout(() => sobre.classList.add(clase), ms));
-      setTimeout(cerrar, 9800);
+      const comun = [["paso1", 0], ["paso2", 500], ["pasoC", 2850]];
+      const final = {
+        a: [["paso3", 4000]],
+        b: [["paso3", 3900], ["paso4", 5000], ["paso5", 7000], ["paso6", 8500], ["paso7", 9700]],
+        c: [["paso3", 4000]],
+      }[sobre.dataset.apertura] || [["paso3", 4000], ["paso4", 5200], ["paso5", 6300], ["paso6", 7700], ["paso7", 9000]];
+      const fin = { a: 6200, b: 10500, c: 6300 }[sobre.dataset.apertura] || 9800;
+      comun.concat(final).forEach(([clase, ms]) => setTimeout(() => sobre.classList.add(clase), ms));
+      setTimeout(cerrar, fin);
     };
     $("#sobre-sello").addEventListener("click", abrir);
     $("#sobre-saltar").addEventListener("click", cerrar);
