@@ -1,54 +1,41 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 260">
-  <!-- Lazada de gasa marfil (como la del vídeo): nudo fruncido, dos lazadas en abanico y dos colas -->
+  <!-- Lazada plana de gasa (como la del vídeo): dos lazadas y dos colas anchas que salen del nudo, sin caída.
+       El sello de lacre va encima del nudo (centro en 150,120). -->
   <defs>
     <filter id="gasa" x="-10%" y="-10%" width="120%" height="120%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.9 0.35" numOctaves="2" seed="3" result="t"/>
-      <feDisplacementMap in="SourceGraphic" in2="t" scale="3.2" xChannelSelector="R" yChannelSelector="G" result="d"/>
-      <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="2" seed="8" result="g"/>
-      <feColorMatrix in="g" values="0 0 0 0 .55  0 0 0 0 .5  0 0 0 0 .44  0 0 0 .22 0" result="grano"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.8 0.3" numOctaves="2" seed="3" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="3.4" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.5" numOctaves="2" seed="8" result="g"/>
+      <feColorMatrix in="g" values="0 0 0 0 .55  0 0 0 0 .5  0 0 0 0 .44  0 0 0 .18 0" result="grano"/>
       <feComposite in="grano" in2="d" operator="in" result="gr"/>
       <feMerge><feMergeNode in="d"/><feMergeNode in="gr"/></feMerge>
     </filter>
     <filter id="sombra" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#06101a" flood-opacity=".45"/>
+      <feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#06101a" flood-opacity=".42"/>
     </filter>
-    <linearGradient id="lazIzq" x1="1" y1=".4" x2="0" y2=".5">
-      <stop offset="0" stop-color="#d9cfbf"/><stop offset=".35" stop-color="#f6f1e8"/><stop offset=".7" stop-color="#ece4d6"/><stop offset="1" stop-color="#fbf8f2"/>
-    </linearGradient>
-    <linearGradient id="lazDer" x1="0" y1=".4" x2="1" y2=".5">
-      <stop offset="0" stop-color="#d9cfbf"/><stop offset=".35" stop-color="#f6f1e8"/><stop offset=".7" stop-color="#ebe3d4"/><stop offset="1" stop-color="#fbf8f2"/>
-    </linearGradient>
-    <linearGradient id="cola" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#e6ddcf"/><stop offset=".45" stop-color="#faf6ef"/><stop offset="1" stop-color="#ddd3c3"/>
-    </linearGradient>
-    <radialGradient id="nudo" cx=".42" cy=".38" r=".7">
-      <stop offset="0" stop-color="#fdfaf5"/><stop offset=".6" stop-color="#ebe3d5"/><stop offset="1" stop-color="#cfc4b2"/>
-    </radialGradient>
+    <linearGradient id="g1" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#d8cebe"/><stop offset=".3" stop-color="#f4efe6"/><stop offset="1" stop-color="#ece5d9"/></linearGradient>
+    <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#d8cebe"/><stop offset=".3" stop-color="#f6f1e9"/><stop offset="1" stop-color="#e9e2d5"/></linearGradient>
+    <linearGradient id="g3" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d2c7b6"/><stop offset=".35" stop-color="#f3eee5"/><stop offset="1" stop-color="#ebe4d8"/></linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d2c7b6"/><stop offset=".35" stop-color="#f4efe7"/><stop offset="1" stop-color="#e8e1d4"/></linearGradient>
   </defs>
   <g filter="url(#sombra)">
-    <g filter="url(#gasa)" fill-opacity=".96">
-      <!-- colas -->
-      <path d="M138 122 C126 150 108 186 84 226 L72 250 L94 238 L104 252 C118 214 136 172 152 128Z" fill="url(#cola)"/>
-      <path d="M160 124 C176 154 198 186 228 218 L240 240 L216 232 L210 248 C188 214 166 176 148 130Z" fill="url(#cola)"/>
-      <!-- lazada izquierda (abanico) -->
-      <path d="M150 112 C128 92 96 66 54 58 C30 54 14 66 12 90 C10 116 26 134 52 140 C90 148 126 132 150 120Z" fill="url(#lazIzq)"/>
-      <!-- lazada derecha -->
-      <path d="M150 112 C174 88 210 64 250 60 C276 58 290 74 290 98 C290 124 272 138 246 142 C206 146 172 132 150 120Z" fill="url(#lazDer)"/>
-      <!-- nudo -->
-      <path d="M130 100 C138 86 166 86 172 98 C180 112 176 132 164 138 C152 144 134 140 128 128 C123 118 124 108 130 100Z" fill="url(#nudo)"/>
+    <g filter="url(#gasa)" fill-opacity=".95">
+      <!-- colas: bandas anchas y planas, corte recto -->
+      <path d="M140 126 L66 212 L104 240 L160 132Z" fill="url(#g3)"/>
+      <path d="M160 126 L236 206 L200 238 L140 132Z" fill="url(#g4)"/>
+      <!-- lazadas: abanicos planos que se ensanchan hacia fuera -->
+      <path d="M150 116 L44 46 C30 64 24 104 34 134 L150 126Z" fill="url(#g1)"/>
+      <path d="M150 116 L256 46 C270 64 276 104 266 134 L150 126Z" fill="url(#g2)"/>
+      <!-- nudo pellizcado -->
+      <path d="M134 108 C142 100 158 100 166 108 C170 116 170 128 164 134 C156 140 144 140 136 134 C130 128 130 116 134 108Z" fill="#efe8dc"/>
     </g>
-    <!-- pliegues de las lazadas: salen del nudo -->
-    <g fill="none" stroke-linecap="round" opacity=".85">
-      <path d="M140 108 C112 92 74 78 40 80" stroke="#c9bda9" stroke-width="2.2"/>
-      <path d="M140 114 C106 106 66 104 26 104" stroke="#ffffff" stroke-width="2"/>
-      <path d="M140 118 C110 122 76 128 40 128" stroke="#c9bda9" stroke-width="1.8"/>
-      <path d="M160 108 C190 90 230 78 266 80" stroke="#c9bda9" stroke-width="2.2"/>
-      <path d="M160 114 C196 106 236 104 278 106" stroke="#ffffff" stroke-width="2"/>
-      <path d="M160 118 C192 122 228 130 262 130" stroke="#c9bda9" stroke-width="1.8"/>
-      <path d="M144 132 C134 160 116 196 96 230" stroke="#cdc2b0" stroke-width="1.6"/>
-      <path d="M156 132 C170 162 190 192 216 222" stroke="#cdc2b0" stroke-width="1.6"/>
-      <!-- frunce del nudo -->
-      <path d="M140 104 C146 112 146 124 140 132 M150 98 C154 110 154 124 150 136 M160 102 C164 112 164 124 160 132" stroke="#c4b7a2" stroke-width="1.5"/>
+    <!-- pliegues suaves en cada banda, convergiendo en el nudo -->
+    <g fill="none" stroke-linecap="round" opacity=".7">
+      <path d="M144 116 L60 70 M144 122 L42 112" stroke="#cfc4b2" stroke-width="1.6"/>
+      <path d="M144 119 L48 92" stroke="#ffffff" stroke-width="1.8"/>
+      <path d="M156 116 L240 70 M156 122 L258 112" stroke="#cfc4b2" stroke-width="1.6"/>
+      <path d="M156 119 L252 92" stroke="#ffffff" stroke-width="1.8"/>
+      <path d="M146 130 L88 222 M152 132 L218 220" stroke="#cdc2b0" stroke-width="1.4"/>
     </g>
   </g>
 </svg>
