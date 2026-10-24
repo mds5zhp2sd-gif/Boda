@@ -75,8 +75,10 @@ body.con-sobre { overflow: hidden; }
 
 /* Piezas (posiciones medidas en la ilustración) */
 .pieza { display: block; max-width: none; pointer-events: none; transition: transform 1s cubic-bezier(.55, 0, .35, 1), opacity .9s ease; }
-.pieza--cinta { left: 0; top: 18.32%; width: 100%; height: 56.99%; z-index: 5; }
-.pieza--cinta-2 { transform: scaleX(-1); z-index: 4; }   /* la misma cinta reflejada: cruz en X */
+/* Nudo en (22%, 47%) del sobre: la cinta vertical pasa por x=22% y la horizontal por y=47% */
+.pieza--cinta { z-index: 5; object-fit: fill; }
+.pieza--cinta-v { left: calc(22% - 6.5%); top: -2%; width: 13%; height: 104%; }
+.pieza--cinta-h { top: calc(47% - 3.25%); left: -2%; width: 104%; height: 6.5%; z-index: 4; }
 
 /* Interior: forro azul con rayas doradas y tarjeta de papel crema */
 .sobre__interior { inset: 0; z-index: 0; display: grid; place-items: center; background: repeating-linear-gradient(0deg, transparent 0 14px, rgba(207, 167, 90, .14) 14px 15px), #172a3c; }
@@ -88,11 +90,11 @@ body.con-sobre { overflow: hidden; }
 }
 .sobre__carta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #f5ede1 var(--textura-papel); filter: url(#borde-rasgado) drop-shadow(0 8px 18px rgba(0, 0, 0, .35)); }
 .sobre__carta span { color: var(--color-tinta); font: 500 clamp(30px, 9vw, 44px)/1 var(--fuente-manuscrita); opacity: 0; transition: opacity 1s ease .4s; }
-.pieza--lazo { left: 19.28%; top: 37.49%; width: 61.89%; height: 34.44%; z-index: 6; }
-.pieza--lazo-a { clip-path: inset(0 50.8% 0 0); transform-origin: 49% 27.5%; }
-.pieza--lazo-b { clip-path: inset(0 0 0 49.2%); transform-origin: 49% 27.5%; }
+.pieza--lazo { left: 2.23%; top: 42.2%; width: 40.2%; height: 21.02%; z-index: 6; }
+.pieza--lazo-a { clip-path: inset(0 50.8% 0 0); transform-origin: 49.2% 22.8%; }
+.pieza--lazo-b { clip-path: inset(0 0 0 49.2%); transform-origin: 49.2% 22.8%; }
 .pieza--sello {
-  left: 38.67%; top: 41.77%; width: 22.55%; height: 10.71%; z-index: 7;
+  left: 14%; top: 43.2%; width: 16%; height: 7.6%; z-index: 7;
   padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto;
   animation: sello-latido 2.6s ease-in-out infinite;
 }
@@ -116,9 +118,10 @@ body.con-sobre { overflow: hidden; }
 .sobre.paso2 .pieza--lazo { opacity: 0; transition: transform 1.6s ease, opacity 1.4s ease; }
 .sobre.paso2 .pieza--lazo-a { transform: translate(-6%, -2%) rotate(-8deg) scale(1.04); }
 .sobre.paso2 .pieza--lazo-b { transform: translate(6%, -2%) rotate(8deg) scale(1.04); }
-.sobre.paso2 .pieza--cinta { opacity: 0; transition: opacity 1.6s ease .3s, transform 1.8s ease .3s; }
-.sobre.paso2 .pieza--cinta-1 { transform: translate(3%, -3%); }
-.sobre.paso2 .pieza--cinta-2 { transform: scaleX(-1) translate(3%, -3%); }
+/* las cintas se retiran deslizándose: la horizontal hacia la derecha y la vertical hacia abajo */
+.sobre.paso2 .pieza--cinta { transition: transform 1.7s cubic-bezier(.6, 0, .4, 1) .5s, opacity .6s ease 1.6s; opacity: 0; }
+.sobre.paso2 .pieza--cinta-h { transform: translateX(105%); }
+.sobre.paso2 .pieza--cinta-v { transform: translateY(105%); transition-delay: .8s, 1.9s; }
 .sobre.paso3 { background: transparent; }
 .sobre.paso3 .solapa--arr { transform: rotateX(180deg); }
 .sobre.paso4 .solapa--izq { transform: rotateY(180deg); }
