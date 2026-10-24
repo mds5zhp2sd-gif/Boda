@@ -221,3 +221,6 @@ body.con-sobre { overflow: hidden; }
 .fecha-grande__dia, .calendario-mes, .calendario-mes__rejilla, .calendario-mes__titulo span, .fecha-grande__anio, .guarda-fecha .cuenta-atras__unidad strong, .sobre__carta-fecha { font-variant-numeric: lining-nums; }
 .fecha-grande__anio { margin-top: 10px; }
 .papel--carta .campo__opciones { flex-wrap: wrap; row-gap: 4px; }
+
+/* Al cerrar el sobre el foco pasa al título (accesibilidad) sin dibujar recuadro */
+#portada-titulo:focus { outline: none; }
