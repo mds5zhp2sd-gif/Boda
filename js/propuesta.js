@@ -11,11 +11,11 @@
   const sobre = $("#sobre");
   if (sobre) {
     document.body.classList.add("con-sobre");
-    // Lienzo 887×1274: se ve siempre entero (en móviles anchos quedan bandas azules a los lados)
+    // Lienzo 831×1218: se ve siempre entero (en móviles anchos quedan bandas azules a los lados)
     const lienzo = $(".sobre__lienzo", sobre);
     const medir = () => {
       const w = innerWidth, h = innerHeight;
-      const r = 887 / 1274, ancho = Math.min(w, h * r) * (w / h < 0.75 ? 1 : 0.96);  // siempre entero: la ilustración de abajo no se corta
+      const r = 831 / 1218, ancho = Math.min(w * 0.92, h * r * 0.96);  // siempre entero: la ilustración de abajo no se corta
       lienzo.style.setProperty("--lienzo-w", `${ancho}px`);
     };
     medir();
