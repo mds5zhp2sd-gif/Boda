@@ -1,0 +1,232 @@
+/* ==========================================================================
+   PROPUESTA: sobre de apertura, "Guarda la fecha", papel, animaciones y cierre
+   ========================================================================== */
+:root {
+  --fuente-serif: "Cormorant", Georgia, serif;
+  --color-lacre: #b5604a;
+  --color-cuerda: #b98d5f;
+  --textura-papel: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .42  0 0 0 0 .35  0 0 0 0 .27  0 0 0 .075 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* ---------- Papel ---------- */
+.invitacion { background-image: var(--textura-papel); }
+
+.papel { position: relative; isolation: isolate; }
+.papel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #fffaf2 var(--textura-papel);
+  filter: url(#borde-rasgado) drop-shadow(0 6px 14px rgba(32, 52, 68, .10)) drop-shadow(0 1px 1px rgba(32, 52, 68, .08));
+}
+
+.versalitas {
+  margin: 0;
+  color: var(--color-salvia-oscuro);
+  font: 600 13px/1.4 var(--fuente-serif);
+  letter-spacing: .32em;
+  text-transform: uppercase;
+}
+.frase-serif {
+  margin: 14px auto 0;
+  color: var(--color-tinta);
+  font: italic 400 22px/1.35 var(--fuente-serif);
+}
+
+/* ---------- SOBRE DE APERTURA ----------
+   Sobre a pantalla completa con 4 solapas (diagonales), cintas de organza cruzadas,
+   lazada y sello de lacre. La apertura: salta el sello → se deshace la lazada →
+   se retiran las cintas → se abren las solapas → aparece la portada. */
+body.con-sobre { overflow: hidden; }
+.sobre { position: fixed; inset: 0; z-index: 100; perspective: 1100px; transition: opacity .7s ease; }
+.sobre > * { position: absolute; }
+
+/* Solapas: ocupan toda la pantalla; la cara y el forro se recortan en triángulo */
+.solapa { inset: 0; transform-style: preserve-3d; transition: transform 1.5s cubic-bezier(.45, 0, .2, 1); }
+.solapa--izq { transform-origin: left center; z-index: 1; }
+.solapa--der { transform-origin: right center; z-index: 1; }
+.solapa--aba { transform-origin: center bottom; z-index: 2; }
+.solapa--arr { transform-origin: center top; z-index: 3; }
+.solapa__cara, .solapa__dorso { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.solapa__cara { background: var(--textura-papel), #f6eddd; }
+.solapa__dorso { background: repeating-linear-gradient(45deg, rgba(109, 134, 119, .14) 0 6px, transparent 6px 14px), #e3eae1; }
+.solapa--izq .solapa__cara { clip-path: polygon(0 0, 50% 50%, 0 100%); }
+.solapa--izq .solapa__dorso { clip-path: polygon(100% 0, 50% 50%, 100% 100%); transform: rotateY(180deg); }
+.solapa--der .solapa__cara { clip-path: polygon(100% 0, 50% 50%, 100% 100%); }
+.solapa--der .solapa__dorso { clip-path: polygon(0 0, 50% 50%, 0 100%); transform: rotateY(180deg); }
+.solapa--aba .solapa__cara { clip-path: polygon(0 100%, 50% 50%, 100% 100%); }
+.solapa--aba .solapa__dorso { clip-path: polygon(0 0, 50% 50%, 100% 0); transform: rotateX(180deg); }
+.solapa--arr .solapa__cara { clip-path: polygon(0 0, 50% 50%, 100% 0); }
+.solapa--arr .solapa__dorso { clip-path: polygon(0 100%, 50% 50%, 100% 100%); transform: rotateX(180deg); }
+
+/* Ilustración del sobre */
+.lamina { position: absolute; inset: 0; overflow: hidden; }
+.lamina__olas-arriba { position: absolute; top: 0; left: -2%; width: 104%; height: 42px; transform: scaleY(-1); opacity: .9; }
+.lamina__para { position: absolute; left: 0; right: 0; top: 15%; margin: 0; text-align: center; color: var(--color-tinta); font: 500 clamp(46px, 12vw, 64px)/1 var(--fuente-manuscrita); }
+.lamina__nombres { position: absolute; left: 0; right: 0; top: calc(15% + clamp(52px, 13vw, 70px)); margin: 0; text-align: center; color: var(--color-salvia-oscuro); font: 600 13px/1 var(--fuente-serif); letter-spacing: .34em; text-transform: uppercase; }
+.lamina__corazon { position: absolute; width: 16px; height: 15px; }
+.lamina__corazon--1 { left: 18%; top: 32%; transform: rotate(-14deg); }
+.lamina__corazon--2 { right: 16%; top: 28%; width: 12px; height: 11px; transform: rotate(12deg); }
+.lamina__corazon--3 { right: 24%; bottom: 31%; width: 13px; height: 12px; }
+.lamina__mar { position: absolute; left: 0; bottom: 34px; width: 100%; height: auto; min-height: 120px; object-fit: cover; object-position: center bottom; }
+.lamina__olas-abajo { position: absolute; left: 0; bottom: 0; width: 100%; height: 48px; object-fit: cover; }
+
+.sobre__pliegues { inset: 0; width: 100%; height: 100%; z-index: 4; fill: none; stroke: rgba(120, 100, 70, .22); stroke-width: .25; vector-effect: non-scaling-stroke; transition: opacity .3s; }
+.sobre__pliegues path { stroke-width: 1.2; vector-effect: non-scaling-stroke; filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .7)); }
+
+/* Cintas de organza */
+.cinta { z-index: 5; pointer-events: none; }
+/* Dos cintas en diagonal (X); el ángulo y el largo los calcula js/propuesta.js */
+.cinta { left: 50%; top: 50%; width: var(--diag, 140vh); height: 34px; margin-left: calc(var(--diag, 140vh) / -2); margin-top: -17px; }
+.cinta--d1 { transform: rotate(var(--ang, 60deg)); }
+.cinta--d2 { transform: rotate(calc(var(--ang, 60deg) * -1)); }
+.cinta__mitad {
+  position: absolute;
+  top: 0; bottom: 0; width: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .75), rgba(150, 186, 200, .6) 22%, rgba(255, 255, 255, .9) 48%, rgba(150, 186, 200, .55) 74%, rgba(255, 255, 255, .7));
+  border-top: 1px solid rgba(255, 255, 255, .9);
+  border-bottom: 1px solid rgba(120, 160, 175, .5);
+  box-shadow: 0 2px 6px rgba(32, 52, 68, .16);
+  transition: transform 1s cubic-bezier(.6, 0, .4, 1), opacity 1s ease;
+}
+.cinta__mitad--a { left: 0; }
+.cinta__mitad--b { right: 0; }
+
+/* Lazada */
+.lazo { z-index: 6; left: 50%; top: 50%; width: min(62vw, 280px); transform: translate(-50%, -47%); overflow: visible; pointer-events: none; filter: drop-shadow(0 3px 5px rgba(32, 52, 68, .2)); }
+.lazo path { fill: rgba(176, 205, 216, .72); stroke: rgba(255, 255, 255, .95); stroke-width: 1.4; }
+.lazo .lazo__brillo { fill: none; stroke: rgba(255, 255, 255, .85); stroke-width: 2.4; stroke-linecap: round; }
+.lazo g { transform-box: fill-box; transition: transform .8s cubic-bezier(.5, 0, .4, 1), opacity .7s ease; }
+.lazo__lazada--izq { transform-origin: right center; }
+.lazo__lazada--der { transform-origin: left center; }
+.lazo__cola { transform-origin: top center; }
+
+/* Sello de lacre */
+.sobre__sello {
+  left: 50%; top: 50%;
+  z-index: 7;
+  width: clamp(84px, 24vw, 108px);
+  aspect-ratio: 1;
+  padding: 0; border: 0; background: none; cursor: pointer;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 5px 6px rgba(60, 20, 10, .35));
+  transition: transform .55s cubic-bezier(.4, -0.3, .6, 1), opacity .45s ease .1s;
+  animation: sello-latido 2.4s ease-in-out infinite;
+}
+.sobre__sello svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.sobre__sello-cera { fill: var(--color-lacre); }
+.sobre__sello-aro { fill: none; stroke: rgba(255, 230, 215, .35); stroke-width: 2.2; }
+.sobre__sello-letras { fill: #f6dccf; font: 500 30px var(--fuente-manuscrita); }
+.sobre__sello:focus-visible { outline: 3px solid var(--color-tinta); outline-offset: 4px; border-radius: 50%; }
+@keyframes sello-latido { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.06); } }
+
+.sobre__pista { z-index: 8; left: 0; right: 0; top: calc(50% + 120px); margin: 0; text-align: center; color: var(--color-tinta); font: italic 500 19px/1 var(--fuente-serif); animation: pista 2.4s ease-in-out infinite; transition: opacity .3s; }
+@keyframes pista { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
+.sobre__saltar { z-index: 8; top: 14px; right: 14px; padding: 6px 12px; border: 0; background: none; color: var(--color-texto-suave); font: 500 13px var(--fuente-texto); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; transition: opacity .3s; }
+
+/* Secuencia (clases que añade js/propuesta.js) */
+.sobre.paso1 .sobre__sello { animation: none; transform: translate(-50%, -50%) scale(1.18); }
+.sobre.paso1 .sobre__pista, .sobre.paso1 .sobre__saltar { animation: none; opacity: 0; }
+.sobre.paso2 .sobre__sello { transform: translate(-50%, 40%) rotate(-35deg) scale(.7); opacity: 0; }
+.sobre.paso2 .lazo__lazada--izq { transform: translate(-30%, -10%) rotate(-28deg) scaleX(.2); opacity: 0; }
+.sobre.paso2 .lazo__lazada--der { transform: translate(30%, -10%) rotate(28deg) scaleX(.2); opacity: 0; }
+.sobre.paso2 .lazo__cola--izq { transform: translate(-25%, 60%) rotate(25deg); opacity: 0; }
+.sobre.paso2 .lazo__cola--der { transform: translate(25%, 60%) rotate(-25deg); opacity: 0; }
+.sobre.paso3 .cinta__mitad--a { transform: translateX(-105%) translateY(-6px); opacity: .15; }
+.sobre.paso3 .cinta__mitad--b { transform: translateX(105%) translateY(6px); opacity: .15; }
+.sobre.paso4 .sobre__pliegues { opacity: 0; }
+.sobre.paso4 .solapa--izq { transform: rotateY(180deg); }
+.sobre.paso4 .solapa--der { transform: rotateY(-180deg); }
+.sobre.paso5 .solapa--aba { transform: rotateX(-180deg); }
+.sobre.paso5 .solapa--arr { transform: rotateX(180deg); }
+.sobre.paso6 { opacity: 0; pointer-events: none; }
+
+/* ---------- GUARDA LA FECHA ---------- */
+.guarda-fecha { padding-top: 34px; }
+.fecha-grande { display: flex; flex-direction: column; align-items: center; margin: 6px 0 0; font-weight: 400; }
+.fecha-grande__dia { color: var(--color-tinta); font: 500 112px/.9 var(--fuente-serif); }
+.fecha-grande__mes { margin-top: -6px; color: var(--color-salvia-oscuro); font: 500 46px/1.1 var(--fuente-manuscrita); }
+.fecha-grande__anio { margin-top: 4px; color: var(--color-texto); font: 600 13px/1 var(--fuente-serif); letter-spacing: .3em; text-transform: uppercase; }
+
+.calendario-mes { width: min(100%, 330px); margin: 26px auto 0; padding: 18px 20px 20px; }
+.calendario-mes__titulo { margin: 0 0 10px; color: var(--color-tinta); font: italic 500 27px/1 var(--fuente-serif); }
+.calendario-mes__titulo span { font-size: 18px; color: var(--color-texto-suave); }
+.calendario-mes__rejilla { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px 0; font: 500 15px/1 var(--fuente-serif); color: var(--color-texto); }
+.calendario-mes__rejilla .cab { padding-bottom: 6px; color: var(--color-salvia-oscuro); font-weight: 600; font-size: 12px; letter-spacing: .1em; }
+.calendario-mes__rejilla span { display: grid; place-items: center; height: 30px; }
+.calendario-mes__rejilla .dia-boda {
+  position: relative;
+  color: #fff;
+  font-weight: 600;
+}
+.calendario-mes__rejilla .dia-boda::before {
+  content: "";
+  position: absolute;
+  width: 32px; height: 32px;
+  z-index: -1;
+  background: var(--color-lacre);
+  border-radius: 46% 54% 50% 48% / 52% 46% 54% 48%;
+  box-shadow: 0 2px 4px rgba(60, 20, 10, .3), inset 0 0 0 2px rgba(255, 230, 215, .25);
+}
+.calendario-mes__rejilla .dia-boda { isolation: isolate; }
+
+/* La cuenta atrás en cajitas de papel dentro de "Guarda la fecha" */
+.guarda-fecha .cuenta-atras { margin-top: 26px; gap: 16px; }
+.guarda-fecha .reloj-arena { width: 46px; height: 69px; }
+.guarda-fecha .cuenta-atras__titulo { font: italic 500 20px/1 var(--fuente-serif); color: var(--color-texto); }
+.guarda-fecha .cuenta-atras__numeros { gap: 10px; margin-top: 8px; }
+.guarda-fecha .cuenta-atras__unidad {
+  position: relative;
+  isolation: isolate;
+  min-width: 62px;
+  padding: 10px 6px 8px;
+}
+.guarda-fecha .cuenta-atras__unidad::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #fffaf2 var(--textura-papel);
+  filter: url(#borde-rasgado) drop-shadow(0 3px 6px rgba(32, 52, 68, .1));
+}
+.guarda-fecha .cuenta-atras__unidad strong { font: 500 30px/1 var(--fuente-serif); }
+.guarda-fecha .cuenta-atras__unidad small { margin-top: 3px; font: 600 10px/1 var(--fuente-serif); letter-spacing: .2em; text-transform: uppercase; }
+
+/* ---------- FORMULARIO COMO CARTA ---------- */
+.papel--carta { padding: 26px 26px 28px; }
+.formulario__antetitulo { margin-bottom: 14px; text-align: center; }
+
+/* ---------- CIERRE ---------- */
+.cierre { padding: 10px var(--margen-lateral) 0; }
+.cierre__ilustracion { display: block; width: min(330px, 82%); margin: 0 auto; }
+.cierre .frase-serif { margin-top: 6px; }
+.cierre__firma { margin: 10px 0 0; color: var(--color-tinta); font: 500 50px/1.2 var(--fuente-manuscrita); }
+.cierre__firma span { display: inline-block; clip-path: inset(0 100% 0 0); transition: clip-path 2.2s cubic-bezier(.4, 0, .3, 1) .3s; }
+.cierre__firma.visible span { clip-path: inset(0 0 0 0); }
+
+/* ---------- APARECER AL BAJAR ---------- */
+.revelar { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--i, 0) * 110ms); }
+.revelar.visible { opacity: 1; transform: none; }
+
+/* Las olas de los separadores se mecen despacio */
+.separador { background-size: 112% 100% !important; animation: olear 9s ease-in-out infinite alternate; }
+@keyframes olear { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+@media (max-width: 640px) {
+  .fecha-grande__dia { font-size: 96px; }
+  .guarda-fecha .cuenta-atras { flex-direction: column; gap: 10px; }
+  .guarda-fecha .cuenta-atras__texto { text-align: center; }
+  .guarda-fecha .cuenta-atras__numeros { justify-content: center; }
+  .papel--carta { padding: 22px 16px 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revelar { opacity: 1; transform: none; }
+  .cierre__firma span { clip-path: none; }
+}
+
+/* Ajustes: números rectos (Cormorant usa números "antiguos" por defecto) y opciones que no se salgan */
+.fecha-grande__dia, .calendario-mes, .calendario-mes__rejilla, .calendario-mes__titulo span, .fecha-grande__anio, .guarda-fecha .cuenta-atras__unidad strong, .sobre__carta-fecha { font-variant-numeric: lining-nums; }
+.fecha-grande__anio { margin-top: 10px; }
+.papel--carta .campo__opciones { flex-wrap: wrap; row-gap: 4px; }
