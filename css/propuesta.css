@@ -36,7 +36,7 @@
 
 /* ---------- SOBRE DE APERTURA ----------
    Ilustración azul y oro (img/sobre-fondo.jpg) repartida en 4 solapas, con la cinta,
-   el cordel (img/sobre-cuerda-*.svg) y la lazada (img/sobre-lazo.svg) como piezas aparte. Medidas en % del original 887×1774.
+   el cordel (img/sobre-cuerda-*.webp) y la lazada (img/sobre-lazo.webp) como piezas aparte. Medidas en % del original 887×1774.
    Secuencia: salta el sello → se deshace la lazada → se retiran las cintas → se abren las solapas. */
 body.con-sobre { overflow: hidden; }
 .sobre {
@@ -77,8 +77,8 @@ body.con-sobre { overflow: hidden; }
 .pieza { display: block; max-width: none; pointer-events: none; transition: transform 1s cubic-bezier(.55, 0, .35, 1), opacity .9s ease; }
 /* Nudo en el centro del sobre (50%, 50%): cordel vertical y horizontal */
 .pieza--cinta { z-index: 5; object-fit: fill; }
-.pieza--cinta-v { left: calc(50% - 1.1%); top: -2%; width: 2.2%; height: 104%; }
-.pieza--cinta-h { top: calc(50% - .55%); left: -2%; width: 104%; height: 1.1%; z-index: 4; }
+.pieza--cinta-v { left: calc(50% - 1.5%); top: -2%; width: 3%; height: 104%; }
+.pieza--cinta-h { top: calc(50% - .75%); left: -2%; width: 104%; height: 1.5%; z-index: 4; }
 
 /* Interior: forro azul con rayas doradas y tarjeta de papel crema */
 .sobre__interior { inset: 0; z-index: 0; display: grid; place-items: center; background: repeating-linear-gradient(0deg, transparent 0 14px, rgba(207, 167, 90, .14) 14px 15px), #172a3c; }
@@ -95,7 +95,7 @@ body.con-sobre { overflow: hidden; }
 .pieza--lazo-b { clip-path: inset(0 0 0 50%); transform-origin: 50% 50%; }
 /* Sello de lacre sobre el nudo, en el centro */
 .pieza--sello {
-  left: 43.5%; top: 46.75%; width: 13%; height: 6.5%; z-index: 7;
+  left: 44.5%; top: 47.25%; width: 11%; height: 5.5%; z-index: 7;
   padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto;
   animation: sello-latido 2.6s ease-in-out infinite;
 }
@@ -121,8 +121,8 @@ body.con-sobre { overflow: hidden; }
 .sobre.paso2 .pieza--lazo-b { transform: translate(6%, -2%) rotate(8deg) scale(1.04); }
 /* las cintas se retiran deslizándose: la horizontal hacia la derecha y la vertical hacia abajo */
 .sobre.paso2 .pieza--cinta { transition: transform 1.7s cubic-bezier(.6, 0, .4, 1) .5s, opacity .6s ease 1.6s; opacity: 0; }
-.sobre.paso2 .pieza--cinta-h { top: calc(50% - .55%); left: -2%; width: 104%; height: 1.1%; z-index: 4; }
-.sobre.paso2 .pieza--cinta-v { left: calc(50% - 1.1%); top: -2%; width: 2.2%; height: 104%; }
+.sobre.paso2 .pieza--cinta-h { top: calc(50% - .75%); left: -2%; width: 104%; height: 1.5%; z-index: 4; }
+.sobre.paso2 .pieza--cinta-v { left: calc(50% - 1.5%); top: -2%; width: 3%; height: 104%; }
 .sobre.paso3 { background: transparent; }
 .sobre.paso3 .solapa--arr { transform: rotateX(180deg); }
 .sobre.paso4 .solapa--izq { transform: rotateY(180deg); }

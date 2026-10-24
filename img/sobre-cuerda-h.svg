@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 20" preserveAspectRatio="none"><defs>
-  <filter id="pelusa" filterUnits="userSpaceOnUse" x="-50" y="-50" width="1100" height="1100">
-    <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="2" seed="5" result="t"/>
-    <feDisplacementMap in="SourceGraphic" in2="t" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
-  </filter>
-  <filter id="sombra" filterUnits="userSpaceOnUse" x="-50" y="-50" width="1100" height="1100">
-    <feDropShadow dx="0" dy="2" stdDeviation="1.6" flood-color="#06101a" flood-opacity=".5"/>
-  </filter>
-</defs><g filter="url(#sombra)"><g filter="url(#pelusa)" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M-10 10 H1010" stroke="#b08654" stroke-width="9"/><path d="M-10 10 H1010" stroke="#86613a" stroke-width="9" stroke-dasharray="3 2.6" opacity=".75"/><path d="M-10 10 H1010" stroke="#d6b47f" stroke-width="2.4" stroke-dasharray="2 3.6" stroke-dashoffset="1" opacity=".55"/></g></g></svg>
