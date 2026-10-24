@@ -43,45 +43,23 @@
 
   <!-- ================= SOBRE DE APERTURA ================= -->
   <div id="sobre" class="sobre" role="dialog" aria-modal="true" aria-label="Invitación cerrada">
-    <!-- Ilustración del sobre: se copia en las 4 solapas para que el dibujo sea continuo -->
-    <template id="sobre-lamina">
-      <div class="lamina" aria-hidden="true">
-        <img class="lamina__olas-arriba" src="img/ola-separador-2.png" alt="">
-        <p class="lamina__para">Para ti</p>
-        <p class="lamina__nombres">Sofía &amp; Javi</p>
-        <svg class="corazon lamina__corazon lamina__corazon--1"><use href="#corazon"/></svg>
-        <svg class="corazon lamina__corazon lamina__corazon--2"><use href="#corazon"/></svg>
-        <svg class="corazon lamina__corazon lamina__corazon--3"><use href="#corazon"/></svg>
-        <img class="lamina__mar" src="img/portada-mar.png" alt="">
-        <img class="lamina__olas-abajo" src="img/pie-olas.png" alt="">
-      </div>
-    </template>
-    <div class="solapa solapa--izq"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
-    <div class="solapa solapa--der"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
-    <div class="solapa solapa--aba"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
-    <div class="solapa solapa--arr"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
-    <!-- Pliegues del sobre (diagonales) -->
-    <svg class="sobre__pliegues" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 0 L50 50 L100 0 M0 100 L50 50 L100 100"/>
-    </svg>
-    <!-- Cintas de organza cruzadas, cada una en dos mitades que se retiran -->
-    <div class="cinta cinta--d1" aria-hidden="true"><span class="cinta__mitad cinta__mitad--a"></span><span class="cinta__mitad cinta__mitad--b"></span></div>
-    <div class="cinta cinta--d2" aria-hidden="true"><span class="cinta__mitad cinta__mitad--a"></span><span class="cinta__mitad cinta__mitad--b"></span></div>
-    <!-- Lazada -->
-    <svg class="lazo" viewBox="0 0 240 200" aria-hidden="true">
-      <g class="lazo__cola lazo__cola--izq"><path d="M112 104 Q92 140 70 186 L90 180 L96 196 Q112 150 122 108 Z"/></g>
-      <g class="lazo__cola lazo__cola--der"><path d="M128 104 Q148 140 170 186 L150 180 L144 196 Q128 150 118 108 Z"/></g>
-      <g class="lazo__lazada lazo__lazada--izq"><path d="M116 98 C90 60 26 44 20 76 C14 108 70 128 116 104 Z"/><path class="lazo__brillo" d="M108 96 C86 72 42 62 36 80"/></g>
-      <g class="lazo__lazada lazo__lazada--der"><path d="M124 98 C150 60 214 44 220 76 C226 108 170 128 124 104 Z"/><path class="lazo__brillo" d="M132 96 C154 72 198 62 204 80"/></g>
-    </svg>
-    <button id="sobre-sello" class="sobre__sello" type="button" aria-label="Abrir la invitación">
-      <svg viewBox="0 0 100 100" aria-hidden="true">
-        <path class="sobre__sello-cera" d="M50 4 C60 3 64 9 72 10 C81 11 84 19 89 26 C95 33 93 42 96 50 C98 59 92 65 90 73 C87 82 79 84 72 89 C64 95 57 93 49 96 C40 98 35 92 27 90 C18 87 16 79 11 72 C5 64 7 57 4 49 C2 40 8 35 10 27 C13 18 21 16 28 11 C36 5 42 5 50 4 Z"/>
-        <circle cx="50" cy="50" r="33" class="sobre__sello-aro"/>
-        <text x="50" y="58" text-anchor="middle" class="sobre__sello-letras">S&amp;J</text>
-      </svg>
-    </button>
-    <p class="sobre__pista">Toca el sello para abrir</p>
+    <!-- Lienzo con la proporción de la ilustración (1:2); las piezas se colocan en % sobre él -->
+    <div class="sobre__lienzo">
+      <div class="solapa solapa--izq"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
+      <div class="solapa solapa--der"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
+      <div class="solapa solapa--aba"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
+      <div class="solapa solapa--arr"><div class="solapa__cara"></div><div class="solapa__dorso"></div></div>
+      <!-- Cinta de seda en dos mitades que se retiran -->
+      <img class="pieza pieza--cinta pieza--cinta-a" src="img/sobre-cinta.webp" alt="" aria-hidden="true">
+      <img class="pieza pieza--cinta pieza--cinta-b" src="img/sobre-cinta.webp" alt="" aria-hidden="true">
+      <!-- Lazada en dos mitades que se deshacen -->
+      <img class="pieza pieza--lazo pieza--lazo-a" src="img/sobre-lazo.webp" alt="" aria-hidden="true">
+      <img class="pieza pieza--lazo pieza--lazo-b" src="img/sobre-lazo.webp" alt="" aria-hidden="true">
+      <button id="sobre-sello" class="pieza pieza--sello" type="button" aria-label="Abrir la invitación">
+        <img src="img/sobre-sello.webp" alt="">
+      </button>
+      <p class="sobre__pista">Toca el sello para abrir</p>
+    </div>
     <button id="sobre-saltar" class="sobre__saltar" type="button">Saltar</button>
   </div>
 

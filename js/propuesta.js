@@ -11,14 +11,12 @@
   const sobre = $("#sobre");
   if (sobre) {
     document.body.classList.add("con-sobre");
-    // Copiar la ilustración en las 4 solapas
-    const lamina = $("#sobre-lamina");
-    $$(".solapa__cara", sobre).forEach((cara) => cara.append(lamina.content.cloneNode(true)));
-    // Cintas en diagonal de esquina a esquina
+    // Lienzo 1:2: en vertical cubre la pantalla; en horizontal se ve entero
+    const lienzo = $(".sobre__lienzo", sobre);
     const medir = () => {
       const w = innerWidth, h = innerHeight;
-      sobre.style.setProperty("--ang", `${Math.atan2(h, w) * 180 / Math.PI}deg`);
-      sobre.style.setProperty("--diag", `${Math.hypot(w, h) + 60}px`);
+      const ancho = w / h < 0.75 ? Math.max(w, h / 2) : Math.min(w, h / 2) * 0.96;
+      lienzo.style.setProperty("--lienzo-w", `${ancho}px`);
     };
     medir();
     addEventListener("resize", medir);
@@ -34,7 +32,7 @@
       sobre.dataset.abriendo = "si";
       if (sinMovimiento) return cerrar();
       // sello → lazada → cintas → solapas laterales → arriba/abajo → fundido
-      const pasos = [["paso1", 0], ["paso2", 280], ["paso3", 950], ["paso4", 1700], ["paso5", 2150], ["paso6", 3500]];
+      const pasos = [["paso1", 0], ["paso2", 260], ["paso3", 900], ["paso4", 1750], ["paso5", 2200], ["paso6", 3550]];
       pasos.forEach(([clase, ms]) => setTimeout(() => sobre.classList.add(clase), ms));
       setTimeout(cerrar, 4200);
     };
