@@ -18,7 +18,7 @@
     <linearGradient id="g3" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d2c7b6"/><stop offset=".35" stop-color="#f3eee5"/><stop offset="1" stop-color="#ebe4d8"/></linearGradient>
     <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d2c7b6"/><stop offset=".35" stop-color="#f4efe7"/><stop offset="1" stop-color="#e8e1d4"/></linearGradient>
   </defs>
-  <g filter="url(#sombra)" transform="rotate(22 150 120)">
+  <g filter="url(#sombra)">
     <g filter="url(#gasa)" fill-opacity=".95">
       <!-- dos alas anchas tipo pajarita, pellizcadas en el nudo, con el borde exterior recto y deshilachado -->
       <path d="M150 112 C120 92 72 62 24 56 L18 186 C66 178 118 150 150 128Z" fill="url(#g1)"/>
