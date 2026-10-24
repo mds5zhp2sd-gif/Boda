@@ -36,8 +36,8 @@
 
 /* ---------- SOBRE DE APERTURA ----------
    Ilustración azul y oro (img/sobre-fondo.jpg) repartida en 4 solapas, con la cinta,
-   la lazada y el sello como piezas aparte (img/sobre-*.webp). Medidas en % del original 887×1774.
-   Secuencia: salta el sello → se deshace la lazada → se retira la cinta → se abren las solapas. */
+   las cintas (img/sobre-cinta-*.webp) y la lazada (img/sobre-lazo.svg) como piezas aparte. Medidas en % del original 887×1774.
+   Secuencia: se deshace la lazada → se retiran las cintas → se abren las solapas. */
 body.con-sobre { overflow: hidden; }
 .sobre {
   position: fixed; inset: 0; z-index: 100;
@@ -90,17 +90,16 @@ body.con-sobre { overflow: hidden; }
 }
 .sobre__carta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #f5ede1 var(--textura-papel); filter: url(#borde-rasgado) drop-shadow(0 8px 18px rgba(0, 0, 0, .35)); }
 .sobre__carta span { color: var(--color-tinta); font: 500 clamp(30px, 9vw, 44px)/1 var(--fuente-manuscrita); opacity: 0; transition: opacity 1s ease .4s; }
-.pieza--lazo { left: 2.23%; top: 42.2%; width: 40.2%; height: 21.02%; z-index: 6; }
-.pieza--lazo-a { clip-path: inset(0 50.8% 0 0); transform-origin: 49.2% 22.8%; }
-.pieza--lazo-b { clip-path: inset(0 0 0 49.2%); transform-origin: 49.2% 22.8%; }
-.pieza--sello {
-  left: 14%; top: 43.2%; width: 16%; height: 7.6%; z-index: 7;
-  padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto;
-  animation: sello-latido 2.6s ease-in-out infinite;
+.pieza--lazo { left: -2%; top: 37.83%; width: 50%; height: 21.67%; z-index: 6; animation: lazo-respira 3s ease-in-out infinite; }
+@keyframes lazo-respira { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+.pieza--lazo-a { clip-path: inset(0 50% 0 0); transform-origin: 50% 42.3%; }
+.pieza--lazo-b { clip-path: inset(0 0 0 50%); transform-origin: 50% 42.3%; }
+/* Zona táctil sobre el nudo (invisible) */
+.pieza--nudo {
+  left: 12%; top: 42%; width: 20%; height: 10%; z-index: 7;
+  padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; pointer-events: auto;
 }
-.pieza--sello img { display: block; width: 100%; height: 100%; }
-.pieza--sello:focus-visible { outline: 3px solid #cfa75a; outline-offset: 4px; border-radius: 50%; }
-@keyframes sello-latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.pieza--nudo:focus-visible { outline: 3px solid #cfa75a; outline-offset: 4px; }
 
 .sobre__pista {
   left: 0; right: 0; top: 27.2%; z-index: 8; margin: 0; text-align: center;
@@ -112,10 +111,10 @@ body.con-sobre { overflow: hidden; }
 .sobre__saltar { position: absolute; z-index: 9; top: 12px; right: 12px; padding: 6px 12px; border: 0; background: none; color: #cfb98a; font: 500 13px var(--fuente-texto); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; transition: opacity .3s; }
 
 /* Secuencia lenta, por trozos (clases que añade js/propuesta.js):
-   1 sello → 2 lazada y cintas se desvanecen → 3 solapa de arriba → 4 laterales → 5 abajo → 6 la tarjeta se acerca → 7 fundido */
-.sobre.paso1 .pieza--sello { animation: none; transform: translateY(-14%) scale(1.12); opacity: 0; transition: transform .9s ease, opacity .8s ease .1s; }
+   1 se toca el lazo → 2 lazada se desvanece y cintas se retiran → 3 solapa de arriba → 4 laterales → 5 abajo → 6 la tarjeta se acerca → 7 fundido */
+.sobre.paso1 .pieza--lazo { animation: none; }
 .sobre.paso1 .sobre__pista, .sobre.paso1 .sobre__saltar { animation: none; opacity: 0; }
-.sobre.paso2 .pieza--lazo { opacity: 0; transition: transform 1.6s ease, opacity 1.4s ease; }
+.sobre.paso2 .pieza--lazo { animation: none; opacity: 0; transition: transform 1.6s ease, opacity 1.4s ease; }
 .sobre.paso2 .pieza--lazo-a { transform: translate(-6%, -2%) rotate(-8deg) scale(1.04); }
 .sobre.paso2 .pieza--lazo-b { transform: translate(6%, -2%) rotate(8deg) scale(1.04); }
 /* las cintas se retiran deslizándose: la horizontal hacia la derecha y la vertical hacia abajo */
