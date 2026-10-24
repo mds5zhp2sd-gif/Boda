@@ -90,7 +90,7 @@ body.con-sobre { overflow: hidden; }
 }
 .sobre__carta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #f5ede1 var(--textura-papel); filter: url(#borde-rasgado) drop-shadow(0 8px 18px rgba(0, 0, 0, .35)); }
 .sobre__carta span { color: var(--color-tinta); font: 500 clamp(30px, 9vw, 44px)/1 var(--fuente-manuscrita); opacity: 0; transition: opacity 1s ease .4s; }
-.pieza--lazo { left: -2%; top: 36.89%; width: 48%; height: 23.5%; z-index: 6; }
+.pieza--lazo { left: 2%; top: 38.6%; width: 40%; height: 19.58%; z-index: 6; }
 .pieza--lazo-a { clip-path: inset(0 50% 0 0); transform-origin: 50% 46.2%; }
 .pieza--lazo-b { clip-path: inset(0 0 0 50%); transform-origin: 50% 46.2%; }
 /* Sello de lacre exactamente sobre el nudo (22%, 47%) */
