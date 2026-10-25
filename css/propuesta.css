@@ -70,22 +70,23 @@ body.con-sobre { overflow: hidden; }
 /* Piezas (posiciones medidas en la ilustración) */
 .pieza { display: block; max-width: none; pointer-events: none; transition: transform 1s cubic-bezier(.55, 0, .35, 1), opacity .9s ease; }
 /* Un solo cordel vertical (dos cuerdecillas) a la izquierda; nudo en (22%, 46.5%) */
-.pieza--cinta { z-index: 5; object-fit: fill; }
-.pieza--cinta-v { left: 17.71%; top: 0; width: 4.8%; height: 100%; }   /* de filete a filete */
+.pieza--cinta { z-index: 5; object-fit: fill; filter: drop-shadow(1px 3px 3px rgba(0, 0, 0, .45)); }
+.pieza--lazo { filter: drop-shadow(1px 4px 4px rgba(0, 0, 0, .45)); }
+.pieza--cinta-v { left: 17.88%; top: 0; width: 4.45%; height: 100%; }   /* de filete a filete */
 .pieza--cinta-h { display: none; }
 
 /* Interior: forro azul con rayas doradas y tarjeta de papel crema */
 .sobre__interior { inset: 0; z-index: 0; display: grid; place-items: center; background: repeating-linear-gradient(0deg, transparent 0 14px, rgba(207, 167, 90, .14) 14px 15px), #172a3c; }
-.pieza--lazo { left: -3.9%; top: 36.3%; width: 48.04%; height: 32.74%; z-index: 6; }
+.pieza--lazo { left: -1.33%; top: 40.32%; width: 45%; height: 34.11%; z-index: 6; }
 .pieza--lazo { background: url("../img/sobre-lazo-desata.webp") 0 0 / 1600% 100% no-repeat; }
 @keyframes desatar { to { background-position: 100% 0; } }
 /* Sello de lacre sobre el nudo */
 .pieza--sello {
-  left: 9.98%; top: 43.31%; width: 20.28%; height: 13.81%; z-index: 7;
+  left: 10.66%; top: 42.43%; width: 18.08%; height: 12.34%; z-index: 7;
   padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto;
   animation: sello-latido 2.6s ease-in-out infinite;
 }
-.pieza--sello img { display: block; width: 100%; height: 100%; }
+.pieza--sello img { display: block; width: 100%; height: 100%; filter: drop-shadow(2px 6px 6px rgba(0, 0, 0, .5)); }
 .pieza--sello:focus-visible { outline: 3px solid #cfa75a; outline-offset: 4px; border-radius: 50%; }
 @keyframes sello-latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
@@ -99,8 +100,10 @@ body.con-sobre { overflow: hidden; }
 .sobre__saltar { position: absolute; z-index: 9; top: 12px; right: 12px; padding: 6px 12px; border: 0; background: none; color: #cfb98a; font: 500 13px var(--fuente-texto); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; transition: opacity .3s; }
 
 /* Secuencia lenta, por trozos (clases que añade js/propuesta.js):
-   1 salta el sello → 2 el nudo se deshace → C el cordel se retira → 3 se abre la solapa → 4 sale la tarjeta → 5 el sobre se va → 6 fondo crema → 7 fundido */
-.sobre.paso1 .pieza--sello { animation: none; transform: translateY(-14%) scale(1.12); opacity: 0; transition: transform .9s ease, opacity .8s ease .1s; }
+   1 se pulsa el sello → 2 el lazo se deshace → S se levanta el sello → C el cordel se retira → 3 se abre la solapa → 4 sale la tarjeta → 5 el sobre se va → 6 fondo crema → 7 fundido */
+.sobre.paso1 .pieza--sello { animation: none; transform: scale(.96); transition: transform .3s ease; }
+/* el sello sujeta el lazo mientras se deshace; luego se levanta */
+.sobre.pasoS .pieza--sello { transform: translateY(-14%) scale(1.12); opacity: 0; transition: transform .9s ease, opacity .8s ease .1s; }
 .sobre.paso1 .sobre__pista, .sobre.paso1 .sobre__saltar { animation: none; opacity: 0; }
 /* 2 · el nudo se deshace poco a poco, como si se tirara de una punta */
 .sobre.paso2 .pieza--lazo { animation: desatar 2.2s steps(15) forwards; }
