@@ -43,7 +43,7 @@
 
   <!-- ================= SOBRE DE APERTURA ================= -->
   <div id="sobre" class="sobre" role="dialog" aria-modal="true" aria-label="Invitación cerrada">
-    <!-- Lienzo con la proporción de la ilustración (1:2); las piezas se colocan en % sobre él -->
+    <!-- Lienzo con la proporción de la ilustración (831×1218); todo se coloca en % sobre él -->
     <div class="sobre__lienzo">
       <div class="solapa solapa--izq"><div class="solapa__cara"></div></div>
       <div class="solapa solapa--der"><div class="solapa__cara"></div></div>
@@ -61,14 +61,12 @@
       </div>
       <!-- Solapa de arriba ya abierta (forro) -->
       <div class="solapa-abierta" aria-hidden="true"></div>
-      <!-- Cordel de yute atado en cruz, centrado -->
-      <img class="pieza pieza--cinta pieza--cinta-v" src="img/sobre-cuerda-v.webp" alt="" aria-hidden="true">
-      <img class="pieza pieza--cinta pieza--cinta-h" src="img/sobre-cuerda-h.webp" alt="" aria-hidden="true">
-      <!-- Lazada: tira de 16 fotogramas en la que el nudo se deshace; el sello va encima y se toca para abrir -->
-      <div class="pieza pieza--lazo" aria-hidden="true"></div>
-      <button id="sobre-sello" class="pieza pieza--sello" type="button" aria-label="Abrir la invitación">
-        <img src="img/sobre-sello.webp" alt="">
-      </button>
+      <!-- Cordel, lazo y sello: vídeo (su primer fotograma es la portada); al tocar el sello se deshace el lazo -->
+      <video class="sobre__video" poster="img/sobre-lazo-inicio.jpg" muted playsinline preload="auto" aria-hidden="true">
+        <source src="video/sobre-lazo.mp4" type="video/mp4">
+        <source src="video/sobre-lazo.webm" type="video/webm">
+      </video>
+      <button id="sobre-sello" class="sobre__sello" type="button" aria-label="Abrir la invitación"></button>
       <p class="sobre__pista">Toca el sello para abrir</p>
     </div>
     <button id="sobre-saltar" class="sobre__saltar" type="button">Saltar</button>

@@ -31,10 +31,20 @@
       if (sobre.dataset.abriendo) return;
       sobre.dataset.abriendo = "si";
       if (sinMovimiento) return cerrar();
-      // sello → se deshace el lazo → se levanta el sello → se retira el cordel → se abre la solapa → sale la tarjeta → fondo crema → fundido
-      const pasos = [["paso1", 0], ["paso2", 400], ["pasoS", 2650], ["pasoC", 3350], ["paso3", 4400], ["paso4", 5500], ["paso5", 7500], ["paso6", 9000], ["paso7", 10200]];
-      pasos.forEach(([clase, ms]) => setTimeout(() => sobre.classList.add(clase), ms));
-      setTimeout(cerrar, 11000);
+      // sello → el vídeo deshace el lazo y retira el cordel → se abre la solapa → sale la tarjeta → fondo crema → fundido
+      sobre.classList.add("paso1");
+      const video = $(".sobre__video", sobre);
+      let seguido = false;
+      const seguir = () => {
+        if (seguido) return;
+        seguido = true;
+        const pasos = [["paso3", 0], ["paso4", 1100], ["paso5", 3100], ["paso6", 4600], ["paso7", 5800]];
+        pasos.forEach(([clase, ms]) => setTimeout(() => sobre.classList.add(clase), ms));
+        setTimeout(cerrar, 6600);
+      };
+      video.addEventListener("ended", seguir);
+      const reserva = setTimeout(seguir, 9000);   // por si el vídeo no llega a terminar
+      video.play().catch(() => { clearTimeout(reserva); seguir(); });
     };
     $("#sobre-sello").addEventListener("click", abrir);
     $("#sobre-saltar").addEventListener("click", cerrar);

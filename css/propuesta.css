@@ -35,9 +35,9 @@
 }
 
 /* ---------- SOBRE DE APERTURA ----------
-   Ilustración azul y oro (img/sobre-fondo.jpg) repartida en 4 solapas, con la cinta,
-   el cordel (img/sobre-cuerda-*.webp) y la lazada (img/sobre-lazo-desata.webp, 16 fotogramas) como piezas aparte. Medidas en % del original 887×1774.
-   Secuencia: salta el sello → se deshace la lazada → se retiran las cintas → se abren las solapas. */
+   Ilustración azul y oro (img/sobre-fondo.jpg) repartida en 4 solapas. Encima, el vídeo del cordel
+   (video/sobre-lazo.mp4, 756×1056: el lienzo más un 5 % a la izquierda para que quepa la lazada).
+   Secuencia: se toca el sello → el vídeo deshace el lazo → se abre la solapa → sale la tarjeta. */
 body.con-sobre { overflow: hidden; }
 .sobre {
   position: fixed; inset: 0; z-index: 100;
@@ -67,28 +67,18 @@ body.con-sobre { overflow: hidden; }
 .sobre__pliegues { inset: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none; fill: none; transition: opacity .6s; }
 .sobre__pliegues path { stroke: rgba(0, 0, 0, .2); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
 
-/* Piezas (posiciones medidas en la ilustración) */
-.pieza { display: block; max-width: none; pointer-events: none; transition: transform 1s cubic-bezier(.55, 0, .35, 1), opacity .9s ease; }
-/* Un solo cordel vertical (dos cuerdecillas) a la izquierda; nudo en (22%, 46.5%) */
-.pieza--cinta { z-index: 5; object-fit: fill; filter: drop-shadow(1px 3px 3px rgba(0, 0, 0, .45)); }
-.pieza--lazo { filter: drop-shadow(1px 4px 4px rgba(0, 0, 0, .45)); }
-.pieza--cinta-v { left: 17.88%; top: 0; width: 4.45%; height: 100%; }   /* de filete a filete */
-.pieza--cinta-h { display: none; }
-
 /* Interior: forro azul con rayas doradas y tarjeta de papel crema */
 .sobre__interior { inset: 0; z-index: 0; display: grid; place-items: center; background: repeating-linear-gradient(0deg, transparent 0 14px, rgba(207, 167, 90, .14) 14px 15px), #172a3c; }
-.pieza--lazo { left: -1.33%; top: 40.32%; width: 45%; height: 34.11%; z-index: 6; }
-.pieza--lazo { background: url("../img/sobre-lazo-desata.webp") 0 0 / 1600% 100% no-repeat; }
-@keyframes desatar { to { background-position: 100% 0; } }
-/* Sello de lacre sobre el nudo */
-.pieza--sello {
-  left: 10.66%; top: 42.43%; width: 18.08%; height: 12.34%; z-index: 7;
-  padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto;
-  animation: sello-latido 2.6s ease-in-out infinite;
+/* Vídeo del cordel: su último fotograma es el sobre sin cordel, así que al ocultarlo no se nota */
+.sobre__video { left: -5%; top: 0; width: 105%; height: 100%; z-index: 6; object-fit: fill; pointer-events: none; }
+/* Zona del sello (encima del vídeo), con un brillo suave que invita a tocar */
+.sobre__sello {
+  left: 12.55%; top: 42.15%; width: 18.9%; height: 12.9%; z-index: 7;
+  padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer;
+  animation: sello-brillo 2.6s ease-in-out infinite;
 }
-.pieza--sello img { display: block; width: 100%; height: 100%; filter: drop-shadow(2px 6px 6px rgba(0, 0, 0, .5)); }
-.pieza--sello:focus-visible { outline: 3px solid #cfa75a; outline-offset: 4px; border-radius: 50%; }
-@keyframes sello-latido { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.sobre__sello:focus-visible { outline: 3px solid #cfa75a; outline-offset: 4px; }
+@keyframes sello-brillo { 0%, 100% { box-shadow: 0 0 0 0 rgba(240, 200, 200, 0); } 50% { box-shadow: 0 0 18px 4px rgba(240, 200, 200, .35); } }
 
 .sobre__pista {
   left: 0; right: 0; top: 37.45%; z-index: 8; margin: 0; text-align: center;
@@ -99,17 +89,11 @@ body.con-sobre { overflow: hidden; }
 @keyframes pista { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
 .sobre__saltar { position: absolute; z-index: 9; top: 12px; right: 12px; padding: 6px 12px; border: 0; background: none; color: #cfb98a; font: 500 13px var(--fuente-texto); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; transition: opacity .3s; }
 
-/* Secuencia lenta, por trozos (clases que añade js/propuesta.js):
-   1 se pulsa el sello → 2 el lazo se deshace → S se levanta el sello → C el cordel se retira → 3 se abre la solapa → 4 sale la tarjeta → 5 el sobre se va → 6 fondo crema → 7 fundido */
-.sobre.paso1 .pieza--sello { animation: none; transform: scale(.96); transition: transform .3s ease; }
-/* el sello sujeta el lazo mientras se deshace; luego se levanta */
-.sobre.pasoS .pieza--sello { transform: translateY(-14%) scale(1.12); opacity: 0; transition: transform .9s ease, opacity .8s ease .1s; }
+/* Secuencia (clases que añade js/propuesta.js):
+   1 se toca el sello y corre el vídeo del lazo → 3 se abre la solapa → 4 sale la tarjeta → 5 el sobre se va → 6 fondo crema → 7 fundido */
+.sobre.paso1 .sobre__sello { animation: none; pointer-events: none; }
 .sobre.paso1 .sobre__pista, .sobre.paso1 .sobre__saltar { animation: none; opacity: 0; }
-/* 2 · el nudo se deshace poco a poco, como si se tirara de una punta */
-.sobre.paso2 .pieza--lazo { animation: desatar 2.2s steps(15) forwards; }
-/* 2b · las puntas sueltas caen con el cordel, que se retira deslizándose hacia abajo */
-.sobre.pasoC .pieza--lazo { transform: translateY(40%); opacity: 0; transition: transform 1.3s cubic-bezier(.6, 0, .4, 1), opacity 1s ease .3s; }
-.sobre.pasoC .pieza--cinta { transform: translateY(105%); opacity: 0; transition: transform 1.4s cubic-bezier(.6, 0, .4, 1), opacity .5s ease 1s; }
+.sobre.paso3 .sobre__video { display: none; }
 
 /* 3-7 · La solapa se abre, la tarjeta sale del sobre y se funde con la web (todo en 2D) */
 .sobre .sobre__lienzo { transform-style: flat; }

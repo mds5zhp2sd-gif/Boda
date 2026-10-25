@@ -37,6 +37,7 @@ Web de la invitación (28 · 08 · 2027, Gijón). Es HTML + CSS + JavaScript sen
 ## Sobre de apertura y efectos
 
 - **Sobre de apertura**: `index.html` (bloque `#sobre`), estilos en `css/propuesta.css` y la secuencia en `js/propuesta.js`. Los textos del sobre («Para ti», nombres, iniciales del sello «S&J») están en `index.html`.
+- **Cordel y lazo del sobre**: es un vídeo (`video/sobre-lazo.mp4` y `.webm`, 756×1056, con `img/sobre-lazo-inicio.jpg` como primer fotograma). El lazo se generó con IA y se montó sobre `img/sobre-fondo.jpg`; el último fotograma es el sobre sin cordel.
 - **Guarda la fecha** (`#guarda-fecha`): número grande, calendario de agosto con el 28 marcado y la cuenta atrás.
 - **Cierre** (`#cierre`): `img/ilus-cierre-velero.png` y la frase final.
 - **Aparecer al bajar**: lo hace `js/propuesta.js` (lista `grupos`). Se desactiva solo si el móvil tiene «reducir movimiento».
