@@ -122,6 +122,13 @@ window.BODA_CONFIG = {
         mapa: "https://www.google.com/maps/search/?api=1&query=abba+Playa+Gij%C3%B3n",
         avisos: [
           {
+            titulo: "El hotel",
+            texto: "El cóctel será en el hotel abba Playa Gijón, junto al estadio de El Molinón.",
+            foto: "img/foto-hotel-abba.jpg",
+            fotoAlt: "Fachada del hotel abba Playa Gijón al anochecer",
+            fotoAncha: true,
+          },
+          {
             titulo: "Aparcamiento: explanada de los Hermanos Castro",
             texto: "Zona amplia para aparcar muy cerca del hotel.",
             mapa: "https://www.google.com/maps/search/?api=1&query=Explanada+Hermanos+Castro+Gij%C3%B3n",
