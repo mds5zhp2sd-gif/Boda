@@ -296,6 +296,13 @@ a { color: var(--color-tinta); }
 .aviso__titulo { margin: 0 0 2px; color: var(--color-tinta); font: 600 14.5px/1.4 var(--fuente-texto); }
 .aviso__texto { margin: 0; font-size: 14px; line-height: 1.55; }
 .aviso__mapa { display: inline-block; margin-top: 4px; font-size: 13px; color: var(--color-salvia-oscuro); text-underline-offset: 3px; }
+.aviso--destacado {
+  padding: 10px 14px;
+  border-left: 3px solid var(--color-salvia);
+  border-radius: 0 10px 10px 0;
+  background: rgba(109, 134, 119, .12);
+}
+.aviso__foto--ancha, .aviso .aviso__foto--ancha { float: none; display: block; width: 100%; max-width: none; margin: 0 0 8px; }
 .aviso__foto {
   float: right;
   width: 38%;

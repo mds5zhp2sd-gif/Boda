@@ -139,7 +139,7 @@
       const avisos = (col.avisos || []).filter((a) => !estaVacio(a.texto));
       if (avisos.length) {
         desplegable(item, col, "avisos", C.detalles.textoAvisos, avisos.map((a) => {
-          const aviso = crear("div", { clase: "aviso" }, [
+          const aviso = crear("div", { clase: a.destacado ? "aviso aviso--destacado" : "aviso" }, [
             !estaVacio(a.titulo) && crear("h3", { clase: "aviso__titulo", texto: a.titulo }),
             crear("p", { clase: "aviso__texto", texto: a.texto }),
             !estaVacio(a.mapa) && crear("a", {
@@ -148,7 +148,7 @@
           ]);
           if (!estaVacio(a.foto)) {
             // La foto solo aparece si el archivo existe.
-            const img = crear("img", { clase: "aviso__foto", src: a.foto, alt: a.fotoAlt || "", loading: "lazy" });
+            const img = crear("img", { clase: a.fotoAncha ? "aviso__foto aviso__foto--ancha" : "aviso__foto", src: a.foto, alt: a.fotoAlt || "", loading: "lazy" });
             img.addEventListener("error", () => img.remove());
             aviso.prepend(img);
           }

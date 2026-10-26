@@ -74,10 +74,23 @@ window.BODA_CONFIG = {
         mapa: "https://www.google.com/maps/search/?api=1&query=Capilla+de+la+Providencia+Gij%C3%B3n",
         // Desplegable "Aparcamiento y avisos". Cada aviso: título, texto, y opcionalmente
         // mapa (enlace) y foto (ruta en img/; si está vacía o no existe, no se muestra).
+        // fotoAncha: true → la foto ocupa todo el ancho · destacado: true → aviso en recuadro
         avisos: [
+          {
+            titulo: "La capilla",
+            texto: "Una capilla pequeña y llena de encanto, frente al mar, en La Providencia.",
+            foto: "img/foto-capilla.jpg",
+            fotoAlt: "Capilla de la Providencia, de paredes blancas y tejado de teja, junto al mar",
+            fotoAncha: true,
+          },
           {
             titulo: "Aforo reducido",
             texto: "La capilla es muy pequeña, así que en el interior tendrán prioridad los familiares más cercanos.",
+          },
+          {
+            titulo: "Un favor: dejad libres los huecos de la entrada",
+            texto: "El aparcamiento de la capilla es muy pequeño. Esos sitios son para los coches de los novios y para que las fotos de la llegada salgan bonitas. ¡Gracias!",
+            destacado: true,
           },
           {
             titulo: "¿Prefieres esperar fuera?",
@@ -87,10 +100,17 @@ window.BODA_CONFIG = {
           },
           {
             titulo: "Aparcamiento",
-            texto: "El Hórreo tiene un gran aparcamiento, ideal si vienes en coche.",
+            texto: "Te recomendamos aparcar en el aparcamiento de El Hórreo, justo al lado de la capilla.",
             foto: "img/foto-el-horreo.jpg",
             fotoAlt: "Entrada al aparcamiento de la sidrería El Hórreo",
             mapa: "https://www.google.com/maps/search/?api=1&query=Sidrer%C3%ADa+El+H%C3%B3rreo+La+Providencia+Gij%C3%B3n",
+          },
+          {
+            titulo: "Otra opción: aparcamiento de La Providencia",
+            texto: "Si el de El Hórreo está lleno, o si queréis aprovechar para acercaros al mirador, hay otro aparcamiento a unos 5 minutos andando de la capilla.",
+            foto: "img/foto-parking-providencia.jpg",
+            fotoAlt: "Aparcamiento de La Providencia, con el mar al fondo",
+            mapa: "https://maps.app.goo.gl/zbPg325m3y6RPAmQA",
           },
         ],
       },
