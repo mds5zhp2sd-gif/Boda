@@ -309,7 +309,7 @@ window.BODA_CONFIG = {
       fin: "2027-08-29T02:00:00+02:00",
     },
     musica: {
-      activo: false,
+      activo: true,
       archivo: "audio/cancion.mp3",   // crea la carpeta audio/ y sube aquí la canción
       textoPlay: "Poner música",
       textoPausa: "Pausar música",

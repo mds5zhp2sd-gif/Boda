@@ -33,6 +33,7 @@
       if (sinMovimiento) return cerrar();
       // sello → el vídeo deshace el lazo y retira el cordel → se abre la solapa → sale la tarjeta → fondo crema → fundido
       sobre.classList.add("paso1");
+      document.dispatchEvent(new Event("sobre-abierto"));
       const video = $(".sobre__video", sobre);
       let seguido = false;
       const seguir = () => {

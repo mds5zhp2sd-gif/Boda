@@ -451,12 +451,29 @@
       audio.loop = true;
       boton.hidden = false;
       boton.setAttribute("aria-label", X.musica.textoPlay);
-      boton.addEventListener("click", () => {
+      audio.volume = 0.7;
+      let tocadoPorElInvitado = false;
+      const reflejar = () => {
         const sonando = !audio.paused;
-        if (sonando) audio.pause(); else audio.play().catch((err) => console.warn("No se pudo reproducir la música:", err));
-        boton.setAttribute("aria-pressed", String(!sonando));
-        boton.setAttribute("aria-label", sonando ? X.musica.textoPlay : X.musica.textoPausa);
+        boton.setAttribute("aria-pressed", String(sonando));
+        boton.setAttribute("aria-label", sonando ? X.musica.textoPausa : X.musica.textoPlay);
+      };
+      const reproducir = (conFundido) => {
+        audio.volume = conFundido ? 0 : 0.7;
+        audio.play().then(() => {
+          if (!conFundido) return;
+          const t0 = performance.now();
+          const subir = (t) => { audio.volume = Math.min(0.7, 0.7 * (t - t0) / 2500); if (audio.volume < 0.7) requestAnimationFrame(subir); };
+          requestAnimationFrame(subir);
+        }).catch((err) => console.warn("No se pudo reproducir la música:", err)).finally(reflejar);
+      };
+      boton.addEventListener("click", () => {
+        tocadoPorElInvitado = true;
+        if (audio.paused) reproducir(false); else audio.pause();
+        reflejar();
       });
+      // La música empieza al tocar el sello del sobre (js/propuesta.js avisa con este evento)
+      document.addEventListener("sobre-abierto", () => { if (!tocadoPorElInvitado && audio.paused) reproducir(true); });
     }
   }
 

@@ -19,7 +19,7 @@ Web de la invitación (28 · 08 · 2027, Gijón). Es HTML + CSS + JavaScript sen
 | Textos y opciones del formulario | `js/config.js` | `confirmacion` |
 | Conectar el formulario a Google Sheets | `js/config.js` | `confirmacion.urlGoogleSheets` |
 | Cuenta atrás (reloj de arena) y “Añadir al calendario” | `js/config.js` | `extras.cuentaAtras`, `extras.calendario` |
-| Música | `js/config.js` | `extras.musica` (poner `activo: true`) |
+| Música (empieza al tocar el sello; botón ♪ para pausar) | `js/config.js` y `audio/cancion.mp3` | `extras.musica`; para cambiar la canción, sube otra con el mismo nombre |
 | Evento de Apple Calendar (archivo) | `boda.ics` | si cambian fecha, hora o lugar, editar `DTSTART`/`DTEND` (en hora UTC: 12:00 de Gijón en agosto = `100000Z`) y `LOCATION` |
 | Una ilustración o icono | carpeta `img/` | sube la nueva **con el mismo nombre** (o cambia la ruta en `config.js`) |
 | Colores, fuentes, tamaños | `css/estilos.css` | bloque `:root` al principio |
